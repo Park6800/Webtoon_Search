@@ -5,14 +5,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/main.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <title>전자 도서</title>
 </head>
 
 <body>
     <nav>
         <div class="top-nav">
             <div class="top-nav-left">도서관</div>
+            <div class="serach">
+                <input type="text" placeholder="검색어를 입력" class="serach_text">
+            </div>
             <div class="top-nav-right">
                 <ul>
                     <li>로그인</li>
@@ -112,47 +116,211 @@
     <div class="main_body">
         <div class="body_container">
             <div class="img_in">
-                알빠노
+                <div class="swiper-container first">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="img/book1-001.png" class="top_banner">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/book1-002.png" class="top_banner">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/book1-001.png" class="top_banner">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/book1-002.png" class="top_banner">
+                        </div>
+                    </div>
+                    <div class="swiper-button-next"><i class="icon-angle3-right"></i></div>
+                    <div class="swiper-button-prev"><i class="icon-angle3-left"></i></div>
+                </div>
             </div>
             <div class="con-right">
-                <div class="right">
-                    김태영 1 경고
+                <div class="right_half">
+                    <div class="live_best">
+                        최근 목록
+                    </div>
+                </div>
+                <div class="right_half_lp">
+                    기존 이용자
+                    <form class="inline_b">
+                        <input type="text" class="w_text" placeholder="ID를 입력하세요">
+                        <input type="password" class="w_text" placeholder="PW를 입력하세요">
+                        <button type="submit" class="btn_login">로그인</button>
+                    </form>
+                    <div class="find">
+                        <div class="find_id">아이디 찾기</div>
+                        <div class="find_pw">비밀 번호 찾기</div>
+                    </div>
+                    <div class="sign_up">
+                        <a href="#">처음 오셧나요? <span>회원 가입 ></span></a>
+                    </div>
                 </div>
                 <div class="right">
-                    김태영 2 경고
-                </div>
-                <div class="right">
-                    김태영 3
+                    김태영 3 귓방맹이 짝짝
                 </div>
             </div>
         </div>
     </div>
-    <div class="img_con">
-        <div class="swiper">
-            귓방맹이
+    <div class="genre">
+        <h2>장르</h2>
+        <div class="genres">
+            <div class="imgs" name="Thriller">
+                <img src="/img/스릴러.png" class="genre_img" onclick="select_genre()">
+                <div class="genre_font">스릴러</div>
+            </div>
+            <div class="imgs" name="Romance">
+                <img src="/img/로맨스.png" class="genre_img" onclick="select_genre()">
+                <div class="genre_font">로맨스</div>
+            </div>
+            <div class="imgs" name="Modern">
+                <img src="/img/현대.png" class="genre_img" onclick="select_genre()">
+                <div class="genre_font">현대</div>
+            </div>
+            <div class="imgs" name="Fantasy">
+                <img src="/img/판타지.png" class="genre_img" onclick="select_genre()">
+                <div class="genre_font">판타지</div>
+            </div>
+            <div class="imgs" name="Horror">
+                <img src="/img/공포.png" class="genre_img" onclick="select_genre()">
+                <div class="genre_font">공포</div>
+            </div>
         </div>
-        <div class="swiper">
-            싸닥션
-        </div>
-        <div class="swiper">
-            뺘말따구
-        </div>
-        <div class="swiper">
-            와사바리
-        </div>
-        <div class="swiper">
-            넥슬라이스
+    </div>
+    <div class="live_recomend">
+        <!-- 해당 픽은 당일 당일 설정 페이지 관리자가 설정 -->
+        <h2>추천 픽</h2>
+        <div class="pick">
+            <div class="pick_list">
+                <div class="pick_img">
+                    <img src="/img/th.jpg" class="pick_imgs">
+                </div>
+                <div class="book_introduction">
+                    <div class="book_genre">
+                        장르 : 게임 판타지
+                    </div>
+                    <div class="book_title">
+                        제목 : 달빛 조각사
+                    </div>
+                    <div class="book_author">작가 : 남희성</div>
+                </div>
+            </div>
+            <div class="pick_list">
+                <div class="pick_img">
+                    <img src="/img/아크.png" class="pick_imgs">
+                </div>
+                <div class="book_introduction">
+                    <div class="book_genre">
+                        장르 : 게임 판타지
+                    </div>
+                    <div class="book_title">
+                        제목 : 아크
+                    </div>
+                    <div class="book_author">작가 : 유성</div>
+                </div>
+            </div>
+            <div class="pick_list">
+                <div class="pick_img">
+                    <img src="/img/th.jpg" class="pick_imgs">
+                </div>
+                <div class="book_introduction">
+                    <div class="book_genre">
+                        장르 : 게임 판타지
+                    </div>
+                    <div class="book_title">
+                        제목 : 달빛 조각사
+                    </div>
+                    <div class="book_author">작가 : 남희성</div>
+                </div>
+            </div>
+            <div class="pick_list">
+                <div class="pick_img">
+                    <img src="/img/th.jpg" class="pick_imgs">
+                </div>
+                <div class="book_introduction">
+                    <div class="book_genre">
+                        장르 : 게임 판타지
+                    </div>
+                    <div class="book_title">
+                        제목 : 달빛 조각사
+                    </div>
+                    <div class="book_author">작가 : 남희성</div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="img_banner">
         <img src="/img/1610703127371.jpg" class="Img">
+        <div class="img_font">이미지 위의 문구</div>
     </div>
-    <div class="">
-
+    <div class="live_recomend_bot">
+        <!-- 신작 , 업데이트 순-->
+        <h2>추천 수</h2>
+        <div class="pick">
+            <div class="pick_list">
+                <div class="pick_img">
+                    <img src="/img/th.jpg" class="pick_imgs">
+                </div>
+                <div class="book_introduction">
+                    <div class="book_genre">
+                        장르 : 게임 판타지
+                    </div>
+                    <div class="book_title">
+                        제목 : 달빛 조각사
+                    </div>
+                    <div class="book_author">작가 : 남희성</div>
+                </div>
+            </div>
+            <div class="pick_list">
+                <div class="pick_img">
+                    <img src="/img/th.jpg" class="pick_imgs">
+                </div>
+                <div class="book_introduction">
+                    <div class="book_genre">
+                        장르 : 게임 판타지
+                    </div>
+                    <div class="book_title">
+                        제목 : 달빛 조각사
+                    </div>
+                    <div class="book_author">작가 : 남희성</div>
+                </div>
+            </div>
+            <div class="pick_list">
+                <div class="pick_img">
+                    <img src="/img/th.jpg" class="pick_imgs">
+                </div>
+                <div class="book_introduction">
+                    <div class="book_genre">
+                        장르 : 게임 판타지
+                    </div>
+                    <div class="book_title">
+                        제목 : 달빛 조각사
+                    </div>
+                    <div class="book_author">작가 : 남희성</div>
+                </div>
+            </div>
+            <div class="pick_list">
+                <div class="pick_img">
+                    <img src="/img/th.jpg" class="pick_imgs">
+                </div>
+                <div class="book_introduction">
+                    <div class="book_genre">
+                        장르 : 게임 판타지
+                    </div>
+                    <div class="book_title">
+                        제목 : 달빛 조각사
+                    </div>
+                    <div class="book_author">작가 : 남희성</div>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
     <footer>
 
     </footer>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script src="js/main.js"></script>
 
 </html>
