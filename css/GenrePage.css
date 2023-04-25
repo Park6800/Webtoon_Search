@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    display: inline-block;
+    margin-right: 50px;
+}
+
+nav{
+    width: 70%;
+    margin: auto;
+    background-color: gray;
+}
+
+.top-nav {
+    background-color: gray;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.serach_text {
+    width: 400px;
+    height: 30px;
+    border: 0;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.top-nav-left {
+    margin-left: 50px;
+}
+
+.middle-nav {
+    height: 50px;
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav_genre > ul > li:nth-child(n+1){
+    position: relative;
+    margin-left: 10px;
+}
+
+.nav_genre > ul > li:not(:last-child)::after{
+    position: absolute;
+    content: "";
+    top:-1px;
+    right: -35px;
+    width: 1px;
+    height: 25px;
+    background-color: white;
+}
+
+.select_ {
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.bot-nav {
+    height: 50px;
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.submit_btn > ul > li:nth-child(n+1){
+    position: relative;
+    margin-left: 10px;
+}
+
+.submit_btn > ul > li:not(:last-child)::after{
+    position: absolute;
+    content: "";
+    top:3px;
+    right: -35px;
+    width: 1px;
+    height: 25px;
+    background-color: white;
+}
+
+.btn_day {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px 10px;
+    background-color: gray;
+    cursor: pointer;
+}
+
+.main_body {
+    width: 70%;
+    margin: auto;
+    margin-top: 100px;
+    background-color: antiquewhite;
+}
+
+.informations {
+    display: flex;
+    justify-content:start;
+    flex-wrap: wrap;
+    padding-top: 20px;
+}
+
+.info_card {
+    display: inline-block;
+    margin: 20px 0 0 23px;
+}
+
+.img_size{
+    width: 197px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.card_title { 
+    font-weight: 500;
+}
+
+.author {
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+}

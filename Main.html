@@ -157,33 +157,56 @@
                     </div>
                 </div>
                 <div class="right">
-                    김태영 3 귓방맹이 짝짝
+                    뺘말따구 양싸대기
                 </div>
             </div>
         </div>
+    </div>
+    <div class="sel_genre">
+        <form>
+            <select class="select_view" onchange="chageLangSelect()" id="sel_chan">
+                <option value="" selected disabled>장르 선택</option>
+                <option value="thriller" disabled>스릴러</option>
+                <option value="romance" disabled>로맨스</option>
+                <option value="romance_fantasy" disabled>로맨스 판타지</option>
+                <option value="modern" disabled>현대</option>
+                <option value="fantasy" disabled>판타지</option>
+                <option value="action" disabled>무협</option>
+                <option value="comic" disabled>개그</option>
+            </select>
+            <button class="btn_submit" type="submit">조회</button>
+        </form>
     </div>
     <div class="genre">
         <h2>장르</h2>
         <div class="genres">
             <div class="imgs" name="Thriller">
-                <img src="/img/스릴러.png" class="genre_img" onclick="select_genre()">
-                <div class="genre_font">스릴러</div>
+                <div class="genre_" onclick="select_genre('Thriller'); change_sel('thriller');" id="Thriller">
+                스릴러</div>
             </div>
             <div class="imgs" name="Romance">
-                <img src="/img/로맨스.png" class="genre_img" onclick="select_genre()">
-                <div class="genre_font">로맨스</div>
+                <div class="genre_" onclick="select_genre('Romance'); change_sel('romance');" id="Romance">
+                로맨스</div>
+            </div>
+            <div class="imgs" name="Romance_Fantasy">
+                <div class="genre_" onclick="select_genre('Romance_Fantasy'); change_sel('romance_fantasy');" id="Romance_Fantasy">
+                로맨스 판타지</div>
             </div>
             <div class="imgs" name="Modern">
-                <img src="/img/현대.png" class="genre_img" onclick="select_genre()">
-                <div class="genre_font">현대</div>
+                <div class="genre_" onclick="select_genre('Modern'); change_sel('modern');" id="Modern">
+                현대</div>
             </div>
             <div class="imgs" name="Fantasy">
-                <img src="/img/판타지.png" class="genre_img" onclick="select_genre()">
-                <div class="genre_font">판타지</div>
+                <div class="genre_" onclick="select_genre('Fantasy'); change_sel('fantasy');" id="Fantasy">
+                판타지</div>
             </div>
-            <div class="imgs" name="Horror">
-                <img src="/img/공포.png" class="genre_img" onclick="select_genre()">
-                <div class="genre_font">공포</div>
+            <div class="imgs" name="Action">
+                <div class="genre_" onclick="select_genre('Action'); change_sel('action');" id="Action">
+                무협</div>
+            </div>
+            <div class="imgs" name="Comic">
+                <div class="genre_" onclick="select_genre('Comic'); change_sel('comic');" id="Comic">
+                개그</div>
             </div>
         </div>
     </div>
