@@ -1,5 +1,7 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import="DataClass.WebtoonData"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,13 +32,13 @@
         <div class="middle-nav">
             <div class="nav_genre">
                 <ul>
-                    <li onclick="click_genre('thriller');" id="thriller" class="select_">스릴러</li>
-                    <li onclick="click_genre('romance');" id="romance" class="select_">로맨스</li>
-                    <li onclick="click_genre('romance_fantasy');" id="romance_fantasy" class="select_">로맨스 판타지</li>
-                    <li onclick="click_genre('modern');" id="modern" class="select_">현대</li>
-                    <li onclick="click_genre('fantasy');" id="fantasy" class="select_">판타지</li>
-                    <li onclick="click_genre('action');" id="action" class="select_">무협</li>
-                    <li onclick="click_genre('comic');" id="comic" class="select_">개그</li>
+                    <li onclick="click_genre('스릴러');" id="스릴러" class="select_">스릴러</li>
+                    <li onclick="click_genre('로맨스');" id="로맨스" class="select_">로맨스</li>
+                    <li onclick="click_genre('로맨스 판타지');" id="로맨스 판타지" class="select_">로맨스 판타지</li>
+                    <li onclick="click_genre('현대');" id="현대" class="select_">현대</li>
+                    <li onclick="click_genre('판타지');" id="판타지" class="select_">판타지</li>
+                    <li onclick="click_genre('액션');" id="액션" class="select_">무협</li>
+                    <li onclick="click_genre('코믹');" id="코믹" class="select_">개그</li>
                 </ul>
             </div>
             <div>예정</div>
@@ -46,32 +48,32 @@
             <div class="submit_btn">
                 <ul>
                     <li>
-                        <form><input type="submit" value="월" name="Day" class="btn_day"><input type="hidden"
-                                id="get_genre" name="Genre" value=""></form>
+                        <form method="post" action="webtoonServlet"><input type="submit" value="월요일" name="Day" class="btn_day"><input type="hidden"
+                                class="get_genre" name="Genre"></form>
                     </li>
                     <li>
-                        <form><input type="submit" value="화" name="Day" class="btn_day"><input type="hidden"
-                                id="get_genre" name="Genre" value=""></form>
+                        <form method="post" action="webtoonServlet"><input type="submit" value="화요일" name="Day" class="btn_day"><input type="hidden"
+                                class="get_genre" name="Genre"></form>
                     </li>
                     <li>
-                        <form><input type="submit" value="수" name="Day" class="btn_day"><input type="hidden"
-                                id="get_genre" name="Genre" value=""></form>
+                        <form method="post" action="webtoonServlet"><input type="submit" value="수요일" name="Day" class="btn_day"><input type="hidden"
+                                class="get_genre" name="Genre"></form>
                     </li>
                     <li>
-                        <form><input type="submit" value="목" name="Day" class="btn_day"><input type="hidden"
-                                id="get_genre" name="Genre" value=""></form>
+                        <form method="post" action="webtoonServlet"><input type="submit" value="목요일" name="Day" class="btn_day"><input type="hidden"
+                                class="get_genre" name="Genre"></form>
                     </li>
                     <li>
-                        <form><input type="submit" value="금" name="Day" class="btn_day"><input type="hidden"
-                                id="get_genre" name="Genre" value=""></form>
+                        <form method="post" action="webtoonServlet"><input type="submit" value="금요일" name="Day" class="btn_day"><input type="hidden"
+                                class="get_genre" name="Genre"></form>
                     </li>
                     <li>
-                        <form><input type="submit" value="토" name="Day" class="btn_day"><input type="hidden"
-                                id="get_genre" name="Genre" value=""></form>
+                        <form method="post" action="webtoonServlet"><input type="submit" value="토요일" name="Day" class="btn_day"><input type="hidden"
+                                class="get_genre" name="Genre"></form>
                     </li>
                     <li>
-                        <form><input type="submit" value="일" name="Day" class="btn_day"><input type="hidden"
-                                id="get_genre" name="Genre" value=""></form>
+                        <form method="post" action="webtoonServlet"><input type="submit" value="일요일" name="Day" class="btn_day"><input type="hidden"
+                                class="get_genre" name="Genre"></form>
                     </li>
                 </ul>
             </div>
@@ -80,69 +82,25 @@
     </nav>
     <div class="main_body">
         <div class="informations">
+        <%
+        ArrayList<WebtoonData> toonlist = (ArrayList<WebtoonData>) session.getAttribute("toon_list");
+        for(WebtoonData webtoon : toonlist ){
+        	String title = webtoon.TITLE;
+        	String day = webtoon.DAY;
+        	String story = webtoon.STORY_AUTHOR;
+        	String art = webtoon.ART_AUTHOR;
+        	String url = webtoon.URL;
+        %>
             <div class="info_card">
-                <div class="card_img"><img src="resource/img/webtoon/신의탑.jpg" class="img_size"></div>
-                <div class="card_title">신의 탑</div>
-                <div class="up_day">월 요일</div>
+                <div class="card_img"><img src="<%= url%>" class="img_size"></div>
+                <div class="card_title"><%= title %></div>
+                <div class="up_day"><%= day%></div>
                 <div class="author">
-                    <div class="card_story_author">글 : SIU</div>
-                    <div class="card_art_author">그림 : SIU</div>
+                    <div class="card_story_author"><%= story %></div>
+                    <div class="card_art_author"><%= art %></div>
                 </div>
             </div>
-            <div class="info_card">
-                <div class="card_img"><img src="resource/img/webtoon/뷰군.jpg" class="img_size"></div>
-                <div class="card_title">뷰티풀 군바리</div>
-                <div class="up_day">월 요일</div>
-                <div class="author">
-                    <div class="card_story_author">글 : SIU</div>
-                    <div class="card_art_author">그림 : SIU</div>
-                </div>
-            </div>
-            <div class="info_card">
-                <div class="card_img"><img src="resource/img/webtoon/퀘스트 지상 주의.jpg" class="img_size"></div>
-                <div class="card_title">신의 탑</div>
-                <div class="up_day">월 요일</div>
-                <div class="author">
-                    <div class="card_story_author">글 : SIU</div>
-                    <div class="card_art_author">그림 : SIU</div>
-                </div>
-            </div>
-            <div class="info_card">
-                <div class="card_img"><img src="resource/img/webtoon/윈드 브레이커.jpg" class="img_size"></div>
-                <div class="card_title">신의 탑</div>
-                <div class="up_day">월 요일</div>
-                <div class="author">
-                    <div class="card_story_author">글 : 조용석</div>
-                    <div class="card_art_author">그림 : 조용석</div>
-                </div>
-            </div>
-            <div class="info_card">
-                <div class="card_img"><img src="resource/img/webtoon/신의탑.jpg" class="img_size"></div>
-                <div class="card_title">신의 탑</div>
-                <div class="up_day">월 요일</div>
-                <div class="author">
-                    <div class="card_story_author">글 : SIU</div>
-                    <div class="card_art_author">그림 : SIU</div>
-                </div>
-            </div>
-            <div class="info_card">
-                <div class="card_img"><img src="resource/img/webtoon/신의탑.jpg" class="img_size"></div>
-                <div class="card_title">신의 탑</div>
-                <div class="up_day">월 요일</div>
-                <div class="author">
-                    <div class="card_story_author">글 : SIU</div>
-                    <div class="card_art_author">그림 : SIU</div>
-                </div>
-            </div>
-            <div class="info_card">
-                <div class="card_img"><img src="resource/img/webtoon/신의탑.jpg" class="img_size"></div>
-                <div class="card_title">신의 탑</div>
-                <div class="up_day">월 요일</div>
-                <div class="author">
-                    <div class="card_story_author">글 : SIU</div>
-                    <div class="card_art_author">그림 : SIU</div>
-                </div>
-            </div>
+            <%} %>
         </div>
     </div>
 </body>

@@ -2,6 +2,16 @@ package DB;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import DataClass.WebtoonData;
 
 public class DB_Conn {
 
@@ -34,4 +44,52 @@ public class DB_Conn {
 		}
 
 	}
+	public void serach_webtoon(HttpServletRequest request, HttpServletResponse response, WebtoonData _Data) {
+		// TODO Auto-generated method stub
+		Statement stmt = null;
+		ResultSet res = null;
+		List<WebtoonData> toonlist = new ArrayList<WebtoonData>();
+
+		try {
+			stmt = conn.createStatement();
+//			정보에맞는 차량 모두 조회 
+			String sql = "select _TITLE , _DAY, _STORY_AUTHOR , _ART_AUTHOR , _URL from webtoon_info where _GENRE ='"
+					+ _Data.GENRE + "' AND _DAY ='" + _Data.DAY +  "'";
+			res = stmt.executeQuery(sql);
+				while (res.next()) {
+					WebtoonData Webtoon = new WebtoonData();
+					Webtoon.TITLE = res.getString("_TITLE");
+					Webtoon.DAY = res.getString("_DAY");
+					Webtoon.STORY_AUTHOR = res.getString("_STORY_AUTHOR");
+					Webtoon.ART_AUTHOR = res.getString("_ART_AUTHOR");
+					Webtoon.URL = res.getString("_URL");
+//		        조회한 결과 객체에담고 리스트에 추가 
+					toonlist.add(Webtoon);
+
+				}
+				HttpSession session = request.getSession();
+				
+				session.setAttribute("toon_list", toonlist);
+				response.sendRedirect("GenrePage.jsp");
+	
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+
 }

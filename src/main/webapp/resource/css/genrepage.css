@@ -114,12 +114,13 @@ nav{
     display: flex;
     justify-content:start;
     flex-wrap: wrap;
-    padding-top: 20px;
+    padding: 20px 0 20px 0;
 }
 
 .info_card {
     display: inline-block;
-    margin: 20px 0 0 23px;
+    margin: 20px 0 0px 23px;
+    background:white;
 }
 
 .img_size{
@@ -130,10 +131,15 @@ nav{
 
 .card_title { 
     font-weight: 500;
+    font-size:12px;
+}
+
+.up_day {
+	font-size:12px;
 }
 
 .author {
-    font-size: 14px;
+    font-size: 12px;
     display: flex;
     justify-content: space-between;
 }

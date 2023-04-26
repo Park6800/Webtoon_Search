@@ -168,50 +168,51 @@
         </div>
     </div>
     <div class="sel_genre">
-        <form>
-            <select class="select_view" onchange="chageLangSelect()" id="sel_chan">
-                <option value="" selected disabled>장르 선택</option>
-                <option value="thriller" disabled>스릴러</option>
-                <option value="romance" disabled>로맨스</option>
-                <option value="romance_fantasy" disabled>로맨스 판타지</option>
-                <option value="modern" disabled>현대</option>
-                <option value="fantasy" disabled>판타지</option>
-                <option value="action" disabled>무협</option>
-                <option value="comic" disabled>개그</option>
+        <form method="post" action="webtoonServlet">
+            <select class="select_view" onchange="chageLangSelect()" id="sel_chan" name="Genre">
+                <option selected disabled name="Genre">장르 선택</option>
+                <option value="스릴러" name="Genre">스릴러</option>
+                <option value="로맨스" name="Genre">로맨스</option>
+                <option value="로맨스 판타지" name="Genre">로맨스 판타지</option>
+                <option value="현대" name="Genre">현대</option>
+                <option value="판타지" name="Genre">판타지</option>
+                <option value="액션" name="Genre">무협</option>
+                <option value="코믹" name="Genre">개그</option>
             </select>
+            <input type="text" value="월요일" name="Day" class="btn_day">
             <button class="btn_submit" type="submit">조회</button>
         </form>
     </div>
     <div class="genre">
-        <h2>장르</h2>
+        <h2>웹툰</h2>
         <div class="genres">
             <div class="imgs" name="Thriller">
-                <div class="genre_" onclick="select_genre('Thriller'); change_sel('thriller');" id="Thriller">
+                <div class="genre_" onclick="select_genre('Thriller'); change_sel('스릴러');" id="Thriller">
                     스릴러</div>
             </div>
             <div class="imgs" name="Romance">
-                <div class="genre_" onclick="select_genre('Romance'); change_sel('romance');" id="Romance">
+                <div class="genre_" onclick="select_genre('Romance'); change_sel('로맨스');" id="Romance">
                     로맨스</div>
             </div>
             <div class="imgs" name="Romance_Fantasy">
-                <div class="genre_" onclick="select_genre('Romance_Fantasy'); change_sel('romance_fantasy');"
+                <div class="genre_" onclick="select_genre('Romance_Fantasy'); change_sel('로맨스 판타지');"
                     id="Romance_Fantasy">
                     로맨스 판타지</div>
             </div>
             <div class="imgs" name="Modern">
-                <div class="genre_" onclick="select_genre('Modern'); change_sel('modern');" id="Modern">
+                <div class="genre_" onclick="select_genre('Modern'); change_sel('현대');" id="Modern">
                     현대</div>
             </div>
             <div class="imgs" name="Fantasy">
-                <div class="genre_" onclick="select_genre('Fantasy'); change_sel('fantasy');" id="Fantasy">
+                <div class="genre_" onclick="select_genre('Fantasy'); change_sel('판타지');" id="Fantasy">
                     판타지</div>
             </div>
             <div class="imgs" name="Action">
-                <div class="genre_" onclick="select_genre('Action'); change_sel('action');" id="Action">
+                <div class="genre_" onclick="select_genre('Action'); change_sel('액션');" id="Action">
                     무협</div>
             </div>
             <div class="imgs" name="Comic">
-                <div class="genre_" onclick="select_genre('Comic'); change_sel('comic');" id="Comic">
+                <div class="genre_" onclick="select_genre('Comic'); change_sel('코믹');" id="Comic">
                     개그</div>
             </div>
         </div>
