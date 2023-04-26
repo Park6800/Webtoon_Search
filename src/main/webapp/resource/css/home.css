@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
     margin: 0;
     padding: 0;
@@ -18,12 +19,12 @@ li {
 
 nav {
     height: 150px;
+    background: rgb(38, 41, 45);
 }
 
 .top-nav {
     width: 60%;
     margin: auto;
-    background-color: gray;
     height: 70px;
     display: flex;
     justify-content: space-between;
@@ -40,6 +41,11 @@ nav {
 
 .top-nav-left {
     margin-left: 50px;
+    color: white;
+}
+
+.top-nav-right > ul > li {
+    color: white;
 }
 
 .bot {
@@ -50,7 +56,6 @@ nav {
 
 .bot-nav {
     height: 80px;
-    background-color: #999;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -59,19 +64,31 @@ nav {
 .w150 {
     width: 150px;
     text-align: center;
+    color: white;
 }
 
-.bot:hover > .hide-nav{
+.bot:hover ~ .hide-nav{
     display:flex;
+}
+
+.hide-nav:hover {
+    display: flex;
 }
 
 .hide-nav {
     position: relative;
     height: 210px;
-    background-color: #666;
     display: none;
     justify-content: space-around;
     z-index: 5;
+    background: rgba(35, 36, 45, 0.9);
+}
+
+.hide_nav_width {
+    width: 60%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
 }
 
 .around {
@@ -82,6 +99,7 @@ nav {
     height: 30px;
     text-align: center;
     padding-top: 20px;
+    color: white;
 }
 
 .main_body {

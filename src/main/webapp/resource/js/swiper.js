@@ -1,4 +1,7 @@
-var mySwiper = new Swiper('.first', {
+/**
+ * 
+ */
+  var mySwiper = new Swiper('.first', {
   slidesPerView: 1,
   slidesPerGroup: 1,
 
@@ -21,18 +24,3 @@ pagination: '.swiper-pagination',
   // And if we need scrollbar
 
 });
-
-
-function select_genre(sel) {
-    let _Select = document.getElementById(sel);
-    let img_None = document.getElementsByClassName("genre_");
-    for(let i = 0; i<img_None.length;i++){
-      img_None[i].style.border = "none";
-    }
-    _Select.style.border = "1px solid red";
-}
-
-function change_sel(chan) {
-  let sel_value = document.getElementById("sel_chan");
-  sel_value.value = chan;
-}

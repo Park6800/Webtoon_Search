@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,8 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/GenrePage.css">
-    <script src="js/GenrePage.js"></script>
+    <link rel="stylesheet" href="resource/css/genrepage.css">
+    <script src="resource/js/genrepage.js"></script>
 </head>
 
 <body>
@@ -40,7 +42,7 @@
             <div>예정</div>
         </div>
         <hr>
-        <div class="bot-nav" style="display: none;" id="nav-b">
+        <div class="bot-nav" id="nav-b">
             <div class="submit_btn">
                 <ul>
                     <li>
@@ -79,7 +81,7 @@
     <div class="main_body">
         <div class="informations">
             <div class="info_card">
-                <div class="card_img"><img src="img/신의탑.jpg" class="img_size"></div>
+                <div class="card_img"><img src="resource/img/webtoon/신의탑.jpg" class="img_size"></div>
                 <div class="card_title">신의 탑</div>
                 <div class="up_day">월 요일</div>
                 <div class="author">
@@ -88,7 +90,7 @@
                 </div>
             </div>
             <div class="info_card">
-                <div class="card_img"><img src="img/뷰군.jpg" class="img_size"></div>
+                <div class="card_img"><img src="resource/img/webtoon/뷰군.jpg" class="img_size"></div>
                 <div class="card_title">뷰티풀 군바리</div>
                 <div class="up_day">월 요일</div>
                 <div class="author">
@@ -97,7 +99,7 @@
                 </div>
             </div>
             <div class="info_card">
-                <div class="card_img"><img src="img/퀘스트 지상 주의.jpg" class="img_size"></div>
+                <div class="card_img"><img src="resource/img/webtoon/퀘스트 지상 주의.jpg" class="img_size"></div>
                 <div class="card_title">신의 탑</div>
                 <div class="up_day">월 요일</div>
                 <div class="author">
@@ -106,7 +108,16 @@
                 </div>
             </div>
             <div class="info_card">
-                <div class="card_img"><img src="img/신의탑.jpg" class="img_size"></div>
+                <div class="card_img"><img src="resource/img/webtoon/윈드 브레이커.jpg" class="img_size"></div>
+                <div class="card_title">신의 탑</div>
+                <div class="up_day">월 요일</div>
+                <div class="author">
+                    <div class="card_story_author">글 : 조용석</div>
+                    <div class="card_art_author">그림 : 조용석</div>
+                </div>
+            </div>
+            <div class="info_card">
+                <div class="card_img"><img src="resource/img/webtoon/신의탑.jpg" class="img_size"></div>
                 <div class="card_title">신의 탑</div>
                 <div class="up_day">월 요일</div>
                 <div class="author">
@@ -115,7 +126,7 @@
                 </div>
             </div>
             <div class="info_card">
-                <div class="card_img"><img src="img/신의탑.jpg" class="img_size"></div>
+                <div class="card_img"><img src="resource/img/webtoon/신의탑.jpg" class="img_size"></div>
                 <div class="card_title">신의 탑</div>
                 <div class="up_day">월 요일</div>
                 <div class="author">
@@ -124,16 +135,7 @@
                 </div>
             </div>
             <div class="info_card">
-                <div class="card_img"><img src="img/신의탑.jpg" class="img_size"></div>
-                <div class="card_title">신의 탑</div>
-                <div class="up_day">월 요일</div>
-                <div class="author">
-                    <div class="card_story_author">글 : SIU</div>
-                    <div class="card_art_author">그림 : SIU</div>
-                </div>
-            </div>
-            <div class="info_card">
-                <div class="card_img"><img src="img/신의탑.jpg" class="img_size"></div>
+                <div class="card_img"><img src="resource/img/webtoon/신의탑.jpg" class="img_size"></div>
                 <div class="card_title">신의 탑</div>
                 <div class="up_day">월 요일</div>
                 <div class="author">
