@@ -203,6 +203,51 @@ nav {
     padding: 0 15px;
 }
 
+.user {
+	width:90%;
+	margin:auto;
+}
+
+.Account {
+	margin-top : 10px;
+}
+
+.Account > span {
+	font-size:24px;
+	margin-left:10px;
+}
+
+.user_img {
+	width:100%;
+	margin-top : 10px;
+	margin-bottom:10px;
+	display:flex;
+}
+
+.user_img > img{
+	width:80px;
+	heigth:80px;
+}
+
+.user_mid {
+	width:100%;
+	display:inline-block;
+}
+
+.mid {
+	margin-top:20px;
+	text-align: right;
+}
+
+.mid > a {
+	color: black;
+	border:1px solid black;
+	border-radius:5px;
+	padding: 10px 5px;	
+	background-color:#999;
+}
+
+
 .sign_up {
     text-align: center;
     font-size: 14px;

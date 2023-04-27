@@ -1,4 +1,4 @@
-package Find_servlet;
+package Search_servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -11,16 +11,16 @@ import DB.DB_Conn;
 import DataClass.WebtoonData;
 
 /**
- * Servlet implementation class webtoon
+ * Servlet implementation class search_input
  */
-@WebServlet("/webtoonServlet")
-public class webtoonServlet extends HttpServlet {
+@WebServlet("/search_input")
+public class search_input extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public webtoonServlet() {
+    public search_input() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,20 +35,23 @@ public class webtoonServlet extends HttpServlet {
 		try {
 			DB_Conn _Db = new DB_Conn();
 //			입력정보 변수에 저장
-			String day = request.getParameter("Day");
-			String genre = request.getParameter("Genre");
+			String title = request.getParameter("Title");
+			String story = request.getParameter("Story");
+			String art = request.getParameter("Art");
 
 			WebtoonData _Data = new WebtoonData();
 
-			_Data.DAY = day;
-			_Data.GENRE = genre;
+			_Data.TITLE = title;
+			_Data.STORY_AUTHOR = story;
+			_Data.ART_AUTHOR = art;
 			
-//				차량 조회 함수 호출
-			_Db.find_webtoon(request, response, _Data);
+			
+			_Db.serach_webtoon(request, response, _Data);
 		} catch (Exception e) {
 
 		}
 	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

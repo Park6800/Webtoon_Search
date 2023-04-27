@@ -1,4 +1,4 @@
-package Find_servlet;
+package Login_servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,19 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DB.DB_Conn;
-import DataClass.WebtoonData;
+import DataClass.UserData;
 
 /**
- * Servlet implementation class webtoon
+ * Servlet implementation class loginServlet
  */
-@WebServlet("/webtoonServlet")
-public class webtoonServlet extends HttpServlet {
+@WebServlet("/loginServlet")
+public class loginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public webtoonServlet() {
+    public loginServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,16 +35,15 @@ public class webtoonServlet extends HttpServlet {
 		try {
 			DB_Conn _Db = new DB_Conn();
 //			입력정보 변수에 저장
-			String day = request.getParameter("Day");
-			String genre = request.getParameter("Genre");
+			String id = request.getParameter("Id");
+			String pw = request.getParameter("Pw");
 
-			WebtoonData _Data = new WebtoonData();
+			UserData _Data = new UserData();
 
-			_Data.DAY = day;
-			_Data.GENRE = genre;
+			_Data.ID = id;
+			_Data.PW = pw;
 			
-//				차량 조회 함수 호출
-			_Db.find_webtoon(request, response, _Data);
+			_Db.login_service(request, response, _Data);
 		} catch (Exception e) {
 
 		}
@@ -56,8 +55,6 @@ public class webtoonServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		request.setCharacterEncoding("UTF-8");
 	}
 
 }
