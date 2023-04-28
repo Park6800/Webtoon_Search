@@ -17,8 +17,16 @@
 	<nav>
 		<div class="top-nav">
 			<div class="top-nav-left">도서관</div>
-			<div class="serach">
-				<input type="text" placeholder="검색어를 입력" class="serach_text">
+				<div class="serach">
+				<select onchange="search_()" id=change_select>
+					<option value="Title">제목 검색</option>
+					<option value="Story">글 작가 검색</option>
+					<option value="Art">그림 작가 검색</option>
+				</select>
+				<form method="post" action="search_input">
+					<input type="text" placeholder="검색어를 입력" class="serach_text"
+						id="serach_form">
+				</form>
 			</div>
 			<div class="top-nav-right">
 				<ul>

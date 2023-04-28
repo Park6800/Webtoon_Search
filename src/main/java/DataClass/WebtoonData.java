@@ -9,5 +9,6 @@ public class WebtoonData {
 		public String ART_AUTHOR;
 		public String COMPANY;
 		public String URL;
+		public String LIKE;
 
 }

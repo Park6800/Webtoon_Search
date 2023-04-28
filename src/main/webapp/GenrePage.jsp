@@ -15,11 +15,15 @@
 </head>
 
 <body>
-<%Object ID_ = session.getAttribute("user_id");
-String ID_value = (String) ID_; %>
+	<%
+	Object ID_ = session.getAttribute("user_id");
+	String ID_value = (String) ID_;
+	%>
 	<nav>
 		<div class="top-nav">
-			<div class="top-nav-left">도서관</div>
+			<div class="top-nav-left">
+				<a href="Home.jsp">도서관</a>
+			</div>
 			<div class="serach">
 				<select onchange="search_()" id=change_select>
 					<option value="Title">제목 검색</option>
@@ -32,10 +36,24 @@ String ID_value = (String) ID_; %>
 				</form>
 			</div>
 			<div class="top-nav-right">
+				<%
+				if (ID_value == null) {
+				%>
 				<ul>
 					<li>로그인</li>
 					<li>회원가입</li>
 				</ul>
+				<%
+				} else {
+				%>
+				<ul>
+					<li><%=ID_value%></li>
+					<li>로그아웃</li>
+					<li>내 정보 보기</li>
+				</ul>
+				<%
+				}
+				%>
 			</div>
 		</div>
 		<hr>
@@ -115,6 +133,10 @@ String ID_value = (String) ID_; %>
 				String story = webtoon.STORY_AUTHOR;
 				String art = webtoon.ART_AUTHOR;
 				String url = webtoon.URL;
+				String like = webtoon.LIKE;
+
+				Object LIKED = session.getAttribute("Liked_");
+				String liked = (String) LIKED;
 			%>
 			<div class="info_card">
 				<div class="card_img">
@@ -122,9 +144,25 @@ String ID_value = (String) ID_; %>
 				</div>
 				<div class="card_title"><%=title%>
 					<form method="post" action="likeServlet">
-						<input type="hidden" value="<%=ID_%>" name="Id">
-						<input type="hidden" value="<%=title%>" name="Title">
+						<input type="hidden" value="<%=ID_value%>" name="Id"> <input
+							type="hidden" value="<%=title%>" name="Title"> <input
+							type="hidden" value="1" name="Like"> <input type="hidden"
+							value="1" name="Click">
+						<%
+						if (liked == null) {
+						%>
 						<button type="submit">❤</button>
+						<%
+						} else if (liked.equals("1")) {
+						%>
+						<button type="submit">o</button>
+						<%
+						} else {
+						%>
+						<button type="submit">❤</button>
+						<%
+						}
+						%>
 					</form>
 				</div>
 				<div class="up_day"><%=day%></div>

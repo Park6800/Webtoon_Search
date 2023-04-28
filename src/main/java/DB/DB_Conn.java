@@ -2,6 +2,7 @@ package DB;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -21,14 +22,18 @@ public class DB_Conn {
 
 	Connection conn = null;
 
+	private String _sql2;
+
 	public DB_Conn() {
 		Connection();
 	}
 
-	public DB_Conn(String _sql) {
+	public DB_Conn(String _sql, String _sql2) {
 		Connection();
 		this._sql = _sql;
+		this._sql2 =_sql2;
 	}
+	
 
 	void Connection() {
 		try {
@@ -150,7 +155,7 @@ public class DB_Conn {
 		try {
 			stmt = conn.createStatement();
 //			정보에맞는 차량 모두 조회 
-			String sql = "select _TITLE , _DAY, _STORY_AUTHOR , _ART_AUTHOR , _URL from webtoon_info where _GENRE ='"
+			String sql = "select _TITLE , _DAY, _STORY_AUTHOR , _ART_AUTHOR , _URL , _LIKE from webtoon_info where _GENRE ='"
 					+ _Data.GENRE + "' AND _DAY ='" + _Data.DAY +  "'";
 			res = stmt.executeQuery(sql);
 				while (res.next()) {
@@ -160,9 +165,10 @@ public class DB_Conn {
 					Webtoon.STORY_AUTHOR = res.getString("_STORY_AUTHOR");
 					Webtoon.ART_AUTHOR = res.getString("_ART_AUTHOR");
 					Webtoon.URL = res.getString("_URL");
+					Webtoon.LIKE = res.getString("_LIKE");
+					System.out.println(res.getString("_LIKE"));
 //		        조회한 결과 객체에담고 리스트에 추가 
 					toonlist.add(Webtoon);
-
 				}
 				HttpSession session = request.getSession();
 				
@@ -236,26 +242,60 @@ public class DB_Conn {
 		// TODO Auto-generated method stub
 		Statement stmt = null;
 		ResultSet res = null;
-
+		List<WebtoonData> likelist = new ArrayList<WebtoonData>();
 		try {
+			PreparedStatement pstmt = null;
+//			정보에맞는 차량 모두 조회 
+			String sql = "insert into count_info (_USER_ID, _TITLE, _LIKE , _CLICK)" + "values(?,?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, _Data.ID);	
+			pstmt.setString(2, _Data.TITLE);
+			pstmt.setString(3, _Data.LIKE);
+			pstmt.setInt(4, _Data.CLICK);
+			pstmt.executeUpdate();
+
 			stmt = conn.createStatement();
 //			정보에맞는 차량 모두 조회 
-			String sql = "update count_info set _LIKE = _LIKE + 1 WHERE _USER_ID ='" +_Data.ID+ "' AND _TITLE ='" + _Data.TITLE + "' AND liked =" + _Data.LIKED + "";
-			res = stmt.executeQuery(sql);
-				while (res.next()) {
-					UserData Data_ = new UserData();
-					String ID = res.getString("_USER_ID");
-					int ADMIN = res.getInt("_ADMIN");
-				
-					System.out.println(ID);
-					
-					
+			String sql2 = "select _LIKE from count_info where _USER_ID ='" + _Data.ID + "' AND _TITLE='" + _Data.TITLE +"'";
+			res = stmt.executeQuery(sql2);
+			while (res.next()) {
+				CountData Data_ = new CountData();
+				String LIKE = res.getString("_LIKE");
+				System.out.println(LIKE);
 				HttpSession session = request.getSession();
-				
-				session.setAttribute("user_id", ID);
-				session.setAttribute("admin", ADMIN);
-				response.sendRedirect("Home.jsp");
+				session.setAttribute("Liked_", LIKE);
+				response.sendRedirect("GenrePage.jsp");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
 				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	
+	public void liked_hate(HttpServletRequest request, HttpServletResponse response, CountData _Data) {
+		// TODO Auto-generated method stub
+		Statement stmt = null;
+		ResultSet res = null;
+		try {
+			PreparedStatement pstmt = null;
+//			정보에맞는 차량 모두 조회 
+			String sql = "delete from User_Info where _USER_ID , _TITLE , _LIKE  = '" + _Data.ID + "'";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

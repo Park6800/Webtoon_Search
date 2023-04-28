@@ -2,6 +2,14 @@
  * 
  */
 
+function search_() {
+ 	let change = document.getElementById("change_select").value;
+ 	let serach = document.getElementById("serach_form");
+ 	
+ 	serach.setAttribute("name", change);
+ 	console.log(serach.name);
+ }
+
 function select_genre(sel) {
     let _Select = document.getElementById(sel);
     let img_None = document.getElementsByClassName("genre_");
