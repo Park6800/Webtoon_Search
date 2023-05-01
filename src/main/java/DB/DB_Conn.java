@@ -1,5 +1,6 @@
 package DB;
 
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -59,7 +60,6 @@ public class DB_Conn {
 
 		try {
 			stmt = conn.createStatement();
-//			정보에맞는 차량 모두 조회 
 			
 			
 			if(_Data.TITLE != null) {
@@ -154,7 +154,6 @@ public class DB_Conn {
 
 		try {
 			stmt = conn.createStatement();
-//			정보에맞는 차량 모두 조회 
 			String sql = "select _TITLE , _DAY, _STORY_AUTHOR , _ART_AUTHOR , _URL , _LIKE from webtoon_info where _GENRE ='"
 					+ _Data.GENRE + "' AND _DAY ='" + _Data.DAY +  "'";
 			res = stmt.executeQuery(sql);
@@ -171,7 +170,6 @@ public class DB_Conn {
 					toonlist.add(Webtoon);
 				}
 				HttpSession session = request.getSession();
-				
 				session.setAttribute("toon_list", toonlist);
 				response.sendRedirect("GenrePage.jsp");
 	
@@ -202,7 +200,7 @@ public class DB_Conn {
 
 		try {
 			stmt = conn.createStatement();
-//			정보에맞는 차량 모두 조회 
+
 			String sql = "select _USER_ID , _ADMIN from user_info where _USER_ID ='"
 					+ _Data.ID + "' AND _USER_PW ='" + _Data.PW +  "'";
 			res = stmt.executeQuery(sql);
@@ -240,38 +238,29 @@ public class DB_Conn {
 	
 	public void liked_count(HttpServletRequest request, HttpServletResponse response, CountData _Data) {
 		// TODO Auto-generated method stub
-		Statement stmt = null;
-		ResultSet res = null;
-		List<WebtoonData> likelist = new ArrayList<WebtoonData>();
+		PreparedStatement pstmt = null;
 		try {
-			PreparedStatement pstmt = null;
 //			정보에맞는 차량 모두 조회 
-			String sql = "insert into count_info (_USER_ID, _TITLE, _LIKE , _CLICK)" + "values(?,?,?,?)";
+			String sql = "insert into count_info(_USER_ID, _TITLE, _LIKE, _CLICK)" + "values(?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, _Data.ID);	
-			pstmt.setString(2, _Data.TITLE);
-			pstmt.setString(3, _Data.LIKE);
-			pstmt.setInt(4, _Data.CLICK);
+			pstmt.setString(1, _Data.getID());
+			pstmt.setString(2, _Data.getTITLE());
+			pstmt.setString(3, _Data.getLIKE());
+			pstmt.setInt(4, _Data.getCLICK());
 			pstmt.executeUpdate();
-
-			stmt = conn.createStatement();
-//			정보에맞는 차량 모두 조회 
-			String sql2 = "select _LIKE from count_info where _USER_ID ='" + _Data.ID + "' AND _TITLE='" + _Data.TITLE +"'";
-			res = stmt.executeQuery(sql2);
-			while (res.next()) {
-				CountData Data_ = new CountData();
-				String LIKE = res.getString("_LIKE");
-				System.out.println(LIKE);
-				HttpSession session = request.getSession();
-				session.setAttribute("Liked_", LIKE);
-				response.sendRedirect("GenrePage.jsp");
-			}
+			
+			HttpSession session = request.getSession();
+			
+			session.setAttribute("user_id", _Data.getID());
+			session.setAttribute("title", _Data.getTITLE());
+			String encodedTitle = URLEncoder.encode(_Data.getTITLE(), "UTF-8");
+			response.sendRedirect("Detail.jsp?title=" + encodedTitle);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (stmt != null) {
-					stmt.close();
+				if (pstmt != null) {
+					pstmt.close();
 				}
 			} catch (Exception e2) {
 				e2.printStackTrace();
@@ -286,6 +275,30 @@ public class DB_Conn {
 		}
 	}
 	
+	
+
+	public CountData liked_(String ID_value , String title_) {
+		ResultSet res = null;
+		try {
+			String sql = "select _LIKE from count_info where _USER_ID = ? and _TITLE = ?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ID_value);
+			pstmt.setString(2, title_);
+			res = pstmt.executeQuery();
+	
+			if (res.next()) {
+//				조회 차량 정보 객체에 담아서 리턴 
+				CountData dt = new CountData();
+				dt.setLIKE(res.getString(1));
+				return dt;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	
 	public void liked_hate(HttpServletRequest request, HttpServletResponse response, CountData _Data) {
 		// TODO Auto-generated method stub
 		Statement stmt = null;
@@ -293,9 +306,16 @@ public class DB_Conn {
 		try {
 			PreparedStatement pstmt = null;
 //			정보에맞는 차량 모두 조회 
-			String sql = "delete from User_Info where _USER_ID , _TITLE , _LIKE  = '" + _Data.ID + "'";
+			String sql = "delete from Count_info where _USER_ID = '" + _Data.getID() + "' AND _TITLE = '" + _Data.getTITLE() + "'";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.executeUpdate();
+			
+			HttpSession session = request.getSession();
+			
+			session.setAttribute("user_id", _Data.getID());
+			session.setAttribute("title", _Data.getTITLE());
+			String encodedTitle = URLEncoder.encode(_Data.getTITLE(), "UTF-8");
+			response.sendRedirect("Detail.jsp?title=" + encodedTitle);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

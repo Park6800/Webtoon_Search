@@ -1,23 +1,25 @@
-<%@page import="java.util.ArrayList"%>
+<%@page import="DataClass.CountData"%>
+<%@page import="DB.DB_Conn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="DataClass.WebtoonData"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
-<link rel="stylesheet" href="resource/css/genrepage.css">
-<script src="resource/js/genrepage.js"></script>
+<title>Insert title here</title>
+<link rel="stylesheet" href="resource/css/detail.css">
 </head>
-
 <body>
 	<%
+	// 유저 ID 정보 가져오기
 	Object ID_ = session.getAttribute("user_id");
 	String ID_value = (String) ID_;
+
+	// 해당 링크의 title 가져오기
+	String title_ = "";
+	if (request.getParameter("title") != null) {
+		title_ = (String) (request.getParameter("title"));
+	}
 	%>
 	<nav>
 		<div class="top-nav">
@@ -122,45 +124,55 @@
 			<div>예정</div>
 		</div>
 	</nav>
-	<div class="main_body">
-		<div class="informations">
-			<%
-			ArrayList<WebtoonData> toonlist = (ArrayList<WebtoonData>) session.getAttribute("toon_list");
-			for (WebtoonData webtoon : toonlist) {
-				String title = webtoon.TITLE;
-				String day = webtoon.DAY;
-				String story = webtoon.STORY_AUTHOR;
-				String art = webtoon.ART_AUTHOR;
-				String url = webtoon.URL;
-				String like = webtoon.LIKE;
+	<div class="body_container">
+		<div class="container_nav">
+			<div class="title_info">
+				<h2><%=title_%></h2>
+			</div>
+			<div class="Like_btn">
+				<%
+				Object Like_ = session.getAttribute("Liked_");
+				String like = (String) Like_;
+				CountData con = new DB_Conn().liked_(ID_value, title_);
+				if (con == null) {
+				%>
+				<form method="post" action="likeServlet">
+					<input type="hidden" value="<%=ID_value%>" name="Id"> <input
+						type="hidden" value="<%=title_%>" name="Title"> <input
+						type="hidden" value="1" name="Like"> <input type="hidden"
+						value="1" name="Click">
+					<button type="submit">좋아요</button>
+				</form>
+				<%
+				} else {
+				String like_ = "0";
+				if (!con.getLIKE().equals("")) {
+					like_ = con.getLIKE();
+				}
+				if (!like_.equals("1")) {
+				%>
+				<form method="post" action="likeServlet">
+					<input type="hidden" value="<%=ID_value%>" name="Id"> <input
+						type="hidden" value="<%=title_%>" name="Title"> <input
+						type="hidden" value="1" name="Like"> <input type="hidden"
+						value="1" name="Click">
+					<button type="submit">좋아요</button>
+				</form>
+				<%
+				} else {
+				%>
+				<form method="post" action="hateServlet">
+					<input type="hidden" value="<%=ID_value%>" name="Id"> <input
+						type="hidden" value="<%=title_%>" name="Title">
+					<button type="submit">좋아요 해제</button>
+				</form>
+				<%
+				}
+				}
+				%>
 
-				Object LIKED = session.getAttribute("Liked_");
-				String liked = (String) LIKED;
-			%>
-				<a href="Detail.jsp?title=<%=title%>">
-					<input type="text" value="<%=ID_value%>" name="Id"> <input
-						type="text" value="<%=title%>" name="Title"> <input
-						type="hidden" value="0" name="Like"> <input type="hidden"
-						value="0" name="Click">
-					<button type="submit">
-						<div class="info_card">
-							<div class="card_img">
-								<img src="<%=url%>" class="img_size">
-							</div>
-							<div class="card_title"><%=title%></div>
-						</div>
-						<div class="up_day"><%=day%></div>
-						<div class="author">
-							<div class="card_story_author"><%=story%></div>
-							<div class="card_art_author"><%=art%></div>
-						</div>
-					</button>
-				</a>
-			<%
-			}
-			%>
+			</div>
 		</div>
 	</div>
 </body>
-
 </html>

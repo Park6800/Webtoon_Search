@@ -108,49 +108,15 @@ nav{
     cursor: pointer;
 }
 
-.main_body {
-    width: 70%;
-    margin: auto;
-    margin-top: 100px;
-    background-color: antiquewhite;
-    border-radius: 10px;
+.body_container {
+	width:70%;
+	height:800px;	
+	margin:auto;
+	background-color: antiquewhite;
+	margin-top:50px;
 }
 
-.informations {
-    display: flex;
-    justify-content:start;
-    flex-wrap: wrap;
-    padding: 20px 0 20px 0;
-}
-
-.info_card {
-    display: inline-block;
-    margin: 20px 0 0px 23px;
-    background:white;
-}
-
-.img_size{
-    width: 197px;
-    height: 250px;
-    object-fit: cover;
-}
-
-.card_title { 
-    font-weight: 500;
-    font-size:12px;
-}
-
-.card_title > span {
-	text-align: right;
-	
-}
-
-.up_day {
-	font-size:12px;
-}
-
-.author {
-    font-size: 12px;
-    display: flex;
-    justify-content: space-between;
+.container_nav {
+	display: flex;
+	justify-content: space-between;
 }

@@ -165,8 +165,8 @@
 				<option value="로맨스 판타지" name="Genre">로맨스 판타지</option>
 				<option value="현대" name="Genre">현대</option>
 				<option value="판타지" name="Genre">판타지</option>
-				<option value="액션" name="Genre">무협</option>
-				<option value="코믹" name="Genre">개그</option>
+				<option value="무협" name="Genre">무협</option>
+				<option value="개그" name="Genre">개그</option>
 			</select> <input type="text" value="월요일" name="Day" class="btn_day">
 			<button class="btn_submit" type="submit">조회</button>
 		</form>
@@ -307,7 +307,7 @@
 			</div>
 		</div>
 	</div>
-	</div>
+
 	<footer> </footer>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
