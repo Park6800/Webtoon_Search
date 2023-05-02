@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import DB.DB_Conn;
+import DataClass.CountData;
+import DataClass.WebtoonData;
+
 /**
  * Servlet implementation class upadta_Servlet
  */
@@ -28,7 +32,23 @@ public class updata_Servlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setCharacterEncoding("UTF-8");
+		try {
+			DB_Conn _Db = new DB_Conn();
+//			입력정보 변수에 저장
+			String id = request.getParameter("Userid");
+			String title = request.getParameter("Title");
+
+			CountData _Data = new CountData();
+			_Data.setID(id);
+			_Data.setTITLE(title);
+			
+			_Db.updata_count(request, response, _Data);
+		} catch (Exception e) {
+
+		}
 	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

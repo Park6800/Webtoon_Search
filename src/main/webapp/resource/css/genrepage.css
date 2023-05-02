@@ -19,13 +19,17 @@ li {
 }
 
 nav{
-    width: 70%;
-    margin: auto;
-    background-color: gray;
+    width: 100%;
+    background: rgb(38, 41, 45);
+}
+
+.color_nav {
+	width:70%;
+	margin:auto;
 }
 
 .top-nav {
-    background-color: gray;
+    background: rgb(38, 41, 45);
     height: 70px;
     display: flex;
     justify-content: space-between;
@@ -47,6 +51,10 @@ nav{
 
 .top-nav-left {
     margin-left: 30px;
+}
+
+.color_w, .nav_genre > ul >li {
+	color:white;
 }
 
 .middle-nav {
@@ -116,6 +124,13 @@ nav{
     border-radius: 10px;
 }
 
+.search_btn {
+	display:flex;
+	justify-content: flex-end;
+	padding-top:10px;
+	padding-right:10px;
+}
+
 .informations {
     display: flex;
     justify-content:start;
@@ -125,7 +140,7 @@ nav{
 
 .info_card {
     display: inline-block;
-    margin: 20px 0 0px 23px;
+    margin: 20px 0 0px 43px;
     background:white;
 }
 
@@ -138,6 +153,7 @@ nav{
 .card_title { 
     font-weight: 500;
     font-size:12px;
+    margin: 0;
 }
 
 .card_title > span {
@@ -147,10 +163,18 @@ nav{
 
 .up_day {
 	font-size:12px;
+	margin: 0;
 }
 
 .author {
     font-size: 12px;
     display: flex;
     justify-content: space-between;
+    margin: 0;
+}
+
+.btn_shape {
+	margin:0;
+	padding:0;
+	box-sizing: border-box;
 }

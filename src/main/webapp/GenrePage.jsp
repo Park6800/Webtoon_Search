@@ -20,9 +20,10 @@
 	String ID_value = (String) ID_;
 	%>
 	<nav>
+	<div class="color_nav">
 		<div class="top-nav">
 			<div class="top-nav-left">
-				<a href="Home.jsp">도서관</a>
+				<a href="Home.jsp" class="color_w">도서관</a>
 			</div>
 			<div class="serach">
 				<select onchange="search_()" id=change_select>
@@ -40,15 +41,15 @@
 				if (ID_value == null) {
 				%>
 				<ul>
-					<li>로그인</li>
-					<li>회원가입</li>
+					<li class="color_w">로그인</li>
+					<li class="color_w">회원가입</li>
 				</ul>
 				<%
 				} else {
 				%>
 				<ul>
-					<li><%=ID_value%></li>
-					<li>로그아웃</li>
+					<li class="color_w"><%=ID_value%></li>
+					<li><a href="Logout.jsp" class="color_w">로그아웃</a></li>
 				</ul>
 				<%
 				}
@@ -65,11 +66,11 @@
 						판타지</li>
 					<li onclick="click_genre('현대');" id="현대" class="select_">현대</li>
 					<li onclick="click_genre('판타지');" id="판타지" class="select_">판타지</li>
-					<li onclick="click_genre('무협');" id="액션" class="select_">무협</li>
-					<li onclick="click_genre('개그');" id="코믹" class="select_">개그</li>
+					<li onclick="click_genre('무협');" id="무협" class="select_">무협</li>
+					<li onclick="click_genre('개그');" id="개그" class="select_">개그</li>
 				</ul>
 			</div>
-			<div>내 정보 보기</div>
+			<div class="color_w">내 정보 보기</div>
 		</div>
 		<hr>
 		<div class="bot-nav" id="nav-b">
@@ -119,43 +120,46 @@
 					</li>
 				</ul>
 			</div>
-			<div>예정</div>
+			<div class="color_w">예정</div>
+		</div>
 		</div>
 	</nav>
 	<div class="main_body">
+	<div class="search_btn">
+		<button><a href="#">가나다 순</a></button>
+		<button type="submit">조회순</button>
+	</div>
 		<div class="informations">
-			<%
-			ArrayList<WebtoonData> toonlist = (ArrayList<WebtoonData>) session.getAttribute("toon_list");
+			<%ArrayList<WebtoonData> toonlist = (ArrayList<WebtoonData>) session.getAttribute("toon_list");
 			for (WebtoonData webtoon : toonlist) {
-				String title = webtoon.TITLE;
-				String day = webtoon.DAY;
-				String story = webtoon.STORY_AUTHOR;
-				String art = webtoon.ART_AUTHOR;
-				String url = webtoon.URL;
-				String like = webtoon.LIKE;
+				String title = webtoon.getTITLE();
+				String day = webtoon.getDAY();
+				String story = webtoon.getSTORY_AUTHOR();
+				String art = webtoon.getART_AUTHOR();
+				String url = webtoon.getURL();
+				String like = webtoon.getLIKE();
+				String genre = webtoon.getGENRE();
 
 				Object LIKED = session.getAttribute("Liked_");
 				String liked = (String) LIKED;
 			%>
-				<a href="Detail.jsp?title=<%=title%>">
-					<input type="text" value="<%=ID_value%>" name="Id"> <input
-						type="text" value="<%=title%>" name="Title"> <input
-						type="hidden" value="0" name="Like"> <input type="hidden"
-						value="0" name="Click">
-					<button type="submit">
+					<form method="post" action="updata_Servlet">
+						<input type="hidden" value="<%=title%>" name="Title">
+						
 						<div class="info_card">
+						<button type="submit" class="btn_shape">
 							<div class="card_img">
 								<img src="<%=url%>" class="img_size">
 							</div>
 							<div class="card_title"><%=title%></div>
-						</div>
 						<div class="up_day"><%=day%></div>
 						<div class="author">
 							<div class="card_story_author"><%=story%></div>
 							<div class="card_art_author"><%=art%></div>
 						</div>
-					</button>
-				</a>
+						</button>
+						</div>
+					</form>		
 			<%
 			}
 			%>

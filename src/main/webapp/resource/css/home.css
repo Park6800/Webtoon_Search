@@ -48,7 +48,11 @@ nav {
     color: white;
 }
 
-.top-nav-right > ul > li {
+.top-nav-right > ul > li{
+    color: white;
+}
+
+.top-nav-right > ul > li > a{
     color: white;
 }
 

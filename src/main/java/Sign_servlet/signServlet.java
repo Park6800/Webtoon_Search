@@ -1,4 +1,4 @@
-package Search_servlet;
+package Sign_servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,19 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DB.DB_Conn;
+import DataClass.UserData;
 import DataClass.WebtoonData;
 
 /**
- * Servlet implementation class search_input
+ * Servlet implementation class signServlet
  */
-@WebServlet("/search_input")
-public class search_input extends HttpServlet {
+@WebServlet("/signServlet")
+public class signServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public search_input() {
+    public signServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,23 +36,27 @@ public class search_input extends HttpServlet {
 		try {
 			DB_Conn _Db = new DB_Conn();
 //			입력정보 변수에 저장
-			String title = request.getParameter("Title");
-			String story = request.getParameter("Story");
-			String art = request.getParameter("Art");
+			String id = request.getParameter("Id_value");
+			String pw = request.getParameter("Pw_value");
+			String name = request.getParameter("Name_value");
+			String birth = request.getParameter("Birth_value");
+			String gender = request.getParameter("Gender_value");
 
-			WebtoonData _Data = new WebtoonData();
+			UserData _Data = new UserData();
 
-			_Data.setTITLE(title);
-			_Data.setSTORY_AUTHOR(story);
-			_Data.setART_AUTHOR(art);
+			_Data.ID = id;
+			_Data.PW = pw;
+			_Data.NAME = name;
+			_Data.BIRTH = birth;
+			_Data.GENDER = gender;
 			
 			
-			_Db.serach_webtoon(request, response, _Data);
+			_Db.Signup(request, response, _Data);
 		} catch (Exception e) {
 
 		}
 	}
-
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -59,8 +64,6 @@ public class search_input extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		request.setCharacterEncoding("UTF-8");
 	}
 
 }

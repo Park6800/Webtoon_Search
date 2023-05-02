@@ -14,6 +14,11 @@
 </head>
 
 <body>
+<%
+Object ID_ = session.getAttribute("user_id");
+String ID_value = (String) ID_;
+Integer ADMIN_ = (Integer) session.getAttribute("admin");
+%>
 	<nav>
 		<div class="top-nav">
 			<div class="top-nav-left">도서관</div>
@@ -30,8 +35,13 @@
 			</div>
 			<div class="top-nav-right">
 				<ul>
+			<% if(ID_value == null) {%>
 					<li>로그인</li>
-					<li>회원가입</li>
+					<li><a href="Signup.jsp">회원가입</a></li>
+			<%} else { %>
+					<li><%=ID_value %></li>
+					<li><a href="Logout.jsp">로그아웃</a></li>
+			<%} %>
 				</ul>
 			</div>
 		</div>
@@ -112,9 +122,6 @@
 				<div class="right_half_lp">
 					기존 이용자
 					<%
-				Object ID_ = session.getAttribute("user_id");
-				String ID_value = (String) ID_;
-				Integer ADMIN_ = (Integer) session.getAttribute("admin");
 				if (ID_value == null) {
 				%>
 					<form class="inline_b" method="post" action="loginServlet">
@@ -128,10 +135,10 @@
 						<div class="find_pw">비밀 번호 찾기</div>
 					</div>
 					<div class="sign_up">
-						<a href="#">처음 오셧나요? <span>회원 가입 ></span></a>
+						<a href="Signup.jsp">처음 오셧나요? <span>회원 가입 ></span></a>
 					</div>
 					<%
-					} else if (ID_value != null && ADMIN_ == 1) {
+					} else if (ID_value != null) {
 					%>
 					<div class="user">
 						<div class="Account">

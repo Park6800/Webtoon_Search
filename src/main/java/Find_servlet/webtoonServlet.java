@@ -40,8 +40,8 @@ public class webtoonServlet extends HttpServlet {
 
 			WebtoonData _Data = new WebtoonData();
 
-			_Data.DAY = day;
-			_Data.GENRE = genre;
+			_Data.setDAY(day);
+			_Data.setGENRE(genre);
 			
 //				차량 조회 함수 호출
 			_Db.find_webtoon(request, response, _Data);

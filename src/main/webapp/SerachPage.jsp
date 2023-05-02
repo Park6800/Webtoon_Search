@@ -13,11 +13,11 @@
 		<%
 			ArrayList<WebtoonData> toonlist = (ArrayList<WebtoonData>) session.getAttribute("toon_list");
 			for (WebtoonData webtoon : toonlist) {
-				String title = webtoon.TITLE;
-				String day = webtoon.DAY;
-				String story = webtoon.STORY_AUTHOR;
-				String art = webtoon.ART_AUTHOR;
-				String url = webtoon.URL;
+				String title = webtoon.getTITLE();
+				String day = webtoon.getDAY();
+				String story = webtoon.getSTORY_AUTHOR();
+				String art = webtoon.getART_AUTHOR();
+				String url = webtoon.getURL();
 			%>
 				<div class="info_card">
 				<div class="card_img">
