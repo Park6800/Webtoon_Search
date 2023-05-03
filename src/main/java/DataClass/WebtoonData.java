@@ -58,5 +58,7 @@ public class WebtoonData {
 		public void setLIKE(String lIKE) {
 			LIKE = lIKE;
 		}
+		
+		
 
 }

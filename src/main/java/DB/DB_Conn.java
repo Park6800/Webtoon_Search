@@ -242,7 +242,7 @@ public class DB_Conn {
 
 		try {
 			stmt = conn.createStatement();
-			String sql = "select _TITLE , _DAY, _STORY_AUTHOR , _ART_AUTHOR , _URL , _LIKE from webtoon_info where _GENRE ='"
+			String sql = "select _TITLE , _DAY, _STORY_AUTHOR , _ART_AUTHOR , _URL , _LIKE, _Genre from webtoon_info where _GENRE ='"
 					+ _Data.getGENRE() + "' AND _DAY ='" + _Data.getDAY() +  "' order by _LIKE DESC";
 			res = stmt.executeQuery(sql);
 				while (res.next()) {
@@ -253,6 +253,7 @@ public class DB_Conn {
 					Webtoon.setART_AUTHOR(res.getString(4));
 					Webtoon.setURL(res.getString(5));
 					Webtoon.setLIKE(res.getString(6));
+					Webtoon.setGENRE(res.getString(7));
 					System.out.println(res.getString("_LIKE"));
 //		        조회한 결과 객체에담고 리스트에 추가 
 					toonlist.add(Webtoon);

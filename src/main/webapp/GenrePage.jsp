@@ -127,10 +127,19 @@
 	<div class="main_body">
 	<div class="search_btn">
 		<button><a href="#">가나다 순</a></button>
+		<%ArrayList<WebtoonData> toonlist = (ArrayList<WebtoonData>) session.getAttribute("toon_list");
+		WebtoonData webtooon = toonlist.get(1);
+		String Genre = webtooon.getGENRE();
+		String Day = webtooon.getDAY();
+		%>
+		<form method="post" action="searchview_Servlet">
+		<input type="hidden" value="<%=Genre %>" name="Genre">
+		<input type="hidden" value="<%=Day %>" name="Day">
 		<button type="submit">조회순</button>
+		</form>
 	</div>
 		<div class="informations">
-			<%ArrayList<WebtoonData> toonlist = (ArrayList<WebtoonData>) session.getAttribute("toon_list");
+			<%
 			for (WebtoonData webtoon : toonlist) {
 				String title = webtoon.getTITLE();
 				String day = webtoon.getDAY();
