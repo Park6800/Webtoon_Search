@@ -178,6 +178,23 @@ nav {
 
 .right_half{
     float: left;
+    overflow:hidden;
+}
+
+.login_like {
+	display:block;
+	width:250px;
+	height:185px;
+	margin:auto;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	word-break:break-all;
+	overflow: hidden;
+}
+
+.like_more {
+	text-align: center;
+	margin-top:20px;
 }
 
 .right_half_lp{

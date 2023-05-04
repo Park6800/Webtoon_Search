@@ -178,3 +178,11 @@ nav{
 	padding:0;
 	box-sizing: border-box;
 }
+
+.search__btn {
+	padding :5px;
+	width:100px;
+	margin-right: 20px;
+	border-radius: 10px;
+	background:white;
+}

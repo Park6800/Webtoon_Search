@@ -27,6 +27,7 @@
 			</div>
 			<div class="serach">
 				<select onchange="search_()" id=change_select>
+					<option disabled="disabled" selected="selected">검색 조건</option>
 					<option value="Title">제목 검색</option>
 					<option value="Story">글 작가 검색</option>
 					<option value="Art">그림 작가 검색</option>
@@ -77,43 +78,43 @@
 			<div class="submit_btn">
 				<ul>
 					<li>
-						<form method="post" action="webtoonServlet">
+						<form method="post" action="webtoonServlet" class="return _post">
 							<input type="submit" value="월요일" name="Day" class="btn_day"><input
 								type="hidden" class="get_genre" name="Genre">
 						</form>
 					</li>
 					<li>
-						<form method="post" action="webtoonServlet">
+						<form method="post" action="webtoonServlet" class="return _post">
 							<input type="submit" value="화요일" name="Day" class="btn_day"><input
 								type="hidden" class="get_genre" name="Genre">
 						</form>
 					</li>
 					<li>
-						<form method="post" action="webtoonServlet">
+						<form method="post" action="webtoonServlet" class="return _post">
 							<input type="submit" value="수요일" name="Day" class="btn_day"><input
 								type="hidden" class="get_genre" name="Genre">
 						</form>
 					</li>
 					<li>
-						<form method="post" action="webtoonServlet">
+						<form method="post" action="webtoonServlet" class="return _post">
 							<input type="submit" value="목요일" name="Day" class="btn_day"><input
 								type="hidden" class="get_genre" name="Genre">
 						</form>
 					</li>
 					<li>
-						<form method="post" action="webtoonServlet">
+						<form method="post" action="webtoonServlet" class="return _post">
 							<input type="submit" value="금요일" name="Day" class="btn_day"><input
 								type="hidden" class="get_genre" name="Genre">
 						</form>
 					</li>
 					<li>
-						<form method="post" action="webtoonServlet">
+						<form method="post" action="webtoonServlet" class="return _post">
 							<input type="submit" value="토요일" name="Day" class="btn_day"><input
 								type="hidden" class="get_genre" name="Genre">
 						</form>
 					</li>
 					<li>
-						<form method="post" action="webtoonServlet">
+						<form method="post" action="webtoonServlet" class="return _post">
 							<input type="submit" value="일요일" name="Day" class="btn_day"><input
 								type="hidden" class="get_genre" name="Genre">
 						</form>
@@ -126,16 +127,25 @@
 	</nav>
 	<div class="main_body">
 	<div class="search_btn">
-		<button><a href="#">가나다 순</a></button>
 		<%ArrayList<WebtoonData> toonlist = (ArrayList<WebtoonData>) session.getAttribute("toon_list");
 		WebtoonData webtooon = toonlist.get(1);
 		String Genre = webtooon.getGENRE();
 		String Day = webtooon.getDAY();
 		%>
+		<form method="post" action="webtoonServlet">
+		<input type="hidden" name="Genre" value="<%=Genre %>">
+		<input type="hidden" name="Day" value="<%=Day %>">
+		<button type="submit" class="search__btn">가나다 순</button>
+		</form>
 		<form method="post" action="searchview_Servlet">
 		<input type="hidden" value="<%=Genre %>" name="Genre">
 		<input type="hidden" value="<%=Day %>" name="Day">
-		<button type="submit">조회순</button>
+		<button type="submit" class="search__btn">조회 순</button>
+		</form>
+		<form method="post" action="searchlike_Servlet">
+		<input type="hidden" value="<%=Genre %>" name="Genre">
+		<input type="hidden" value="<%=Day %>" name="Day">
+		<button type="submit" class="search__btn">좋아요 순</button>
 		</form>
 	</div>
 		<div class="informations">

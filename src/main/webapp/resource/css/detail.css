@@ -124,21 +124,30 @@ nav{
 .title_info {
 	margin : 30px 70px;
 	width:100%;
+	box-sizing: border-box;
+	display: flex;
 }
 
-.title_info > h2 {
-	display:block;
-}
-
-.title_info > img {
+#main_img_size {
+	width:420px;
+	height:620px;
 	margin-top : 50px;
-	display:inline-block;
+}
+
+.con_top {
+	width:90%;
+	margin: auto;
+	padding-top:40px;
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .Like_btn{
-	width:50px;
+	width:200px;
 	height:50px;
-	margin: 20px;
+	display:flex;
+	justify-content: space-between;
 }
 
 .Like_btn > form > button {
@@ -150,10 +159,23 @@ nav{
 	font-size:30px;
 }
 
-.information {
-	display: inline-block;
-	vertical-align:top;
+.information_left {
+	width:40%;
+}
+
+.information_rigth {
+	width:60%;
 	margin: 50px 0 0 30px ;
+}
+
+.work_info, .comment{
+	padding:10px;
+	background-color: white;
+	border-radius: 10px;
+}
+
+.comment {
+	margin-top:20px;
 }
 
 .genre {

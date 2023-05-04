@@ -1,7 +1,7 @@
 /**
  * 
  */
- function search_() {
+  function search_() {
  	let change = document.getElementById("change_select").value;
  	let serach = document.getElementById("serach_form");
  	
@@ -24,6 +24,3 @@
     	value_[i].value = choice;
     }
 }
-
-
- 

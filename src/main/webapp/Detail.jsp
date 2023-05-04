@@ -10,12 +10,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="resource/css/detail.css">
-<script src="https://kit.fontawesome.com/7bb4972374.js"
-	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
 	integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
 	crossorigin="anonymous">
+<script src="https://kit.fontawesome.com/7bb4972374.js"
+	crossorigin="anonymous"></script>
+<script src="resource/js/Detail.js"></script>
 </head>
 <body>
 	<%
@@ -136,35 +137,17 @@
 	WebtoonData conn = new DB_Conn().liked_img(ID_value, title_);
 	%>
 	<div class="body_container">
-		<div class="container_nav">
-			<div class="title_info">
-				<h2><%=title_%></h2>
-				<img src="<%=conn.getURL()%>">
-				<div class="information">
-					<div class="genre">
-						장르 :
-						<%=conn.getGENRE()%>
-					</div>
-					<div class="day">
-						연재 요일 : <%=conn.getDAY() %>
-					</div>
-					<div class="company">
-						연재 회사 : <%=conn.getCOMPANY() %>
-						<br>
-						바로 가기 : <a href="https://www.naver.com"><%=conn.getCOMPANY() %></a>
-					</div>
-					<div class="story">
-						글 작가 : <%=conn.getSTORY_AUTHOR() %>
-					</div>
-					<div class="art">
-						그림 작가 : <%=conn.getART_AUTHOR() %>
-					</div>
-				</div>
-			</div>
+		<div class="con_top">
+			<h2><%=title_%></h2>
 			<div class="Like_btn">
-			<%CountData con_ = new DB_Conn().conut_Data(ID_value, title_); %>
+
+				<button>댓글쓰기</button>
+
+				<%
+				CountData con_ = new DB_Conn().conut_Data(ID_value, title_);
+				%>
 				<div class="count_num">
-				<%=con_.getCOUNT() %>
+					<%=con_.getCOUNT()%>
 				</div>
 				<%
 				CountData con = new DB_Conn().liked_(ID_value, title_);
@@ -214,8 +197,45 @@
 				}
 				}
 				%>
-					<!-- CountData Connn = new DB_Conn().conut_Data(ID_value, title_); -->
+				<!-- CountData Connn = new DB_Conn().conut_Data(ID_value, title_); -->
 			</div>
+		</div>
+		<div class="container_nav">
+			<div class="title_info">
+				<div class="information_left">
+					<img src="<%=conn.getURL()%>" id="main_img_size">
+				</div>
+				<div class="information_rigth">
+					<div class="work_info">
+						<div class="genre">
+							장르 :
+							<%=conn.getGENRE()%>
+						</div>
+						<div class="day">
+							연재 요일 :
+							<%=conn.getDAY()%>
+						</div>
+						<div class="company">
+							연재 회사 :
+							<%=conn.getCOMPANY()%>
+							<br> 바로 가기 : <a href="https://www.naver.com"><%=conn.getCOMPANY()%></a>
+						</div>
+						<div class="story">
+							글 작가 :
+							<%=conn.getSTORY_AUTHOR()%>
+						</div>
+						<div class="art">
+							그림 작가 :
+							<%=conn.getART_AUTHOR()%>
+						</div>
+					</div>
+					<div class="comment">
+						<div>hi</div>
+					</div>
+				</div>
+
+			</div>
+
 		</div>
 	</div>
 </body>
