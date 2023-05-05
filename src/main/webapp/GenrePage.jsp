@@ -63,7 +63,7 @@
 				<ul>
 					<li onclick="click_genre('스릴러');" id="스릴러" class="select_">스릴러</li>
 					<li onclick="click_genre('로맨스');" id="로맨스" class="select_">로맨스</li>
-					<li onclick="click_genre('로맨스 판타지');" id="로맨스 판타지" class="select_">로맨스
+					<li onclick="click_genre('로맨스판타지');" id="로맨스판타지" class="select_">로맨스
 						판타지</li>
 					<li onclick="click_genre('현대');" id="현대" class="select_">현대</li>
 					<li onclick="click_genre('판타지');" id="판타지" class="select_">판타지</li>

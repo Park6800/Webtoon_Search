@@ -1,3 +1,4 @@
+<%@page import="DataClass.ReviewData"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="DB.DB_Conn"%>
@@ -198,7 +199,33 @@
 					}
 					%>
 				</div>
-				<div class="right">뺘말따구 양싸대기</div>
+				<div class="Write_review_list">
+					<h3>내가 남긴 리뷰 목록</h3>
+							<%
+							List<ReviewData> Write_Review_List = new DB_Conn().Review_comment_(ID_value);
+							for (ReviewData data : Write_Review_List) {
+								String title = data.getCOMMENT_TITLE();
+								String date = data.getDATA();
+							%>
+								<%
+							if (Write_Review_List == null) {
+							%>
+							<div class="review_list"></div>
+							<%
+							} else {
+							%>
+							<div class="review_list">
+								<div class="review_item">
+									<div class="review_head">
+										<%=data.getCOMMENT_TITLE()%>
+									</div>
+									<div class="review_date">
+										<%=data.getDATA().substring(0, 10)%>
+									</div>
+								</div>
+							</div>
+							<%}} %>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -210,7 +237,7 @@
 				<option selected disabled value="">장르 선택</option>
 				<option value="스릴러">스릴러</option>
 				<option value="로맨스">로맨스</option>
-				<option value="로맨스판타지">로맨스 판타지</option>
+				<option value="로맨스판타지">로맨스판타지</option>
 				<option value="현대">현대</option>
 				<option value="판타지">판타지</option>
 				<option value="무협">무협</option>
@@ -246,7 +273,7 @@
 			<div class="imgs" name="Romance_Fantasy">
 				<div class="genre_"
 					onclick="select_genre('Romance_Fantasy'); change_sel('로맨스판타지');"
-					id="Romance_Fantasy">로맨스 판타지</div>
+					id="Romance_Fantasy">로맨스판타지</div>
 			</div>
 			<div class="imgs" name="Modern">
 				<div class="genre_"

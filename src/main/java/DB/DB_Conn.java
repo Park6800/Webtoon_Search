@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import DataClass.CountData;
+import DataClass.ReviewData;
 import DataClass.UserData;
 import DataClass.WebtoonData;
 
@@ -58,7 +59,6 @@ public class DB_Conn {
 			
 			PreparedStatement pstmt = null;
 			try {
-//				정보에맞는 차량 모두 조회 
 				String sql = "insert into User_Info(_USER_ID, _USER_PW, _USER_NAME, _USER_BIRTH, _USER_GENDER)" + "values(?,?,?,?,?)";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, _Data.ID);
@@ -575,5 +575,98 @@ public class DB_Conn {
 		    e.printStackTrace();
 		}
 		return likedWebtoons;
+	}
+	
+	public void Review_Write (HttpServletRequest request, HttpServletResponse response, ReviewData _Data) {
+		// TODO Auto-generated method stub
+		Statement stmt = null;
+		ResultSet res = null;
+			
+			PreparedStatement pstmt = null;
+			try {
+				String sql = "insert into comment(_USER_ID, _TITLE, _MENT_TITLE, _MENT)" + "values(?,?,?,?)";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, _Data.getUSER_ID());
+				pstmt.setString(2, _Data.getTITLE());
+				pstmt.setString(3, _Data.getCOMMENT_TITLE());
+				pstmt.setString(4, _Data.getCOMMENT());
+				System.out.println(_Data.getUSER_ID());
+				pstmt.executeUpdate();
+				
+				
+				HttpSession session = request.getSession();
+				String encodedTitle = URLEncoder.encode(_Data.getTITLE(), "UTF-8");
+				response.sendRedirect("Detail.jsp?title=" + encodedTitle);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	
+	// 
+	public List<ReviewData> Review_comment (String ID_value , String title_) {
+		ResultSet res = null;
+		List<ReviewData> Review_List = new ArrayList<>();
+		try {
+			String sql = "select _USER_ID, _MENT_TITLE, _MENT, _DATA from comment where _USER_ID = ? AND _TITLE = ?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ID_value);
+			pstmt.setString(2, title_);
+			res = pstmt.executeQuery();
+			
+			while (res.next()) {
+				ReviewData data_ = new ReviewData();
+				data_.setUSER_ID(res.getString(1));
+				data_.setCOMMENT_TITLE(res.getString(2));
+				data_.setCOMMENT(res.getString(3));
+				data_.setDATA(res.getString(4));
+				Review_List.add(data_);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return Review_List;
+	}
+	
+	public List<ReviewData> Review_comment_ (String ID_value) {
+		ResultSet res = null;
+		List<ReviewData> Write_Review_List = new ArrayList<>();
+		try {
+			
+			// 이부분 질문 할게 여기서 리미트 걸어서 페이지 단에 뿌려서 애초에 갯수를 제한할지
+			// 아니면 이부분 리미트 없이 jsp 단에서 css로 view단을 구성할지
+			// 전자의 경우 내부 리뷰 더보기에 들어가면 다시 메서드를 하나더 만들어서 비슷한 구조의 리미트 없는 구조를 만들어야함
+			String sql = "select _SEQ _USER_ID, _MENT_TITLE, _MENT, _DATA from comment where _USER_ID = ? order by _SEQ DESC";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ID_value);
+			res = pstmt.executeQuery();
+			
+			while (res.next()) {
+				ReviewData data_ = new ReviewData();
+				data_.setSEQ(res.getInt(1));
+				data_.setUSER_ID(res.getString(2));
+				data_.setCOMMENT_TITLE(res.getString(3));
+				data_.setCOMMENT(res.getString(4));
+				data_.setDATA(res.getString(5));
+				Write_Review_List.add(data_);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return Write_Review_List;
 	}
 }
