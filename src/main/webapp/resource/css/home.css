@@ -305,8 +305,9 @@ nav {
 
 .Write_review_list{
     width: 100%;
-    height: 260px;
+    height: 240px;
     margin-top: 20px;
+<<<<<<< HEAD
     background-color: #888;
     display: flex;
 	flex-direction: column;
@@ -341,6 +342,16 @@ nav {
 
 .h2_display {
 	display:none;
+=======
+    padding:10px;
+    background-color: aquamarine;
+>>>>>>> f5d0022e77ac9a73b73b2188534ab37cac469a23
+}
+
+.review_item {
+	display:flex;
+	justify-content: space-between;
+	padding:10px;
 }
 
 .img_banner {
