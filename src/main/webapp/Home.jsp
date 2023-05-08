@@ -232,6 +232,32 @@
 					<% 
 					}
 					%>
+					<h3>내가 남긴 리뷰 목록</h3>
+							<%
+							List<ReviewData> Write_Review_List = new DB_Conn().Review_comment_(ID_value);
+							for (ReviewData data : Write_Review_List) {
+								String title = data.getCOMMENT_TITLE();
+								String date = data.getDATA();
+							%>
+								<%
+							if (Write_Review_List == null) {
+							%>
+							<div class="review_list"></div>
+							<%
+							} else {
+							%>
+							<div class="review_list">
+								<div class="review_item">
+									<div class="review_head">
+										<%=data.getCOMMENT_TITLE()%>
+									</div>
+									<div class="review_date">
+										<%=data.getDATA().substring(0, 10)%>
+									</div>
+								</div>
+							</div>
+							<%}} %>
+>>>>>>> f5d0022e77ac9a73b73b2188534ab37cac469a23
 				</div>
 			</div>
 		</div>
