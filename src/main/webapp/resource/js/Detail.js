@@ -24,3 +24,8 @@
     	value_[i].value = choice;
     }
 }
+
+function Write_display() {
+	let review = document.getElementById("review_W");
+	review.style.display = "block";
+}

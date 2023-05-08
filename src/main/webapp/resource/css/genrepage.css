@@ -24,11 +24,13 @@ nav{
 }
 
 .color_nav {
-	width:70%;
+	width:100%;
 	margin:auto;
 }
 
 .top-nav {
+	width:70%;
+	margin:auto;
     background: rgb(38, 41, 45);
     height: 70px;
     display: flex;
@@ -58,8 +60,9 @@ nav{
 }
 
 .middle-nav {
+	width:70%;
+	margin:auto;
     height: 50px;
-    margin-left: 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -86,8 +89,9 @@ nav{
 }
 
 .bot-nav {
+	width:70%;
     height: 50px;
-    margin-left: 50px;
+	margin:auto;
     display: flex;
     align-items: center;
     justify-content: space-between;

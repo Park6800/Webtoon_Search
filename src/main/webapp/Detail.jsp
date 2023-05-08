@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="DataClass.ReviewData"%>
 <%@page import="DataClass.WebtoonData"%>
 <%@page import="Updata_servlet.updata_Servlet"%>
 <%@page import="DataClass.CountData"%>
@@ -33,7 +35,7 @@
 	<nav>
 		<div class="top-nav">
 			<div class="top-nav-left">
-				<a href="Home.jsp">도서관</a>
+				<a href="Home.jsp" class="color_w">도서관</a>
 			</div>
 			<div class="serach">
 				<select onchange="search_()" id=change_select>
@@ -58,8 +60,8 @@
 				} else {
 				%>
 				<ul>
-					<li><%=ID_value%></li>
-					<li><a href="Logout.jsp">로그아웃</a></li>
+					<li class="color_w"><%=ID_value%></li>
+					<li><a href="Logout.jsp" class="color_w">로그아웃</a></li>
 				</ul>
 				<%
 				}
@@ -76,11 +78,11 @@
 						판타지</li>
 					<li onclick="click_genre('현대');" id="현대" class="select_">현대</li>
 					<li onclick="click_genre('판타지');" id="판타지" class="select_">판타지</li>
-					<li onclick="click_genre('무협');" id="액션" class="select_">무협</li>
-					<li onclick="click_genre('개그');" id="코믹" class="select_">개그</li>
+					<li onclick="click_genre('무협');" id="무협" class="select_">무협</li>
+					<li onclick="click_genre('개그');" id="개그" class="select_">개그</li>
 				</ul>
 			</div>
-			<div>내 정보 보기</div>
+			<div class="color_w">내 정보 보기</div>
 		</div>
 		<hr>
 		<div class="bot-nav" id="nav-b">
@@ -130,7 +132,7 @@
 					</li>
 				</ul>
 			</div>
-			<div>예정</div>
+			<div class="color_w">예정</div>
 		</div>
 	</nav>
 	<%
@@ -141,7 +143,9 @@
 			<h2><%=title_%></h2>
 			<div class="Like_btn">
 
-				<button>댓글쓰기</button>
+				<button>
+					<a href="#review_W" onclick="Write_display()">리뷰 쓰기</a>
+				</button>
 
 				<%
 				CountData con_ = new DB_Conn().conut_Data(ID_value, title_);
@@ -230,12 +234,52 @@
 						</div>
 					</div>
 					<div class="comment">
-						<div>hi</div>
+						<div>
+							<h2>최근 댓글</h2>
+							<%
+							List<ReviewData> Review_List = new DB_Conn().Review_comment(title_);
+							for (ReviewData data : Review_List) {
+								String title = data.getCOMMENT_TITLE();
+								String date = data.getDATA();
+							%>
+								<%
+							if (Review_List == null) {
+							%>
+							<div class="commnt_list"></div>
+							<%
+							} else {
+							%>
+							<div class="commnt_list">
+								<div class="review_item">
+									<div class="review_head">
+										<a href="Comment_.jsp?comment=<%=data.getCOMMENT_TITLE()%>"><%=data.getCOMMENT_TITLE()%></a>
+									</div>
+									<div class="review_date">
+										<%=data.getDATA().substring(0, 10)%>
+									</div>
+								</div>
+							</div>
+							<%
+							}
+							}
+							%>
+						</div>
 					</div>
 				</div>
-
 			</div>
-
+		</div>
+	</div>
+	<div class="Write_review" id="review_W">
+		<div class="review">
+			<h2>댓글 작성</h2>
+			<form method="post" action="reviewwrite_Servlet">
+				<input type="hidden" value="<%=ID_value%>" name="User_id"> <input
+					type="hidden" value="<%=title_%>" name="Title"> <input
+					type="text" placeholder="글 제목을 입력하세요" name="Commnet_title"
+					class="review_title"> <input type="text"
+					placeholder="내용을 입력해주세요" name="Comment" class="review_content">
+				<button type="submit">게시하기</button>
+			</form>
 		</div>
 	</div>
 </body>

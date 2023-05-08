@@ -1,3 +1,4 @@
+<%@page import="DataClass.WebtoonData"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="DB.DB_Conn"%>
@@ -92,8 +93,14 @@ Integer ADMIN_ = (Integer) session.getAttribute("admin");
 	<div class="like_list">
 		<div class="list_container">
 			<%
-			List<CountData> likedWebtoons = new DB_Conn().getLikedWebtoons(ID_value);
-			for (CountData data : likedWebtoons) {
+			int Number = 1;
+			 if (request.getParameter("npage") != null)
+			    {
+				 Number = Integer.parseInt(request.getParameter("npage"));
+			     }   
+			DB_Conn dbcon = new DB_Conn();
+			List<WebtoonData> likedWebtoons_list = new DB_Conn().likedWebtoons_list(ID_value, Number);
+			for (WebtoonData data : likedWebtoons_list) {
 			String title = data.getTITLE();
 			String day = data.getDAY();
 			String story = data.getSTORY_AUTHOR();
@@ -109,6 +116,29 @@ Integer ADMIN_ = (Integer) session.getAttribute("admin");
 			</div>
 			<%} %>
 		</div>
+			<div class="page">
+				<ul style="list-style: none;">
+		<% 
+			int dp1 = 1;
+			int dp2 = 5;
+			int lastpage = 0;
+			// 전체 게시글 카운트 개수 
+			int count =  dbcon.like_list(ID_value); 
+			
+			// 한페이지에 10개 표시 한다는 전제하에 10의배수보다 많으면 마지막페이지 +1
+			if(count% 10 != 0 ){
+				lastpage = (count/10)+1;
+			}else{
+				lastpage = count/10;
+			}
+			for(int pageNum = dp1; pageNum<=lastpage;pageNum++){
+	 	%>
+					<li><a href="MoreLike.jsp?npage=<%=pageNum %>"><%= pageNum %></a></li>
+		<%
+			}	
+		%>
+				</ul>
+			</div>
 	</div>
 </body>
 </html>

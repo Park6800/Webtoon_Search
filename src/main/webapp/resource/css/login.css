@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.body_space {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.use_space {
+	width: 50%;
+	height: 700px;
+	border: 1px solid black;
+	border-radius:20px;
+	box-sizing: border-box;
+	margin-top:10%;
+	
+}
+
+.detail_spcae > h3 {
+	text-align: center;
+	margin-top:20px;
+}
+
+.Loign_space {
+	width:50%;
+	height:100%;
+	margin-top:50px;
+	box-sizing: border-box;
+	border-right: 1px solid black;
+}
+
+.input_info, .info_value {
+	margin:20px 0 0 20px;
+	padding:10px;
+}
+
+.info_value {
+	width:90%;
+	box-sizing: border-box;
+}
+
+.login_btn {
+	width:90%;
+	margin:40px 0 0 20px;
+	padding:20px;
+}
+
+.find_info {
+	display: flex;
+	justify-content: space-between;
+	margin:40px 0 0 20px;
+	width:90%;
+}
+
+.find_id , .find_pw{
+	font-size: 18px;
+}
+
+.sign_up {
+	margin-top:50px;
+	text-align: center;
+}
+
+.move_signpage {
+	padding:10px;
+}

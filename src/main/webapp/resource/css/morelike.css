@@ -133,3 +133,7 @@ nav {
 	width:180px;
 	height: 260px;
 }
+
+.page > ul {
+	text-align: center;
+}

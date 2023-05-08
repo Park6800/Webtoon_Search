@@ -1,7 +1,7 @@
 package DataClass;
 
 public class WebtoonData {
-
+		private int SEQ;
 		private String TITLE;
 		private String DAY;
 		private String GENRE;
@@ -57,6 +57,12 @@ public class WebtoonData {
 		}
 		public void setLIKE(String lIKE) {
 			LIKE = lIKE;
+		}
+		public int getSEQ() {
+			return SEQ;
+		}
+		public void setSEQ(int sEQ) {
+			SEQ = sEQ;
 		}
 		
 		

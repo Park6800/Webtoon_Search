@@ -1,3 +1,4 @@
+<%@page import="DataClass.ReviewData"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="DB.DB_Conn"%>
@@ -42,7 +43,7 @@
 					<%
 					if (ID_value == null) {
 					%>
-					<li>로그인</li>
+					<li><a href="Login.jsp">로그인</a></li>
 					<li><a href="Signup.jsp">회원가입</a></li>
 					<%
 					} else {
@@ -198,7 +199,40 @@
 					}
 					%>
 				</div>
-				<div class="right">뺘말따구 양싸대기</div>
+				<div class="Write_review_list">
+					<%
+					if (ID_value == null) {
+					%>
+					<h3 class="h2_display">내가 남긴 리뷰 목록</h3>
+					<div class="more_review_list_not_loign">로그인 이후 사용 가능합니다.</div>
+					<%
+					} else { %>
+					<h3 class="h3_display">내가 남긴 리뷰 목록</h3>
+					<%
+						List<ReviewData> Write_Review_List = new DB_Conn().Review_comment_(ID_value);
+						for (ReviewData data : Write_Review_List) {
+							String title = data.getCOMMENT_TITLE();
+							String date = data.getDATA();
+					%>
+					
+					<div class="review_list">
+						<div class="review_item">
+							<div class="review_head">
+								<%=data.getCOMMENT_TITLE()%>
+							</div>
+							<div class="review_date">
+								<%=data.getDATA().substring(0, 10)%>
+							</div>
+						</div>
+					</div>
+					<%
+					}
+					%>
+					<div class="more_review_list">더보기</div>
+					<% 
+					}
+					%>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -210,23 +244,22 @@
 				<option selected disabled value="">장르 선택</option>
 				<option value="스릴러">스릴러</option>
 				<option value="로맨스">로맨스</option>
-				<option value="로맨스판타지">로맨스 판타지</option>
+				<option value="로맨스판타지">로맨스판타지</option>
 				<option value="현대">현대</option>
 				<option value="판타지">판타지</option>
 				<option value="무협">무협</option>
 				<option value="개그">개그</option>
-			</select> 
-			<select class="select_view" onchange="chageLangSelect()"
+			</select> <select class="select_view" onchange="chageLangSelect()"
 				id="sel_day" name="Day">
-				<option selected disabled  value="">요일 선택</option>
-				<option value="월요일" >월요일</option>
+				<option selected disabled value="">요일 선택</option>
+				<option value="월요일">월요일</option>
 				<option value="화요일">화요일</option>
 				<option value="수요일">수요일</option>
 				<option value="목요일">목요일</option>
 				<option value="금요일">금요일</option>
 				<option value="토요일">토요일</option>
 				<option value="일요일">일요일</option>
-			</select> 
+			</select>
 			<button class="btn_submit" type="submit" id="send">조회</button>
 		</form>
 	</div>
@@ -246,7 +279,7 @@
 			<div class="imgs" name="Romance_Fantasy">
 				<div class="genre_"
 					onclick="select_genre('Romance_Fantasy'); change_sel('로맨스판타지');"
-					id="Romance_Fantasy">로맨스 판타지</div>
+					id="Romance_Fantasy">로맨스판타지</div>
 			</div>
 			<div class="imgs" name="Modern">
 				<div class="genre_"
@@ -274,8 +307,7 @@
 		<h2>요일</h2>
 		<div class="genres">
 			<div class="imgs" name="Monday">
-				<div class="day_"
-					onclick="select_day('Monday'); change_day('월요일');"
+				<div class="day_" onclick="select_day('Monday'); change_day('월요일');"
 					id="Monday">월요일</div>
 			</div>
 			<div class="imgs" name="TuesDay">
@@ -294,9 +326,8 @@
 					목요일</div>
 			</div>
 			<div class="imgs" name="FriDay">
-				<div class="day_"
-					onclick="select_day('FriDay'); change_day('금요일');" id="FriDay">
-					금요일</div>
+				<div class="day_" onclick="select_day('FriDay'); change_day('금요일');"
+					id="FriDay">금요일</div>
 			</div>
 			<div class="imgs" name="SaturDay">
 				<div class="day_"
@@ -304,9 +335,8 @@
 					토요일</div>
 			</div>
 			<div class="imgs" name="SunDay">
-				<div class="day_"
-					onclick="select_day('SunDay'); change_day('일요일');" id="SunDay">
-					일요일</div>
+				<div class="day_" onclick="select_day('SunDay'); change_day('일요일');"
+					id="SunDay">일요일</div>
 			</div>
 		</div>
 	</div>
