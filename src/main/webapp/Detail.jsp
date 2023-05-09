@@ -237,11 +237,8 @@
 						<div>
 							<h2>최근 댓글</h2>
 							<%
-<<<<<<< HEAD
 							List<ReviewData> Review_List = new DB_Conn().Review_comment(title_);
-=======
-							List<ReviewData> Review_List = new DB_Conn().Review_comment(ID_value, title_);
->>>>>>> f5d0022e77ac9a73b73b2188534ab37cac469a23
+							
 							for (ReviewData data : Review_List) {
 								String title = data.getCOMMENT_TITLE();
 								String date = data.getDATA();
@@ -256,11 +253,7 @@
 							<div class="commnt_list">
 								<div class="review_item">
 									<div class="review_head">
-<<<<<<< HEAD
 										<a href="Comment_.jsp?comment=<%=data.getCOMMENT_TITLE()%>"><%=data.getCOMMENT_TITLE()%></a>
-=======
-										<%=data.getCOMMENT_TITLE()%>
->>>>>>> f5d0022e77ac9a73b73b2188534ab37cac469a23
 									</div>
 									<div class="review_date">
 										<%=data.getDATA().substring(0, 10)%>

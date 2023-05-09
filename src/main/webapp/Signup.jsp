@@ -36,8 +36,8 @@
 					<h4>성별</h4>
 					<select class="input_info" name="Gender_value">
 						<option disabled="disabled" selected="selected">선택 안함</option>
-						<option value="남" name="Gender_value">남자</option>
-						<option value="여" name="Gender_value">여자</option>
+						<option value="남">남자</option>
+						<option value="여">여자</option>
 					</select>
 					</div>
 					<div class="input_value">

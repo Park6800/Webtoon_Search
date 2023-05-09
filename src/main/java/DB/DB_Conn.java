@@ -55,26 +55,7 @@ public class DB_Conn {
 	public void Signup(HttpServletRequest request, HttpServletResponse response, UserData _Data) {
 		// TODO Auto-generated method stub
 		Statement stmt = null;
-		ResultSet res = null;
-<<<<<<< HEAD
-
-		PreparedStatement pstmt = null;
-		try {
-			String sql = "insert into User_Info(_USER_ID, _USER_PW, _USER_NAME, _USER_BIRTH, _USER_GENDER)"
-					+ "values(?,?,?,?,?)";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, _Data.ID);
-			pstmt.setString(2, _Data.PW);
-			pstmt.setString(3, _Data.NAME);
-			pstmt.setString(4, _Data.BIRTH);
-			pstmt.setString(5, _Data.GENDER);
-			pstmt.executeUpdate();
-
-			HttpSession session = request.getSession();
-
-			response.sendRedirect("Home.jsp");
-=======
-			
+		
 			PreparedStatement pstmt = null;
 			try {
 				String sql = "insert into User_Info(_USER_ID, _USER_PW, _USER_NAME, _USER_BIRTH, _USER_GENDER)" + "values(?,?,?,?,?)";
@@ -86,10 +67,9 @@ public class DB_Conn {
 				pstmt.setString(5, _Data.GENDER);
 				pstmt.executeUpdate();
 				
-				HttpSession session = request.getSession();
+
 				
 				response.sendRedirect("Home.jsp");
->>>>>>> f5d0022e77ac9a73b73b2188534ab37cac469a23
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -516,7 +496,6 @@ public class DB_Conn {
 	public void liked_hate(HttpServletRequest request, HttpServletResponse response, CountData _Data) {
 		// TODO Auto-generated method stub
 		Statement stmt = null;
-		ResultSet res = null;
 		try {
 			PreparedStatement pstmt = null;
 			String sql = "delete from Count_info where _USER_ID = '" + _Data.getID() + "' AND _TITLE = '"
@@ -554,7 +533,6 @@ public class DB_Conn {
 	public void updata_count(HttpServletRequest request, HttpServletResponse response, CountData _Data) {
 		// TODO Auto-generated method stub
 		Statement stmt = null;
-		ResultSet res = null;
 		try {
 			PreparedStatement pstmt = null;
 			String sql = "UPDATE Webtoon_info SET _LIKE = _LIKE + 1 WHERE _TITLE = '" + _Data.getTITLE() + "'";
@@ -608,34 +586,11 @@ public class DB_Conn {
 		}
 		return likedWebtoons;
 	}
-<<<<<<< HEAD
 
-	// 리뷰 작성
-	public void Review_Write(HttpServletRequest request, HttpServletResponse response, ReviewData _Data) {
-		// TODO Auto-generated method stub
-		Statement stmt = null;
-		ResultSet res = null;
-
-		PreparedStatement pstmt = null;
-		try {
-			String sql = "insert into comment(_USER_ID, _TITLE, _MENT_TITLE, _MENT)" + "values(?,?,?,?)";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, _Data.getUSER_ID());
-			pstmt.setString(2, _Data.getTITLE());
-			pstmt.setString(3, _Data.getCOMMENT_TITLE());
-			pstmt.setString(4, _Data.getCOMMENT());
-			System.out.println(_Data.getUSER_ID());
-			pstmt.executeUpdate();
-
-			HttpSession session = request.getSession();
-			String encodedTitle = URLEncoder.encode(_Data.getTITLE(), "UTF-8");
-			response.sendRedirect("Detail.jsp?title=" + encodedTitle);
-=======
-	
+	// 리뷰 작성	
 	public void Review_Write (HttpServletRequest request, HttpServletResponse response, ReviewData _Data) {
 		// TODO Auto-generated method stub
 		Statement stmt = null;
-		ResultSet res = null;
 			
 			PreparedStatement pstmt = null;
 			try {
@@ -649,10 +604,9 @@ public class DB_Conn {
 				pstmt.executeUpdate();
 				
 				
-				HttpSession session = request.getSession();
 				String encodedTitle = URLEncoder.encode(_Data.getTITLE(), "UTF-8");
 				response.sendRedirect("Detail.jsp?title=" + encodedTitle);
->>>>>>> f5d0022e77ac9a73b73b2188534ab37cac469a23
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -672,7 +626,6 @@ public class DB_Conn {
 			}
 		}
 	}
-<<<<<<< HEAD
 
 	// 작품명만 받아서 해당 작품에 관한 리뷰들을 조회 출력
 	public List<ReviewData> Review_comment(String title_) {
@@ -683,21 +636,6 @@ public class DB_Conn {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, title_);
 			res = pstmt.executeQuery();
-
-=======
-	
-	// 
-	public List<ReviewData> Review_comment (String ID_value , String title_) {
-		ResultSet res = null;
-		List<ReviewData> Review_List = new ArrayList<>();
-		try {
-			String sql = "select _USER_ID, _MENT_TITLE, _MENT, _DATA from comment where _USER_ID = ? AND _TITLE = ?";
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, ID_value);
-			pstmt.setString(2, title_);
-			res = pstmt.executeQuery();
-			
->>>>>>> f5d0022e77ac9a73b73b2188534ab37cac469a23
 			while (res.next()) {
 				ReviewData data_ = new ReviewData();
 				data_.setUSER_ID(res.getString(1));
@@ -711,7 +649,32 @@ public class DB_Conn {
 		}
 		return Review_List;
 	}
-<<<<<<< HEAD
+
+	
+	// 
+	public List<ReviewData> Review_comment (String ID_value , String title_) {
+		ResultSet res = null;
+		List<ReviewData> Review_List = new ArrayList<>();
+		try {
+			String sql = "select _USER_ID, _MENT_TITLE, _MENT, _DATA from comment where _USER_ID = ? AND _TITLE = ?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ID_value);
+			pstmt.setString(2, title_);
+			res = pstmt.executeQuery();
+
+			while (res.next()) {
+				ReviewData data_ = new ReviewData();
+				data_.setUSER_ID(res.getString(1));
+				data_.setCOMMENT_TITLE(res.getString(2));
+				data_.setCOMMENT(res.getString(3));
+				data_.setDATA(res.getString(4));
+				Review_List.add(data_);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return Review_List;
+	}
 
 	public ReviewData Review_comment_Write(String comment) {
 		ResultSet res = null;
@@ -735,28 +698,7 @@ public class DB_Conn {
 		return null;
 	}
 
-	// 아이디 값 하나만 받아서 해당 아이디가 작성한 리뷰를 조회 출력
-	public List<ReviewData> Review_comment_(String ID_value) {
-		ResultSet res = null;
-		List<ReviewData> Write_Review_List = new ArrayList<>();
-		try {
-
-			// 이부분 질문 할게 여기서 리미트 걸어서 페이지 단에 뿌려서 애초에 갯수를 제한할지
-			// 아니면 이부분 리미트 없이 jsp 단에서 css로 view단을 구성할지
-			// 전자의 경우 내부 리뷰 더보기에 들어가면 다시 메서드를 하나더 만들어서 비슷한 구조의 리미트 없는 구조를 만들어야함
-			String sql = "select _SEQ _USER_ID, _MENT_TITLE, _MENT, _DATA from comment where _USER_ID = ? order by _SEQ DESC LIMIT 5";
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, ID_value);
-			res = pstmt.executeQuery();
-
-			while (res.next()) {
-				ReviewData data_ = new ReviewData();
-				data_.setUSER_ID(res.getString(1));
-				data_.setCOMMENT_TITLE(res.getString(2));
-				data_.setCOMMENT(res.getString(3));
-				data_.setDATA(res.getString(4));
-=======
-	
+	// 아이디 값 하나만 받아서 해당 아이디가 작성한 리뷰를 조회 출력	
 	public List<ReviewData> Review_comment_ (String ID_value) {
 		ResultSet res = null;
 		List<ReviewData> Write_Review_List = new ArrayList<>();
@@ -765,19 +707,17 @@ public class DB_Conn {
 			// 이부분 질문 할게 여기서 리미트 걸어서 페이지 단에 뿌려서 애초에 갯수를 제한할지
 			// 아니면 이부분 리미트 없이 jsp 단에서 css로 view단을 구성할지
 			// 전자의 경우 내부 리뷰 더보기에 들어가면 다시 메서드를 하나더 만들어서 비슷한 구조의 리미트 없는 구조를 만들어야함
-			String sql = "select _SEQ _USER_ID, _MENT_TITLE, _MENT, _DATA from comment where _USER_ID = ? order by _SEQ DESC";
+			String sql = "select _SEQ _USER_ID, _MENT_TITLE, _MENT, _DATA from comment where _USER_ID = ? order by _SEQ DESC LIMIT 5";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, ID_value);
 			res = pstmt.executeQuery();
 			
 			while (res.next()) {
 				ReviewData data_ = new ReviewData();
-				data_.setSEQ(res.getInt(1));
-				data_.setUSER_ID(res.getString(2));
-				data_.setCOMMENT_TITLE(res.getString(3));
-				data_.setCOMMENT(res.getString(4));
-				data_.setDATA(res.getString(5));
->>>>>>> f5d0022e77ac9a73b73b2188534ab37cac469a23
+				data_.setUSER_ID(res.getString(1));
+				data_.setCOMMENT_TITLE(res.getString(2));
+				data_.setCOMMENT(res.getString(3));
+				data_.setDATA(res.getString(4));
 				Write_Review_List.add(data_);
 			}
 		} catch (Exception e) {
@@ -785,10 +725,8 @@ public class DB_Conn {
 		}
 		return Write_Review_List;
 	}
-<<<<<<< HEAD
 
 	public List<WebtoonData> likedWebtoons_list(String ID_value, int Number) {
-		ResultSet res = null;
 		List<WebtoonData> like_webtoon_list = new ArrayList<>();
 		try {
 			String sql = "SELECT A.* FROM webtoon_info as A LEFT JOIN count_info as B on A._TITLE = B._TITLE WHERE _User_ID = ? ORDER BY _SEQ LIMIT ?,10";
@@ -842,6 +780,4 @@ public class DB_Conn {
 
 	}
 
-=======
->>>>>>> f5d0022e77ac9a73b73b2188534ab37cac469a23
 }

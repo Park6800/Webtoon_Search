@@ -200,26 +200,25 @@
 					%>
 				</div>
 				<div class="Write_review_list">
-<<<<<<< HEAD
 					<%
 					if (ID_value == null) {
 					%>
 					<h3 class="h2_display">내가 남긴 리뷰 목록</h3>
 					<div class="more_review_list_not_loign">로그인 이후 사용 가능합니다.</div>
 					<%
-					} else { %>
+					} else {
+					%>
 					<h3 class="h3_display">내가 남긴 리뷰 목록</h3>
 					<%
-						List<ReviewData> Write_Review_List = new DB_Conn().Review_comment_(ID_value);
-						for (ReviewData data : Write_Review_List) {
-							String title = data.getCOMMENT_TITLE();
-							String date = data.getDATA();
+					List<ReviewData> Write_Review_List = new DB_Conn().Review_comment_(ID_value);
+					for (ReviewData data : Write_Review_List) {
+						String title = data.getCOMMENT_TITLE();
+						String date = data.getDATA();
 					%>
-					
 					<div class="review_list">
 						<div class="review_item">
 							<div class="review_head">
-								<%=data.getCOMMENT_TITLE()%>
+								<%=title%>
 							</div>
 							<div class="review_date">
 								<%=data.getDATA().substring(0, 10)%>
@@ -230,36 +229,9 @@
 					}
 					%>
 					<div class="more_review_list">더보기</div>
-					<% 
+					<%
 					}
 					%>
-=======
-					<h3>내가 남긴 리뷰 목록</h3>
-							<%
-							List<ReviewData> Write_Review_List = new DB_Conn().Review_comment_(ID_value);
-							for (ReviewData data : Write_Review_List) {
-								String title = data.getCOMMENT_TITLE();
-								String date = data.getDATA();
-							%>
-								<%
-							if (Write_Review_List == null) {
-							%>
-							<div class="review_list"></div>
-							<%
-							} else {
-							%>
-							<div class="review_list">
-								<div class="review_item">
-									<div class="review_head">
-										<%=data.getCOMMENT_TITLE()%>
-									</div>
-									<div class="review_date">
-										<%=data.getDATA().substring(0, 10)%>
-									</div>
-								</div>
-							</div>
-							<%}} %>
->>>>>>> f5d0022e77ac9a73b73b2188534ab37cac469a23
 				</div>
 			</div>
 		</div>
