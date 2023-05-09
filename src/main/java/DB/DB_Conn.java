@@ -90,7 +90,7 @@ public class DB_Conn {
 		}
 	}
 
-	// 윕툰 검색
+	// 윕툰 검색 ( 제목 , 글 , 그림 작가 별 검색 기능 )
 	public void serach_webtoon(HttpServletRequest request, HttpServletResponse response, WebtoonData _Data) {
 		// TODO Auto-generated method stub
 		Statement stmt = null;
@@ -114,12 +114,11 @@ public class DB_Conn {
 					Webtoon.setURL(res.getString(5));
 //		        조회한 결과 객체에담고 리스트에 추가 
 					toonlist.add(Webtoon);
+					HttpSession session = request.getSession();
 
+					session.setAttribute("toon_list", toonlist);
+					response.sendRedirect("SerachPage.jsp");
 				}
-				HttpSession session = request.getSession();
-
-				session.setAttribute("toon_list", toonlist);
-				response.sendRedirect("SerachPage.jsp");
 			} else if (_Data.getSTORY_AUTHOR() != null) {
 				String sql = "select _TITLE , _DAY, _STORY_AUTHOR , _ART_AUTHOR , _URL from webtoon_info where _STORY_AUTHOR LIKE '%"
 						+ _Data.getSTORY_AUTHOR() + "%'";
@@ -134,12 +133,11 @@ public class DB_Conn {
 					Webtoon.setURL(res.getString(5));
 //			        조회한 결과 객체에담고 리스트에 추가 
 					toonlist.add(Webtoon);
+					HttpSession session = request.getSession();
 
+					session.setAttribute("toon_list", toonlist);
+					response.sendRedirect("SerachPage.jsp");
 				}
-				HttpSession session = request.getSession();
-
-				session.setAttribute("toon_list", toonlist);
-				response.sendRedirect("SerachPage.jsp");
 			} else if (_Data.getART_AUTHOR() != null) {
 				String sql = "select _TITLE , _DAY, _STORY_AUTHOR , _ART_AUTHOR , _URL from webtoon_info where _ART_AUTHOR LIKE '%"
 						+ _Data.getART_AUTHOR() + "%'";
@@ -154,14 +152,19 @@ public class DB_Conn {
 					Webtoon.setURL(res.getString(5));
 //			        조회한 결과 객체에담고 리스트에 추가 
 					toonlist.add(Webtoon);
+					HttpSession session = request.getSession();
+
+					session.setAttribute("toon_list", toonlist);
+					response.sendRedirect("SerachPage.jsp");
 
 				}
-				HttpSession session = request.getSession();
-
-				session.setAttribute("toon_list", toonlist);
-				response.sendRedirect("SerachPage.jsp");
 			}
+			// 일치하는 조건이 없을때 Serach_chk 라는 세션을 가지고 홈 페이지에서 오류를 뛰워주고 사라짐           
+			HttpSession session = request.getSession();
 
+			session.setAttribute("Serach_chk", "1");
+			response.sendRedirect("Home.jsp");
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -184,50 +187,49 @@ public class DB_Conn {
 
 	// 웹툰 찾기 버튼 요일, 장르
 	public void find_webtoon(HttpServletRequest request, HttpServletResponse response, WebtoonData _Data) {
-		// TODO Auto-generated method stub
-		Statement stmt = null;
-		ResultSet res = null;
-		List<WebtoonData> toonlist = new ArrayList<WebtoonData>();
+	    Statement stmt = null;
+	    ResultSet res = null;
+	    List<WebtoonData> toonlist = new ArrayList<WebtoonData>();
 
-		try {
-			stmt = conn.createStatement();
-			String sql = "select _TITLE , _DAY, _STORY_AUTHOR , _ART_AUTHOR , _URL , _LIKE, _GENRE from webtoon_info where _GENRE ='"
-					+ _Data.getGENRE() + "' AND _DAY ='" + _Data.getDAY() + "' order by _TITLE DESC";
-			res = stmt.executeQuery(sql);
-			while (res.next()) {
-				WebtoonData Webtoon = new WebtoonData();
-				Webtoon.setTITLE(res.getString(1));
-				Webtoon.setDAY(res.getString(2));
-				Webtoon.setSTORY_AUTHOR(res.getString(3));
-				Webtoon.setART_AUTHOR(res.getString(4));
-				Webtoon.setURL(res.getString(5));
-				Webtoon.setLIKE(res.getString(6));
-				Webtoon.setGENRE(res.getString(7));
-//		        조회한 결과 객체에담고 리스트에 추가 
-				toonlist.add(Webtoon);
-			}
-			HttpSession session = request.getSession();
-			session.setAttribute("toon_list", toonlist);
-			response.sendRedirect("GenrePage.jsp");
+	    try {
+	        stmt = conn.createStatement();
+	        String sql = "SELECT _TITLE, _DAY, _STORY_AUTHOR, _ART_AUTHOR, _URL, _LIKE, _GENRE FROM webtoon_info WHERE _GENRE = '"
+	                + _Data.getGENRE() + "' AND _DAY = '" + _Data.getDAY() + "' ORDER BY _TITLE DESC";
+	        res = stmt.executeQuery(sql);
+	        while (res.next()) {
+	            WebtoonData Webtoon = new WebtoonData();
+	            Webtoon.setTITLE(res.getString("_TITLE"));
+	            Webtoon.setDAY(res.getString("_DAY"));
+	            Webtoon.setSTORY_AUTHOR(res.getString("_STORY_AUTHOR"));
+	            Webtoon.setART_AUTHOR(res.getString("_ART_AUTHOR"));
+	            Webtoon.setURL(res.getString("_URL"));
+	            Webtoon.setLIKE(res.getString("_LIKE"));
+	            Webtoon.setGENRE(res.getString("_GENRE"));
+	            // 조회한 결과 객체에 담고 리스트에 추가 
+	            toonlist.add(Webtoon);
+	        }
+	        HttpSession session = request.getSession();
+	        session.setAttribute("toon_list", toonlist);
+	        response.sendRedirect("GenrePage.jsp");
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (stmt != null) {
-					stmt.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-			try {
-				if (conn != null) {
-					conn.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (stmt != null) {
+	                stmt.close();
+	            }
+	        } catch (Exception e2) {
+	            e2.printStackTrace();
+	        }
+	        try {
+	            if (conn != null) {
+	                conn.close();
+	            }
+	        } catch (Exception e2) {
+	            e2.printStackTrace();
+	        }
+	    }
 	}
 
 	// 조회순 웹툰 찾기
@@ -778,6 +780,32 @@ public class DB_Conn {
 			return dataCount;
 		}
 
+	}
+	
+// 금일의 랜덤 픽 (DB에서 랜덤으로 가져옴) {
+	public List<WebtoonData> Random_pick(String ID_value) { 
+	ResultSet res = null;
+	List<WebtoonData> Random_webtoon_list = new ArrayList<>();
+	try {
+	String sql = "SELECT * FROM webtoon_info ORDER BY RAND() LIMIT 0, 4";
+	PreparedStatement pstmt = conn.prepareStatement(sql);
+	res = pstmt.executeQuery();
+	
+	while (res.next()) {
+		WebtoonData data = new WebtoonData();
+		data.setSEQ(res.getInt(1));
+		data.setTITLE(res.getString(2));
+		data.setDAY(res.getString(3));
+		data.setGENRE(res.getString(4));
+		data.setSTORY_AUTHOR(res.getString(5));
+		data.setART_AUTHOR(res.getString(6));
+		data.setURL(res.getString(8));
+		Random_webtoon_list.add(data);
+	}
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return Random_webtoon_list;
 	}
 
 }

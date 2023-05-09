@@ -1,3 +1,6 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.Remove"%>
+<%@page import="java.io.PrintWriter"%>
+<%@page import="DataClass.WebtoonData"%>
 <%@page import="DataClass.ReviewData"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -23,12 +26,24 @@
 	Object ID_ = session.getAttribute("user_id");
 	String ID_value = (String) ID_;
 	Integer ADMIN_ = (Integer) session.getAttribute("admin");
+	Object chk = session.getAttribute("Serach_chk");
+	String Chk = (String) chk;
+	%>
+	<%
+    session.removeAttribute("Serach_chk");
+	if(Chk != null){
+		 PrintWriter script = response.getWriter();
+            script.println("<script>");
+            script.println("alert('검색 조건에 맞는 물건이 없습니다')");
+            script.println("</script>");
+	}
 	%>
 	<nav>
 		<div class="top-nav">
 			<div class="top-nav-left">도서관</div>
 			<div class="serach">
 				<select onchange="search_()" id=change_select>
+					<option disabled="disabled" selected="selected">검색 조건</option>
 					<option value="Title">제목 검색</option>
 					<option value="Story">글 작가 검색</option>
 					<option value="Art">그림 작가 검색</option>
@@ -143,9 +158,9 @@
 							for (CountData data : likedWebtoons) {
 								String title = data.getTITLE();
 							%>
-							제목 :
-							<%=title%>
+							<a href="Detail.jsp?title=<%=title %>"> 제목 : <%=title%>
 							<hr>
+							</a>
 							<%
 							}
 							%>
@@ -340,103 +355,47 @@
 			</div>
 		</div>
 	</div>
+	<div class="container_pick">
+	<div>
+		<h2>랜덤 픽</h2>
+	</div>
 	<div class="live_recomend">
-		<!-- 해당 픽은 당일 당일 설정 페이지 관리자가 설정 -->
-		<h2>추천 픽</h2>
+		<%
+					List<WebtoonData> Random_webtoon_list = new DB_Conn().Random_pick(ID_value);
+					for (WebtoonData data : Random_webtoon_list) {
+						String title = data.getTITLE();
+						String genre = data.getGENRE();
+						String url = data.getURL();
+		%>
+			<%
+					if (ID_value == null) {
+					%>
+			<div class="pick">
+				<div class="pick_list">
+					<div class="more_review_list_not_loign">로그인 이후 사용 가능합니다.</div>
+				</div>
+			</div>
+					<%
+					} else {
+					%>
 		<div class="pick">
 			<div class="pick_list">
 				<div class="pick_img">
-					<img src="resource/img/th.jpg" class="pick_imgs">
+					<img src="<%=url %>" class="pick_imgs">
 				</div>
 				<div class="book_introduction">
-					<div class="book_genre">장르 : 게임 판타지</div>
-					<div class="book_title">제목 : 달빛 조각사</div>
-					<div class="book_author">작가 : 남희성</div>
+					<div class="book_title">제목 : <%=title %></div>
+					<div class="book_genre">장르 : <%=genre %></div>
 				</div>
 			</div>
-			<div class="pick_list">
-				<div class="pick_img">
-					<img src="resource/img/아크.png" class="pick_imgs">
-				</div>
-				<div class="book_introduction">
-					<div class="book_genre">장르 : 게임 판타지</div>
-					<div class="book_title">제목 : 아크</div>
-					<div class="book_author">작가 : 유성</div>
-				</div>
 			</div>
-			<div class="pick_list">
-				<div class="pick_img">
-					<img src="resource/img/th.jpg" class="pick_imgs">
-				</div>
-				<div class="book_introduction">
-					<div class="book_genre">장르 : 게임 판타지</div>
-					<div class="book_title">제목 : 달빛 조각사</div>
-					<div class="book_author">작가 : 남희성</div>
-				</div>
-			</div>
-			<div class="pick_list">
-				<div class="pick_img">
-					<img src="resource/img/th.jpg" class="pick_imgs">
-				</div>
-				<div class="book_introduction">
-					<div class="book_genre">장르 : 게임 판타지</div>
-					<div class="book_title">제목 : 달빛 조각사</div>
-					<div class="book_author">작가 : 남희성</div>
-				</div>
-			</div>
+		<%}} %>
 		</div>
 	</div>
 	<div class="img_banner">
 		<img src="resource/img/1610703127371.jpg" class="Img">
 		<div class="img_font">이미지 위의 문구</div>
 	</div>
-	<div class="live_recomend_bot">
-		<!-- 신작 , 업데이트 순-->
-		<h2>추천 수</h2>
-		<div class="pick">
-			<div class="pick_list">
-				<div class="pick_img">
-					<img src="resource/img/th.jpg" class="pick_imgs">
-				</div>
-				<div class="book_introduction">
-					<div class="book_genre">장르 : 게임 판타지</div>
-					<div class="book_title">제목 : 달빛 조각사</div>
-					<div class="book_author">작가 : 남희성</div>
-				</div>
-			</div>
-			<div class="pick_list">
-				<div class="pick_img">
-					<img src="resource/img/th.jpg" class="pick_imgs">
-				</div>
-				<div class="book_introduction">
-					<div class="book_genre">장르 : 게임 판타지</div>
-					<div class="book_title">제목 : 달빛 조각사</div>
-					<div class="book_author">작가 : 남희성</div>
-				</div>
-			</div>
-			<div class="pick_list">
-				<div class="pick_img">
-					<img src="resource/img/th.jpg" class="pick_imgs">
-				</div>
-				<div class="book_introduction">
-					<div class="book_genre">장르 : 게임 판타지</div>
-					<div class="book_title">제목 : 달빛 조각사</div>
-					<div class="book_author">작가 : 남희성</div>
-				</div>
-			</div>
-			<div class="pick_list">
-				<div class="pick_img">
-					<img src="resource/img/th.jpg" class="pick_imgs">
-				</div>
-				<div class="book_introduction">
-					<div class="book_genre">장르 : 게임 판타지</div>
-					<div class="book_title">제목 : 달빛 조각사</div>
-					<div class="book_author">작가 : 남희성</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
 	<footer> </footer>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>

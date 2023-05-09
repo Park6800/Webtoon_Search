@@ -13,7 +13,6 @@
 <link rel="stylesheet" href="resource/css/genrepage.css">
 <script src="resource/js/genrepage.js"></script>
 </head>
-
 <body>
 	<%
 	Object ID_ = session.getAttribute("user_id");
@@ -78,44 +77,44 @@
 			<div class="submit_btn">
 				<ul>
 					<li>
-						<form method="post" action="webtoonServlet" class="return _post">
-							<input type="submit" value="월요일" name="Day" class="btn_day"><input
+						<form method="post" action="webtoonServlet" class="_post">
+							<input type="submit" value="월요일" name="Day" class="btn_day" onclick="submit_Btn(event)"><input
 								type="hidden" class="get_genre" name="Genre">
 						</form>
 					</li>
 					<li>
-						<form method="post" action="webtoonServlet" class="return _post">
-							<input type="submit" value="화요일" name="Day" class="btn_day"><input
+						<form method="post" action="webtoonServlet" class="_post">
+							<input type="submit" value="화요일" name="Day" class="btn_day" onclick="submit_Btn(event)"><input
 								type="hidden" class="get_genre" name="Genre">
 						</form>
 					</li>
 					<li>
-						<form method="post" action="webtoonServlet" class="return _post">
-							<input type="submit" value="수요일" name="Day" class="btn_day"><input
+						<form method="post" action="webtoonServlet" class="_post">
+							<input type="submit" value="수요일" name="Day" class="btn_day" onclick="submit_Btn(event)"><input
 								type="hidden" class="get_genre" name="Genre">
 						</form>
 					</li>
 					<li>
-						<form method="post" action="webtoonServlet" class="return _post">
-							<input type="submit" value="목요일" name="Day" class="btn_day"><input
+						<form method="post" action="webtoonServlet" class="_post">
+							<input type="submit" value="목요일" name="Day" class="btn_day" onclick="submit_Btn(event)"><input
 								type="hidden" class="get_genre" name="Genre">
 						</form>
 					</li>
 					<li>
-						<form method="post" action="webtoonServlet" class="return _post">
-							<input type="submit" value="금요일" name="Day" class="btn_day"><input
+						<form method="post" action="webtoonServlet" class="_post">
+							<input type="submit" value="금요일" name="Day" class="btn_day" onclick="submit_Btn(event)"><input
+								type=hidden class="get_genre" name="Genre">
+						</form>
+					</li>
+					<li>
+						<form method="post" action="webtoonServlet" class="_post">
+							<input type="submit" value="토요일" name="Day" class="btn_day" onclick="submit_Btn(event)"><input
 								type="hidden" class="get_genre" name="Genre">
 						</form>
 					</li>
 					<li>
-						<form method="post" action="webtoonServlet" class="return _post">
-							<input type="submit" value="토요일" name="Day" class="btn_day"><input
-								type="hidden" class="get_genre" name="Genre">
-						</form>
-					</li>
-					<li>
-						<form method="post" action="webtoonServlet" class="return _post">
-							<input type="submit" value="일요일" name="Day" class="btn_day"><input
+						<form method="post" action="webtoonServlet" class="_post">
+							<input type="submit" value="일요일" name="Day" class="btn_day" onclick="submit_Btn(event)"><input
 								type="hidden" class="get_genre" name="Genre">
 						</form>
 					</li>

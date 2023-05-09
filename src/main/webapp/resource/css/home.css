@@ -455,24 +455,27 @@ nav {
     filter: invert(100%);
 } */
 
+.container_pick{
+	width: 60%;
+	margin: auto;
+	border: 1px solid blueviolet;
+}
+
 .live_recomend , .live_recomend_bot{
-    width: 60%;
-    margin: auto;
-    border: 1px solid blueviolet;
+    width: 100%;
+    margin: 20px auto;
+    display:flex;
 }
 
 .pick {
     width: 90%;
-    margin: 40px auto;
+    margin: 50px auto 0;
     border: 1px solid blueviolet;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .pick_list {
-    width: 24%;
-
+    width: 100%;
+    display:block;
 }
 
 .pick_img {

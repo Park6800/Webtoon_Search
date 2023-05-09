@@ -1,3 +1,4 @@
+<%@page import="java.io.PrintWriter"%>
 <%@page import="java.util.List"%>
 <%@page import="DataClass.ReviewData"%>
 <%@page import="DataClass.WebtoonData"%>
@@ -32,6 +33,14 @@
 		title_ = (String) (request.getParameter("title"));
 	}
 	%>
+	
+	<% if(ID_value == null){
+		 PrintWriter script = response.getWriter();
+            script.println("<script>");
+            script.println("alert('로그인을 하세요')");
+            script.println("location.href = 'Login.jsp'");
+            script.println("</script>");
+		} else { %>
 	<nav>
 		<div class="top-nav">
 			<div class="top-nav-left">
@@ -39,6 +48,7 @@
 			</div>
 			<div class="serach">
 				<select onchange="search_()" id=change_select>
+					<option disabled="disabled" selected="selected">검색 조건</option>
 					<option value="Title">제목 검색</option>
 					<option value="Story">글 작가 검색</option>
 					<option value="Art">그림 작가 검색</option>
@@ -283,5 +293,6 @@
 			</form>
 		</div>
 	</div>
+	<%} %>
 </body>
 </html>

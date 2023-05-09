@@ -23,7 +23,12 @@
     for(let i =0; i < value_.length ; i++){
     	value_[i].value = choice;
     }
+};
+
+function submit_Btn(event) {
+  var genre = event.target.form.querySelector('.get_genre');
+  if (genre.value === '') {
+    event.preventDefault();
+    alert('장르를 선택해주세요.');
+  }
 }
-
-
- 

@@ -45,7 +45,7 @@ send.addEventListener("click", function () {
 	if(sel.value.trim() == "" || day.value.trim() ==""){
 		alert("요일과 장르를 올바르게 선택해주세요.");
 		return false;
-		
 		}
 		form.submit();
 	})
+	
