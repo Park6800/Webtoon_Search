@@ -25,6 +25,13 @@
 	<%
 	Object ID_ = session.getAttribute("user_id");
 	String ID_value = (String) ID_;
+	Object NAME_ = session.getAttribute("user_name");
+	String NAME_value = (String) NAME_;
+	Object BIRTH_ = session.getAttribute("user_birth");
+	String BIRTH_value = (String) BIRTH_;
+	Object GENDER_ = session.getAttribute("user_gender");
+	String GENDER_value = (String) GENDER_;
+	
 	Integer ADMIN_ = (Integer) session.getAttribute("admin");
 	Object chk = session.getAttribute("Serach_chk");
 	String Chk = (String) chk;
@@ -202,10 +209,10 @@
 						<div class="user_img">
 							<img src="resource/img/user.png">
 							<div class="user_mid">
-								<div class="mid">
+								<div class="mid_logout">
 									<a href="Logout.jsp">로그아웃</a>
 								</div>
-								<div class="mid">내 정보 보기</div>
+								<div class="mid"><a href="My_info.jsp">내 정보 보기</a></div>
 							</div>
 						</div>
 						<hr>

@@ -60,14 +60,13 @@
 			</div>
 			<div class="top-nav-right">
 				<%
-				if (ID_value == null) {
-				%>
+				if (ID_value == null) { %>
 				<ul>
 					<li>로그인</li>
 					<li>회원가입</li>
 				</ul>
-				<%
-				} else {
+			<%
+			} else {
 				%>
 				<ul>
 					<li class="color_w"><%=ID_value%></li>

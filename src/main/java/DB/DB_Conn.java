@@ -89,6 +89,36 @@ public class DB_Conn {
 			}
 		}
 	}
+	
+	public void User_Info_Updata(HttpServletRequest request, HttpServletResponse response, UserData _Data) {
+		// TODO Auto-generated method stub
+		Statement stmt = null;
+		try {
+			PreparedStatement pstmt = null;
+			String sql = "UPDATE User_info SET _USER_NAME = '" + _Data.getNAME() + "' , _USER_BIRTH = '" + _Data.getBIRTH() + "' , _USER_GENDER = '" + _Data.getGENDER() + "' WHERE _USER_ID = '" + _Data.getID() + "'";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.executeUpdate();
+
+			response.sendRedirect("Logout.jsp");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
 
 	// 윕툰 검색 ( 제목 , 글 , 그림 작가 별 검색 기능 )
 	public void serach_webtoon(HttpServletRequest request, HttpServletResponse response, WebtoonData _Data) {
@@ -337,12 +367,15 @@ public class DB_Conn {
 		try {
 			stmt = conn.createStatement();
 
-			String sql = "select _USER_ID ,_USER_PW, _ADMIN from user_info where _USER_ID ='" + _Data.ID + "'"; 
+			String sql = "select _USER_ID ,_USER_PW, _USER_NAME, _USER_BIRTH, _USER_GENDER, _ADMIN from user_info where _USER_ID ='" + _Data.ID + "'"; 
 			res = stmt.executeQuery(sql);
 			boolean idExist = false;
 			while (res.next()) {
 				String ID_ = res.getString("_USER_ID");
 				String PW_ = res.getString("_USER_PW");
+				String NAME_ = res.getString("_USER_NAME");
+				String BIRTH_ = res.getString("_USER_BIRTH");
+				String GENDER_ = res.getString("_USER_GENDER");
 				int ADMIN_ = res.getInt("_ADMIN");
 
 				if (_Data.ID.equals(ID_)) {
@@ -351,7 +384,10 @@ public class DB_Conn {
 //							세션객체 사용해서 저장 
 						HttpSession session = request.getSession();
 						session.setAttribute("user_id", _Data.ID);
-
+						session.setAttribute("user_name", NAME_);
+						session.setAttribute("user_birth", BIRTH_);
+						session.setAttribute("user_gender", GENDER_);
+						
 						session.setAttribute("admin", ADMIN_);
 						response.sendRedirect("Home.jsp");
 					} else {
