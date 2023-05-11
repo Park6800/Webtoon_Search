@@ -122,6 +122,7 @@
 					<h2>프로필 수정</h2>
 					<p>프로필과 개인정보를 수정할 수 있습니다.</p>
 				</div>
+				<form mathod="post" action="user_info_updata_Servlet">
 				<div class="fix_info">
 					<table>
 						<thead>
@@ -130,7 +131,6 @@
 								<th>내 정보</th>
 							</tr>
 						</thead>
-						<form mathod="post" action="user_info_updata_Servlet">
 						<tbody>
 							<tr>
 								<th class="color_gray">아이디</th>
@@ -142,7 +142,7 @@
 								<th class="color_gray">실명</th>
 								<th><%=NAME_value %>
 								<div class="none">
-								<input type="text" placeholder="변경할 이름을 입력하세요" class="change_info" name="user_name">
+								<input type="text" placeholder="변경할 이름을 입력하세요" class="change_info" name="user_name" id="Name">
 								</div>
 								</th>
 							</tr>
@@ -150,7 +150,7 @@
 								<th class="color_gray">성별</th>
 								<th><%=GENDER_value %>
 								<div class="none">
-								<select class="change_info" name="uset_name">
+								<select class="change_info" name="user_gender" id="Gender">
 									<option selected="selected" disabled="disabled">성별을 선택</option>
 									<option value="남">남성</option>
 									<option value="여">여성</option>
@@ -162,7 +162,7 @@
 								<th class="color_gray">생년월일</th>
 								<th><%=BIRTH_value %>
 								<div class="none">
-								<input type="text" placeholder="변경할 생년월일 8자리를 입력해주세요" class="change_info" name="user_birth">
+								<input type="text" placeholder="변경할 생년월일 8자리를 입력해주세요" class="change_info" name="user_birth" id="Birth">
 								</div>
 								</th>
 							</tr>

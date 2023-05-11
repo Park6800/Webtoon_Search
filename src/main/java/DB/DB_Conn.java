@@ -95,11 +95,15 @@ public class DB_Conn {
 		Statement stmt = null;
 		try {
 			PreparedStatement pstmt = null;
-			String sql = "UPDATE User_info SET _USER_NAME = '" + _Data.getNAME() + "' , _USER_BIRTH = '" + _Data.getBIRTH() + "' , _USER_GENDER = '" + _Data.getGENDER() + "' WHERE _USER_ID = '" + _Data.getID() + "'";
+			String sql = "UPDATE user_info SET _USER_NAME = ? , _USER_BIRTH = ? , _USER_GENDER = ? WHERE _USER_ID = ?";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, _Data.NAME);
+			pstmt.setString(2, _Data.BIRTH);
+			pstmt.setString(3, _Data.GENDER);
+			pstmt.setString(4, _Data.ID);
 			pstmt.executeUpdate();
 
-			response.sendRedirect("Logout.jsp");
+	
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
