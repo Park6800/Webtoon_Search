@@ -86,7 +86,7 @@ nav {
 
 .hide-nav {
     position: relative;
-    height: 210px;
+    height: 270px;
     display: none;
     justify-content: space-around;
     z-index: 5;
@@ -196,6 +196,11 @@ nav {
 
 .login_like > a{
 	color:black;
+	margin-left:5px;
+}
+
+.login_like > hr {
+	margin-top:3px;
 }
 
 .like_more {
@@ -240,7 +245,7 @@ nav {
 }
 
 .Account {
-	margin-top : 10px;
+	margin : 10px 0;
 }
 
 .Account > span {
@@ -272,8 +277,9 @@ nav {
 }
 
 .mid {
-	margin-top:10px;
+	margin-top:40px;
 	display:flex;
+	align-items:flex-end;
 	justify-content: flex-end;
 }
 
@@ -320,12 +326,13 @@ nav {
 
 .Write_review_list{
     width: 100%;
-    height: 270px;
+    height: 250px;
     margin-top: 10px;
-    background-color: #888;
+    background-color: antiquewhite;
     display: flex;
 	flex-direction: column;
 	overflow: hidden;
+	padding: 10px 0;
 }
 
 .review_list {
@@ -338,13 +345,32 @@ nav {
 	padding:4px 0px;
 }
 
+.color_b {
+	color:black;
+}
+
+.mt-30 {
+	display:flex;
+	margin-top:30px;
+	text-align: center;
+	justify-content: space-around;
+}
+
+.color_black {
+	color:black;
+	border:1px solid black;
+	border-radius:10px;
+	background: #999999;
+	padding:10px 20px;
+}
+
 .more_review_list {
 	display:flex;
 	align-items:center;
 	justify-content:center;
-	color:white;
+	color:black;
 	margin-top:3px;
-	background: linear-gradient(to top, rgb(0,0,0), rgba(120,120,120,0.5));
+	background-color: antiquewhite;
 	width:100%;
 	flex:1;
 }
@@ -353,8 +379,8 @@ nav {
 	display:flex;
 	align-items:center;
 	justify-content:center;
-	color:white;
-	background: linear-gradient(to top, rgb(0,0,0), rgba(120,120,120,0.5));
+	color:black;
+	background-color: antiquewhite;
 	width:100%;
 	height: 100%;
 }
@@ -472,7 +498,9 @@ nav {
 .container_pick{
 	width: 60%;
 	margin: auto;
-	border: 1px solid blueviolet;
+	border: 1px solid black;
+	border-radius: 10px;
+	padding: 20px 10px;
 }
 
 .live_recomend , .live_recomend_bot{
@@ -507,6 +535,13 @@ nav {
     width: 90%;
     margin: auto;
     padding-left: 15px;
+}
+
+.book_title{
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	word-break:break-all;
+	overflow: hidden;
 }
 
 .book_genre {

@@ -44,7 +44,7 @@
 	<nav>
 		<div class="top-nav">
 			<div class="top-nav-left">
-				<a href="Home.jsp" class="color_w">도서관</a>
+				<a href="Home.jsp" class="color_w"><img src="resource/img/Logo.png" style="width: 100px"></a>
 			</div>
 			<div class="serach">
 				<select onchange="search_()" id=change_select>

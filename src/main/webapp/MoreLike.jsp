@@ -22,7 +22,7 @@ Integer ADMIN_ = (Integer) session.getAttribute("admin");
 %>
 	<nav>
 		<div class="top-nav">
-			<div class="top-nav-left"><a href="Home.jsp">도서관</a></div>
+			<div class="top-nav-left"><a href="Home.jsp"><img src="resource/img/Logo.png" style="width: 100px"></a></div>
 			<div class="serach">
 				<select onchange="search_()" id=change_select>
 					<option value="Title">제목 검색</option>

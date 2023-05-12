@@ -39,7 +39,7 @@
 	<nav>
 		<div class="top-nav">
 			<div class="top-nav-left">
-				<a href="Home.jsp">도서관</a>
+				<a href="Home.jsp"><img src="resource/img/Logo.png" style="width: 100px"></a>
 			</div>
 			<div class="serach">
 				<select onchange="search_()" id=change_select>
@@ -135,7 +135,7 @@
 							<tr>
 								<th class="color_gray">아이디</th>
 								<th><%=ID_value%>
-								<input type="hidden" value="<%=ID_value%>">
+								<input type="hidden" value="<%=ID_value%>" name="user_id">
 								</th>
 							</tr>
 							<tr>
@@ -170,7 +170,7 @@
 								<th class="color_gray">전화 번호</th>
 								<th>+82 10-6***-6***
 								<div class="none">
-								<input type="text" placeholder="변경할 전화번호를 입력해주세요" class="change_info">
+								<input type="text" placeholder="변경할 전화번호를 입력해주세요" class="change_info" name="user_Phone">
 								</div>
 								</th>
 							</tr>

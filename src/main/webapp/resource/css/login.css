@@ -5,6 +5,15 @@
 	padding: 0;
 }
 
+a {
+	text-decoration: none;
+	color:black;
+}
+
+h3 {
+	margin-left:20px;
+}
+
 .body_space {
 	display: flex;
 	align-items: center;
@@ -18,7 +27,12 @@
 	border-radius:20px;
 	box-sizing: border-box;
 	margin-top:10%;
-	
+	background-color: #999999;
+}
+
+.detail_spcae {
+	display: flex;
+	justify-content: space-between;
 }
 
 .detail_spcae > h3 {
@@ -29,13 +43,14 @@
 .Loign_space {
 	width:50%;
 	height:100%;
+	display:inline-block;
 	margin-top:50px;
 	box-sizing: border-box;
 	border-right: 1px solid black;
 }
 
 .input_info, .info_value {
-	margin:20px 0 0 20px;
+	margin:30px 0 0 20px;
 	padding:10px;
 }
 
@@ -68,4 +83,22 @@
 
 .move_signpage {
 	padding:10px;
+}
+
+.another_space {
+	width:50%;
+	display:flex;
+	justify-content: center;
+	align-items: flex-start;
+	margin-top:50px;
+}
+
+.logo_img > a > p {
+	text-align: center;
+	margin-top:30px;
+}
+
+.guide {
+	text-align: center;
+	margin-top:30px;
 }

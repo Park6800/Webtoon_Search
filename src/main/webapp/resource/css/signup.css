@@ -15,16 +15,16 @@ ul {
 
 .main_body{
 	width:40%;
-	height:900px;
-	margin: 100px auto;
+	margin: 80px auto;
 	background-color:white;
+	border:1px solid black;
 	border-radius: 15px;
 }
 
 .sub_body{
 	width:60%;
 	margin:auto;
-	padding-top:100px;
+	padding-top:50px;
 }
 
 .Top_letter {
@@ -32,7 +32,12 @@ ul {
 }
 
 .input_value {
-	margin-top : 40px;
+	margin-top : 25px;
+}
+
+.c_red {
+   color:red;
+   margin-top:5px
 }
 
 .input_info {
@@ -42,8 +47,30 @@ ul {
 	box-sizing: border-box;
 }
 
-body {
-	background-image: url("../../resource/img/back.png");
-	background-repeat: no-repeat;
-	background-size: cover;
+
+.img_place {
+	display: flex;
+	justify-content: center;
+	align-items:center;
+	width:80%;
+	margin:30px auto;
+	top:10px;
+}
+
+.img_link {
+	display:flex;
+	justify-content:center;
+	width:30%;
+	margin:auto;
+	background: gray;
+	border-radius: 15px;
+	top:5px;
+}
+
+.img_link > a {
+	text-align: center;
+}
+
+.img_link > a > p {
+	color:black;
 }

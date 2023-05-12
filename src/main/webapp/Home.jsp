@@ -31,23 +31,26 @@
 	String BIRTH_value = (String) BIRTH_;
 	Object GENDER_ = session.getAttribute("user_gender");
 	String GENDER_value = (String) GENDER_;
-	
+
 	Integer ADMIN_ = (Integer) session.getAttribute("admin");
 	Object chk = session.getAttribute("Serach_chk");
 	String Chk = (String) chk;
 	%>
 	<%
-    session.removeAttribute("Serach_chk");
-	if(Chk != null){
-		 PrintWriter script = response.getWriter();
-            script.println("<script>");
-            script.println("alert('검색 조건에 맞는 물건이 없습니다')");
-            script.println("</script>");
+	session.removeAttribute("Serach_chk");
+	if (Chk != null) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('검색 조건에 맞는 물건이 없습니다')");
+		script.println("</script>");
 	}
 	%>
 	<nav>
 		<div class="top-nav">
-			<div class="top-nav-left">도서관</div>
+			<div class="top-nav-left">
+				<a href="Home.jsp" class="color_w"><img
+					src="resource/img/Logo.png" style="width: 100px"></a>
+			</div>
 			<div class="serach">
 				<select onchange="search_()" id=change_select>
 					<option disabled="disabled" selected="selected">검색 조건</option>
@@ -81,43 +84,45 @@
 		<hr>
 		<div class="bot">
 			<div class="bot-nav">
-				<div class="w150">도서관</div>
-				<div class="w150">온라인</div>
-				<div class="w150">질문 | 답변</div>
-				<div class="w150">장르 1</div>
-				<div class="w150">장르 2</div>
+				<div class="w150">회원</div>
+				<div class="w150">회원 2</div>
+				<div class="w150">조회</div>
+				<div class="w150">좋아요</div>
+				<div class="w150">리뷰</div>
 			</div>
 		</div>
 		<div class="hide-nav">
 			<div class="hide_nav_width">
 				<div class="around">
-					<div class="pt20">찾아 오는 길</div>
-					<div class="pt20">이용 시간 안내</div>
-					<div class="pt20">기증 안내</div>
-					<div class="pt20">자원 봉사</div>
+					<div class="pt20">회원 가입</div>
+					<div class="pt20">회원 가입 정규식</div>
+					<div class="pt20">로그인</div>
+					<div class="pt20">로그아웃</div>
+
 				</div>
 				<div class="around">
-					<div class="pt20">온라인 도서관</div>
-					<div class="pt20">새로 들어온 책</div>
-					<div class="pt20">도서 택배 대출</div>
+					<div class="pt20">내 정보 보기</div>
+					<div class="pt20">내 정보 변경</div>
+					<div class="pt20">아아디 찾기</div>
+					<div class="pt20">비밀 번호 찾기</div>
+					<div class="pt20">회원 탈퇴</div>
 				</div>
 				<div class="around">
-					<div class="pt20">질</div>
-					<div class="pt20">문</div>
-					<div class="pt20">답</div>
-					<div class="pt20">변</div>
+					<div class="pt20">이름순 정렬 조회</div>
+					<div class="pt20">좋아요순 정렬 조회</div>
+					<div class="pt20">조회순 정렬 조회</div>
+					<div class="pt20">검색어 검색</div>
 				</div>
 				<div class="around">
-					<div class="pt20">질</div>
-					<div class="pt20">문</div>
-					<div class="pt20">답</div>
-					<div class="pt20">변</div>
+					<div class="pt20">좋아요</div>
+					<div class="pt20">좋아요 해제</div>
+					<div class="pt20">좋아요 작품 보기</div>
+					<div class="pt20">좋아요 수 표시</div>
 				</div>
 				<div class="around">
-					<div class="pt20">질</div>
-					<div class="pt20">문</div>
-					<div class="pt20">답</div>
-					<div class="pt20">변</div>
+					<div class="pt20">리뷰 작성</div>
+					<div class="pt20">작품 최근 리뷰 보기</div>
+					<div class="pt20">작성한 리뷰 보기</div>
 				</div>
 			</div>
 		</div>
@@ -165,9 +170,9 @@
 							for (CountData data : likedWebtoons) {
 								String title = data.getTITLE();
 							%>
-							<a href="Detail.jsp?title=<%=title %>"> 제목 : <%=title%>
-							<hr>
+							<a href="Detail.jsp?title=<%=title%>"> 제목 : <%=title%>
 							</a>
+							<hr>
 							<%
 							}
 							%>
@@ -192,8 +197,12 @@
 						<button type="submit" class="btn_login" onclick="submit_btn()">로그인</button>
 					</form>
 					<div class="find">
-						<div class="find_id">아이디 찾기</div>
-						<div class="find_pw">비밀 번호 찾기</div>
+						<div class="find_id">
+							<a href="Find_id.jsp">아이디 찾기</a>
+						</div>
+						<div class="find_pw">
+							<a href="Find_pw.jsp">비밀 번호 찾기</a>
+						</div>
 					</div>
 					<div class="sign_up">
 						<a href="Signup.jsp">처음 오셧나요? <span>회원 가입 ></span></a>
@@ -209,13 +218,16 @@
 						<div class="user_img">
 							<img src="resource/img/user.png">
 							<div class="user_mid">
-								<div class="mid_logout">
-									<a href="Logout.jsp">로그아웃</a>
+								<div class="mid">
+									<a href="My_info.jsp">내 정보 보기</a>
 								</div>
-								<div class="mid"><a href="My_info.jsp">내 정보 보기</a></div>
 							</div>
 						</div>
 						<hr>
+						<div class="mt-30">
+						<a href="Logout.jsp" class="color_black">로그아웃</a>
+						 <a href="Delete.jsp" class="color_black">회원탈퇴</a>
+						</div>
 					</div>
 					<%
 					}
@@ -238,19 +250,23 @@
 						String date = data.getDATA();
 					%>
 					<div class="review_list">
-						<div class="review_item">
-							<div class="review_head">
-								<%=title%>
-							</div>
-							<div class="review_date">
-								<%=data.getDATA().substring(0, 10)%>
-							</div>
+						<div>
+							<a href="Comment_.jsp?comment=<%=data.getCOMMENT_TITLE()%>" class="color_b">
+								<div class="review_item">
+									<div class="review_head">
+										<%=data.getCOMMENT_TITLE()%>
+									</div>
+									<div class="review_date">
+										<%=data.getDATA().substring(0, 10)%>
+									</div>
+								</div>
+							</a>
 						</div>
 					</div>
 					<%
 					}
 					%>
-					<div class="more_review_list">더보기</div>
+					<div class="more_review_list"><a href="Morereview.jsp">더보기</a></div>
 					<%
 					}
 					%>
@@ -363,40 +379,48 @@
 		</div>
 	</div>
 	<div class="container_pick">
-	<div>
-		<h2>랜덤 픽</h2>
-	</div>
-	<div class="live_recomend">
-		<%
-					List<WebtoonData> Random_webtoon_list = new DB_Conn().Random_pick(ID_value);
-					for (WebtoonData data : Random_webtoon_list) {
-						String title = data.getTITLE();
-						String genre = data.getGENRE();
-						String url = data.getURL();
-		%>
+		<div>
+			<h2>랜덤 픽</h2>
+			<span>(새로 고침 때 마다 변경)</span>
+		</div>
+		<div class="live_recomend">
 			<%
-					if (ID_value == null) {
-					%>
+			List<WebtoonData> Random_webtoon_list = new DB_Conn().Random_pick(ID_value);
+			for (WebtoonData data : Random_webtoon_list) {
+				String title = data.getTITLE();
+				String genre = data.getGENRE();
+				String url = data.getURL();
+			%>
+			<%
+			if (ID_value == null) {
+			%>
 			<div class="pick">
 				<div class="pick_list">
 					<div class="more_review_list_not_loign">로그인 이후 사용 가능합니다.</div>
 				</div>
 			</div>
-					<%
-					} else {
-					%>
-		<div class="pick">
-			<div class="pick_list">
-				<div class="pick_img">
-					<img src="<%=url %>" class="pick_imgs">
-				</div>
-				<div class="book_introduction">
-					<div class="book_title">제목 : <%=title %></div>
-					<div class="book_genre">장르 : <%=genre %></div>
+			<%
+			} else {
+			%>
+			<div class="pick">
+				<div class="pick_list">
+					<div class="pick_img">
+						<img src="<%=url%>" class="pick_imgs">
+					</div>
+					<div class="book_introduction">
+						<div class="book_title">
+							제목 :
+							<%=title%></div>
+						<div class="book_genre">
+							장르 :
+							<%=genre%></div>
+					</div>
 				</div>
 			</div>
-			</div>
-		<%}} %>
+			<%
+			}
+			}
+			%>
 		</div>
 	</div>
 	<div class="img_banner">

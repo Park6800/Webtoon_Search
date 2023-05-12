@@ -103,7 +103,14 @@ public class DB_Conn {
 			pstmt.setString(4, _Data.ID);
 			pstmt.executeUpdate();
 
-	
+			HttpSession session = request.getSession();
+			
+			session.setAttribute("user_id", _Data.ID);
+			session.setAttribute("user_name", _Data.NAME);
+			session.setAttribute("user_birth", _Data.BIRTH);
+			session.setAttribute("user_gender", _Data.GENDER);
+			
+			response.sendRedirect("Home.jsp");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -123,6 +130,94 @@ public class DB_Conn {
 			}
 		}
 	}
+	// 아이디 찾기
+	public void findid_UserData(HttpServletRequest request, HttpServletResponse response, UserData _Data)
+			throws IOException {
+		// TODO Auto-generated method stub
+		Statement stmt = null;
+		ResultSet res = null;
+
+		try {
+			stmt = conn.createStatement();
+//			이름과 성별, 생년월일로 정보찾는 쿼리 
+			String sql = "select _USER_ID from User_Info where _USER_NAME = '" + _Data.NAME + "' AND _USER_BIRTH = '" + _Data.BIRTH
+					+ "'";
+
+			res = stmt.executeQuery(sql);
+			while (res.next()) {
+				String ID_ = res.getString("_USER_ID");
+//				세션객체 사용해서 저장 
+				HttpSession session = request.getSession();
+				session.setAttribute("user_id", ID_);
+
+				response.sendRedirect("Find_id.jsp");
+			}
+			// 해당 쿼리 결과가 없을 경우 페이지 리로딩
+			response.sendRedirect("Find_id.jsp");
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	
+	// 비밀번호 찾기
+		public void findpw_UserData(HttpServletRequest request, HttpServletResponse response, UserData _Data) {
+			// TODO Auto-generated method stub
+			Statement stmt = null;
+			ResultSet res = null;
+
+			try {
+				stmt = conn.createStatement();
+//				아이디,이름,생년월일,성별로 정보찾는 쿼리
+				String sql = "select _USER_PW from User_Info where _USER_ID = '" + _Data.ID + "' AND _USER_NAME = '" + _Data.NAME
+						+ "' AND _USER_BIRTH = '" + _Data.BIRTH + "'";
+
+				res = stmt.executeQuery(sql);
+				while (res.next()) {
+					String PW_ = res.getString("_USER_PW");
+
+//					세션객체 사용해서 저장 
+					HttpSession session = request.getSession();
+					session.setAttribute("user_pw", PW_);
+//	  			pw찾기 성공시 (찾은 정보를 가지고 )리다이렉션 
+					response.sendRedirect("Find_pw.jsp");
+				}
+				// 해당 쿼리 결과가 없을 경우 페이지 리로딩
+				response.sendRedirect("Find_pw.jsp");
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (stmt != null) {
+						stmt.close();
+					}
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+				try {
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+		}
 
 	// 윕툰 검색 ( 제목 , 글 , 그림 작가 별 검색 기능 )
 	public void serach_webtoon(HttpServletRequest request, HttpServletResponse response, WebtoonData _Data) {
@@ -674,7 +769,7 @@ public class DB_Conn {
 		ResultSet res = null;
 		List<ReviewData> Review_List = new ArrayList<>();
 		try {
-			String sql = "select _USER_ID, _MENT_TITLE, _MENT, _DATA from comment where _TITLE = ? LIMIT 5";
+			String sql = "select _USER_ID, _MENT_TITLE, _MENT, _DATA from comment where _TITLE = ? ORDER BY _DATA DESC LIMIT 5";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, title_);
 			res = pstmt.executeQuery();
@@ -693,7 +788,7 @@ public class DB_Conn {
 	}
 
 	
-	// 
+	// 아이디와 제목을 받아 해당 유저가 해당 작품의 리뷰 작성한 것을 DB에서 호출
 	public List<ReviewData> Review_comment (String ID_value , String title_) {
 		ResultSet res = null;
 		List<ReviewData> Review_List = new ArrayList<>();
@@ -767,6 +862,34 @@ public class DB_Conn {
 		}
 		return Write_Review_List;
 	}
+	
+	public List<ReviewData> Review_comment_20 (String ID_value ,int Number) {
+		ResultSet res = null;
+		List<ReviewData> Write_Review_List = new ArrayList<>();
+		try {
+			
+			// 이부분 질문 할게 여기서 리미트 걸어서 페이지 단에 뿌려서 애초에 갯수를 제한할지
+			// 아니면 이부분 리미트 없이 jsp 단에서 css로 view단을 구성할지
+			// 전자의 경우 내부 리뷰 더보기에 들어가면 다시 메서드를 하나더 만들어서 비슷한 구조의 리미트 없는 구조를 만들어야함
+			String sql = "select _SEQ _USER_ID, _MENT_TITLE, _MENT, _DATA from comment where _USER_ID = ? order by _SEQ DESC LIMIT ?,10";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ID_value);
+			pstmt.setInt(2, (Number - 1) * 10);
+			res = pstmt.executeQuery();
+			
+			while (res.next()) {
+				ReviewData data_ = new ReviewData();
+				data_.setUSER_ID(res.getString(1));
+				data_.setCOMMENT_TITLE(res.getString(2));
+				data_.setCOMMENT(res.getString(3));
+				data_.setDATA(res.getString(4));
+				Write_Review_List.add(data_);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return Write_Review_List;
+	}
 
 	public List<WebtoonData> likedWebtoons_list(String ID_value, int Number) {
 		List<WebtoonData> like_webtoon_list = new ArrayList<>();
@@ -797,8 +920,24 @@ public class DB_Conn {
 
 	public int like_list(String ID_value) {
 		ResultSet res = null;
-//		AVAILABLE 이 1 == 게시된상태    인것만 카운팅
 		String sql = "SELECT COUNT(*) FROM count_info WHERE _USER_ID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ID_value);
+			res = pstmt.executeQuery();
+			if (res.next()) {
+				return res.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 1;
+	}
+	
+	// commnet 테이블에 해당 유저가 작성한 리뷰수를 카운트
+	public int review_list(String ID_value) {
+		ResultSet res = null;
+		String sql = "SELECT COUNT(*) FROM comment WHERE _USER_ID = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, ID_value);
