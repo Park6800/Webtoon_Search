@@ -155,38 +155,47 @@
 			</div>
 			<div class="con-right">
 				<div class="right_half">
-					<div class="live_best">선호 작품</div>
-					<div class="like_list">
-						<%
-						if (ID_value == null) {
-						%>
-						<div class="login_like">로그인 이후 사용 가능 합니다.</div>
-						<%
-						} else {
-						%>
-						<div class="login_like">
+					
+						<div class="live_best">선호 작품</div>
+						
+						<div class="like_list">
 							<%
-							List<CountData> likedWebtoons = new DB_Conn().getLikedWebtoons(ID_value);
-							for (CountData data : likedWebtoons) {
-								String title = data.getTITLE();
+							if (ID_value == null) {
 							%>
-							<a href="Detail.jsp?title=<%=title%>"> 제목 : <%=title%>
-							</a>
-							<hr>
+							<div class="login_like_none">로그인 이후 사용 가능 합니다.</div>
+							<%
+							} else {
+							%>
+							<div class="right_in">
+							<div class="login_like">
+								<%
+								List<CountData> likedWebtoons = new DB_Conn().getLikedWebtoons(ID_value);
+								for (CountData data : likedWebtoons) {
+									String title = data.getTITLE();
+								%>
+								<a href="Detail.jsp?title=<%=title%>" class="Like_link"> 제목
+									: <%=title%>
+								</a>
+								<hr>
+								<%
+								}
+								%>
+							</div>
+								</div>
+							<div class="like_more">
+								<a href="MoreLike.jsp">더보기</a>
+							</div>
 							<%
 							}
 							%>
-						</div>
-						<div class="like_more">
-							<a href="MoreLike.jsp">더보기</a>
-						</div>
-						<%
-						}
-						%>
+					
 					</div>
 				</div>
 				<div class="right_half_lp">
+				<div class="login_container"> 
 					기존 이용자
+				</div>
+				<div class="login_in">
 					<%
 				if (ID_value == null) {
 				%>
@@ -225,24 +234,28 @@
 						</div>
 						<hr>
 						<div class="mt-30">
-						<a href="Logout.jsp" class="color_black">로그아웃</a>
-						 <a href="Delete.jsp" class="color_black">회원탈퇴</a>
+							<a href="Logout.jsp" class="color_black">로그아웃</a> <a
+								href="Delete.jsp" class="color_black">회원탈퇴</a>
 						</div>
 					</div>
 					<%
 					}
 					%>
+					</div>
 				</div>
 				<div class="Write_review_list">
 					<%
 					if (ID_value == null) {
 					%>
 					<h3 class="h2_display">내가 남긴 리뷰 목록</h3>
+					<div class="Write_in">
 					<div class="more_review_list_not_loign">로그인 이후 사용 가능합니다.</div>
+					</div>
 					<%
 					} else {
 					%>
 					<h3 class="h3_display">내가 남긴 리뷰 목록</h3>
+					<div class="Write_in">
 					<%
 					List<ReviewData> Write_Review_List = new DB_Conn().Review_comment_(ID_value);
 					for (ReviewData data : Write_Review_List) {
@@ -251,7 +264,8 @@
 					%>
 					<div class="review_list">
 						<div>
-							<a href="Comment_.jsp?comment=<%=data.getCOMMENT_TITLE()%>" class="color_b">
+							<a href="Comment_.jsp?comment=<%=data.getCOMMENT_TITLE()%>"
+								class="color_b">
 								<div class="review_item">
 									<div class="review_head">
 										<%=data.getCOMMENT_TITLE()%>
@@ -266,7 +280,10 @@
 					<%
 					}
 					%>
-					<div class="more_review_list"><a href="Morereview.jsp">더보기</a></div>
+					</div>
+					<div class="more_review_list">
+						<a href="Morereview.jsp">더보기</a>
+					</div>
 					<%
 					}
 					%>
@@ -385,38 +402,42 @@
 		</div>
 		<div class="live_recomend">
 			<%
+			if (ID_value == null) {
+			%>
+			<div class="pick">
+				<div class="pick_list_a">
+					<div class="more_review_list_not_loign">
+						<div>로그인 이후 사용 가능합니다.</div>
+					</div>
+				</div>
+			</div>
+			<%
+			} else {
 			List<WebtoonData> Random_webtoon_list = new DB_Conn().Random_pick(ID_value);
 			for (WebtoonData data : Random_webtoon_list) {
 				String title = data.getTITLE();
 				String genre = data.getGENRE();
 				String url = data.getURL();
 			%>
-			<%
-			if (ID_value == null) {
-			%>
-			<div class="pick">
-				<div class="pick_list">
-					<div class="more_review_list_not_loign">로그인 이후 사용 가능합니다.</div>
-				</div>
-			</div>
-			<%
-			} else {
-			%>
-			<div class="pick">
-				<div class="pick_list">
-					<div class="pick_img">
-						<img src="<%=url%>" class="pick_imgs">
+			<form method="post" action="updata_Servlet">
+				<button class="pick">
+					<input type="hidden" value="<%=title%>" name="Title">
+					<div class="pick_list_b">
+						<div class="pick_img">
+							<img src="<%=url%>" class="pick_imgs">
+						</div>
+						<div class="book_introduction">
+							<div class="book_title">
+								제목 :
+								<%=title%></div>
+							<div class="book_genre">
+								장르 :
+								<%=genre%></div>
+						</div>
 					</div>
-					<div class="book_introduction">
-						<div class="book_title">
-							제목 :
-							<%=title%></div>
-						<div class="book_genre">
-							장르 :
-							<%=genre%></div>
-					</div>
-				</div>
-			</div>
+					</a>
+				</button>
+			</form>
 			<%
 			}
 			}

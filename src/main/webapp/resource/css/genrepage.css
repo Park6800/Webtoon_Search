@@ -20,7 +20,7 @@ li {
 
 nav{
     width: 100%;
-    background: rgb(38, 41, 45);
+     background: #ffb52b;
 }
 
 .color_nav {
@@ -31,7 +31,7 @@ nav{
 .top-nav {
 	width:70%;
 	margin:auto;
-    background: rgb(38, 41, 45);
+    background: #ffb52b;
     height: 70px;
     display: flex;
     justify-content: space-between;
@@ -71,6 +71,7 @@ nav{
 .nav_genre > ul > li:nth-child(n+1){
     position: relative;
     margin-left: 10px;
+    
 }
 
 .nav_genre > ul > li:not(:last-child)::after{
@@ -116,7 +117,7 @@ nav{
     border: 1px solid black;
     border-radius: 5px;
     padding: 5px 10px;
-    background-color: gray;
+    background-color: #EECC95;
     cursor: pointer;
 }
 

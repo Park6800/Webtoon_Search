@@ -19,8 +19,10 @@ li {
 
 nav {
     height: 150px;
-    background: rgb(38, 41, 45);
+    background: #ffb52b;
 }
+
+/* background: #988179;*/
 
 .top-nav {
     width: 60%;
@@ -72,6 +74,8 @@ nav {
 
 .w150 {
     width: 150px;
+    font-weight:600;
+    font-size:18px;
     text-align: center;
     color: white;
 }
@@ -90,7 +94,7 @@ nav {
     display: none;
     justify-content: space-around;
     z-index: 5;
-    background: rgba(35, 36, 45, 0.9);
+    background:  rgba(255 ,165 ,0,0.9);
 }
 
 .hide_nav_width {
@@ -109,6 +113,8 @@ nav {
     text-align: center;
     padding-top: 20px;
     color: white;
+    font-size: 15px;
+    font-weight: 550;
 }
 
 .main_body {
@@ -171,11 +177,15 @@ nav {
 .right_half, .right_half_lp {
     display: inline-block;
     margin-top: 20px;
-    padding: 0;
     box-sizing: border-box;
     width: 49%;
     height: 300px;
-    background-color: antiquewhite;
+    background-color:#FFD27F;
+}
+
+.login_container {
+	text-align: center;
+	font-weight: 600;
 }
 
 .right_half{
@@ -183,15 +193,42 @@ nav {
     overflow:hidden;
 }
 
-.login_like {
+.right_in {
+	background-color: white;
+	width:80%;
+	height:210px;
+	margin:10px auto;
+	border-radius: 10px;
+}
+
+.login_in {
+	background-color: white;
+	width:85%;
+	height:240px;
+	margin:10px auto;
+	border-radius: 10px;
+}
+
+.login_like, .login_like_none {
 	display:block;
 	width:250px;
 	height:185px;
 	margin:auto;
+	padding-top:10px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	word-break:break-all;
 	overflow: hidden;
+}
+
+.login_like_none {
+	display:flex !important;
+	align-items: center;
+	justify-content: center;
+}
+
+.Like_link:hover {
+	color:blue;
 }
 
 .login_like > a{
@@ -205,17 +242,18 @@ nav {
 
 .like_more {
 	text-align: center;
-	margin-top:20px;
+	width:50px;
+	margin:15px auto;
 }
 
 .right_half_lp{
-    padding: 20px 10px;
+    padding: 10px 0px;
     margin-left:2%;
 }
 
 .inline_b , .live_best{
     width: 90%;
-    margin: 10px auto;
+    margin: 5px auto;
 }
 
 .w_text{
@@ -224,6 +262,7 @@ nav {
     font-size: 16px;
     box-sizing: border-box;
     margin-top: 15px;
+    padding-left:10px;
 }
 
 .btn_login {
@@ -237,6 +276,10 @@ nav {
     justify-content: space-between;
     font-size: 14px;
     padding: 0 15px;
+}
+
+.find_id:hover, .find_pw:hover, .sign_up:hover {
+	text-decoration: underline;
 }
 
 .user {
@@ -278,6 +321,7 @@ nav {
 
 .mid {
 	margin-top:40px;
+	margin-right:10px;
 	display:flex;
 	align-items:flex-end;
 	justify-content: flex-end;
@@ -287,10 +331,9 @@ nav {
 	display:block;
 	width:100px;
 	color: black;
-	border:1px solid black;
 	border-radius:5px;
 	padding: 8px;	
-	background-color:#999;
+	background-color: #EECC95;
 	text-align: center;
 }
 
@@ -307,9 +350,10 @@ nav {
 
 .live_best{
     width: 100%;
+    font-weight:600;
     position: relative;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 10px;
     cursor: pointer;
 }
 
@@ -318,21 +362,32 @@ nav {
     position: absolute;
     left: 50%;
     transform: translate(-50%, -50%);
-    top: 20px;
+    top: 10px;
     width: 90%;
     height: 1px;
     z-index: 1;
 }
 
+.h3_display {
+	text-align: center;
+}
+
 .Write_review_list{
     width: 100%;
-    height: 250px;
+    height: 260px;
     margin-top: 10px;
-    background-color: antiquewhite;
+	background-color:#FFD27F;
     display: flex;
 	flex-direction: column;
 	overflow: hidden;
-	padding: 10px 0;
+	padding: 8px 0 0 0;
+}
+
+.Write_in {
+	background: white;
+	width:90%;
+	margin:10px auto;
+	border-radius: 10px;
 }
 
 .review_list {
@@ -346,7 +401,7 @@ nav {
 .review_item {
 	display:flex;
 	justify-content: space-between;
-	padding:4px 0px;
+	padding:3px 0px;
 }
 
 .color_b {
@@ -362,9 +417,8 @@ nav {
 
 .color_black {
 	color:black;
-	border:1px solid black;
 	border-radius:10px;
-	background: #999999;
+	background-color: #EECC95;
 	padding:10px 20px;
 }
 
@@ -373,20 +427,19 @@ nav {
 	align-items:center;
 	justify-content:center;
 	color:black;
-	margin-top:3px;
-	background-color: antiquewhite;
+	background-color:#FFD27F;
 	width:100%;
 	flex:1;
 }
 
 .more_review_list_not_loign {
+	width:100%;
+	height:220px;
+	background-color: white;
 	display:flex;
 	align-items:center;
 	justify-content:center;
-	color:black;
-	background-color: antiquewhite;
-	width:100%;
-	height: 100%;
+	border-radius: 20px;
 }
 
 .h2_display {
@@ -431,7 +484,7 @@ nav {
     border-radius: 20px;
     border: none;
     text-align: center;
-    background: #888;
+    background: #FFBB3F;
 }
 
 .btn_submit{
@@ -447,17 +500,18 @@ nav {
 .genre {
     width: 60%;
     margin: 30px auto 70px;
-    border: 1px solid black;
     border-radius: 10px;
     padding: 20px 10px;
+    background-color: #FFD27F;
 }
 
 .genre_, .day_ {
 	width:150px;
 	height: 30px;
 	text-align: center;
+	padding-top:5px;
 	cursor: pointer;
-	background: gray;
+	background-color:white;
 	border-radius: 10px;
 }
 
@@ -513,25 +567,36 @@ nav {
 .container_pick{
 	width: 60%;
 	margin: auto;
-	border: 1px solid black;
 	border-radius: 10px;
 	padding: 20px 10px;
+	background-color: #FFD27F;
 }
 
 .live_recomend , .live_recomend_bot{
     width: 100%;
     margin: 20px auto;
     display:flex;
+    justify-content: space-around;
 }
 
 .pick {
-    width: 90%;
-    margin: 50px auto 0;
-    border: 1px solid blueviolet;
+    width: 100%;
+    margin: 20px auto 0;
+    border-radius: 5px;
 }
 
-.pick_list {
-    width: 100%;
+.pick_list_a {
+	width: 500px;
+	height:350px;
+    margin:auto;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pick_list_b {
+    width: 230px;
+    height:350px;
     display:block;
 }
 
@@ -541,7 +606,7 @@ nav {
 }
 
 .pick_imgs{
-    width: 100%;
+	width:100%;
     height: 300px;
     margin: auto;
 }

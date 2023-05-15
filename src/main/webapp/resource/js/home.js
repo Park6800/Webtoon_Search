@@ -15,7 +15,7 @@ function select_genre(sel) {
     for(let i = 0; i<img_None.length;i++){
       img_None[i].style.border = "none";
     }
-    _Select.style.border = "1px solid red";
+    _Select.style.border = "1px solid black";
 }
 
 function select_day(select_) {
@@ -24,7 +24,7 @@ function select_day(select_) {
 	for(let i=0; i <Days.length;i++){
 		Days[i].style.border = "none";
 	}
-	D_Select.style.border = "1px solid red";
+	D_Select.style.border = "1px solid black";
 	D_Select.style.borderRadius = "10px";
 }
 

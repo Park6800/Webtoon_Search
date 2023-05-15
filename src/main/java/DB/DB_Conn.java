@@ -522,6 +522,43 @@ public class DB_Conn {
 			}
 		}
 	}
+	
+	public void delete_userdata(HttpServletRequest request, HttpServletResponse response, UserData _Data) throws IOException {
+		// TODO Auto-generated method stub
+		Statement stmt = null;
+		ResultSet res = null;
+
+
+		try {
+			PreparedStatement pstmt = null; // SQL실행객체
+
+			String sql = "delete from user_nfo where _USER_ID = '" + _Data.ID + "' AND _USER_PW = '" + _Data.PW + "'";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.executeUpdate();
+			response.sendRedirect("Logout.jsp");
+	
+		} catch (Exception e) {
+			e.printStackTrace();
+			HttpSession session = request.getSession();
+			session.setAttribute("error", "4");
+			response.sendRedirect("Delete.jsp");
+		} finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
 
 	//
 	public CountData conut_Data(String ID_value, String title_) {

@@ -107,6 +107,9 @@ Integer ADMIN_ = (Integer) session.getAttribute("admin");
 			String art = data.getART_AUTHOR();
 			String url = data.getURL();
 			%>
+			<form method="post" action="updata_Servlet">
+			<button type="submit">
+			<input type="hidden" name="Title" value="<%=title %>" >
 			<div class="list_item">
 				<div class="like_url"><img src="<%=url %>"></div>
 				<div class="like_title"><%=title %></div>
@@ -114,6 +117,8 @@ Integer ADMIN_ = (Integer) session.getAttribute("admin");
 				<div class="like_art"><%=art %></div>
 				<div class="like_day"><%=day %></div>
 			</div>
+			</button>
+			</form>
 			<%} %>
 		</div>
 			<div class="page">
