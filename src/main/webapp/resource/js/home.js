@@ -25,6 +25,7 @@ function select_day(select_) {
 		Days[i].style.border = "none";
 	}
 	D_Select.style.border = "1px solid red";
+	D_Select.style.borderRadius = "10px";
 }
 
 function change_sel(chan) {

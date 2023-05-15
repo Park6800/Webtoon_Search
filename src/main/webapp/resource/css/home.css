@@ -339,6 +339,10 @@ nav {
 	padding:5px 10px;
 }
 
+.review_list:hover {
+	text-decoration: underline;
+}
+
 .review_item {
 	display:flex;
 	justify-content: space-between;
@@ -432,18 +436,29 @@ nav {
 
 .btn_submit{
     width: 50px;
+    cursor: pointer;
 }
 
 .select_view {
     width: 150px;
+    cursor: pointer;
 }
 
 .genre {
     width: 60%;
-    margin: 30px auto 100px;
+    margin: 30px auto 70px;
     border: 1px solid black;
     border-radius: 10px;
     padding: 20px 10px;
+}
+
+.genre_, .day_ {
+	width:150px;
+	height: 30px;
+	text-align: center;
+	cursor: pointer;
+	background: gray;
+	border-radius: 10px;
 }
 
 .genres {
