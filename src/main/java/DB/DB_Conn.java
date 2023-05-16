@@ -931,10 +931,10 @@ public class DB_Conn {
 	public List<WebtoonData> likedWebtoons_list(String ID_value, int Number) {
 		List<WebtoonData> like_webtoon_list = new ArrayList<>();
 		try {
-			String sql = "SELECT A.* FROM webtoon_info as A LEFT JOIN count_info as B on A._TITLE = B._TITLE WHERE _User_ID = ? ORDER BY _SEQ LIMIT ?,10";
+			String sql = "SELECT A.* FROM webtoon_info as A LEFT JOIN count_info as B on A._TITLE = B._TITLE WHERE _User_ID = ? ORDER BY _SEQ LIMIT ?,9";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, ID_value);
-			pstmt.setInt(2, (Number - 1) * 10);
+			pstmt.setInt(2, (Number - 1) * 9);
 
 			ResultSet rs = pstmt.executeQuery();
 
@@ -990,8 +990,8 @@ public class DB_Conn {
 
 //	페이지 카운팅
 	public int pageCount(int dataCount) {
-		if (dataCount % 10 != 0) {
-			return dataCount / 10 + 1;
+		if (dataCount % 9 != 0) {
+			return dataCount / 9 + 1;
 		} else {
 			return dataCount;
 		}

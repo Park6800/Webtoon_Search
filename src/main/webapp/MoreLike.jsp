@@ -108,7 +108,7 @@ Integer ADMIN_ = (Integer) session.getAttribute("admin");
 			String url = data.getURL();
 			%>
 			<form method="post" action="updata_Servlet">
-			<button type="submit">
+			<button type="submit" class="btn_submit">
 			<input type="hidden" name="Title" value="<%=title %>" >
 			<div class="list_item">
 				<div class="like_url"><img src="<%=url %>"></div>
@@ -131,10 +131,10 @@ Integer ADMIN_ = (Integer) session.getAttribute("admin");
 			int count =  dbcon.like_list(ID_value); 
 			
 			// 한페이지에 10개 표시 한다는 전제하에 10의배수보다 많으면 마지막페이지 +1
-			if(count% 10 != 0 ){
-				lastpage = (count/10)+1;
+			if(count% 9 != 0 ){
+				lastpage = (count/9)+1;
 			}else{
-				lastpage = count/10;
+				lastpage = count/9;
 			}
 			for(int pageNum = dp1; pageNum<=lastpage;pageNum++){
 	 	%>

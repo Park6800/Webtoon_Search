@@ -36,15 +36,6 @@
 	Object chk = session.getAttribute("Serach_chk");
 	String Chk = (String) chk;
 	%>
-	<%
-	session.removeAttribute("Serach_chk");
-	if (Chk != null) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('검색 조건에 맞는 물건이 없습니다')");
-		script.println("</script>");
-	}
-	%>
 	<nav>
 		<div class="top-nav">
 			<div class="top-nav-left">
@@ -133,16 +124,16 @@
 				<div class="swiper-container first">
 					<div class="swiper-wrapper">
 						<div class="swiper-slide">
-							<img src="resource/img/book1-001.png" class="top_banner">
+							<img src="resource/img/배너1.png" class="top_banner">
 						</div>
 						<div class="swiper-slide">
-							<img src="resource/img/book1-002.png" class="top_banner">
+							<img src="resource/img/배너2.png" class="top_banner">
 						</div>
 						<div class="swiper-slide">
-							<img src="resource/img/book1-001.png" class="top_banner">
+							<img src="resource/img/배너3.png" class="top_banner">
 						</div>
 						<div class="swiper-slide">
-							<img src="resource/img/book1-002.png" class="top_banner">
+							<img src="resource/img/배너4.png" class="top_banner">
 						</div>
 					</div>
 					<div class="swiper-button-next">
@@ -404,7 +395,7 @@
 			<%
 			if (ID_value == null) {
 			%>
-			<div class="pick">
+			<div class="pick_after">
 				<div class="pick_list_a">
 					<div class="more_review_list_not_loign">
 						<div>로그인 이후 사용 가능합니다.</div>
@@ -444,11 +435,20 @@
 			%>
 		</div>
 	</div>
-	<div class="img_banner">
-		<img src="resource/img/1610703127371.jpg" class="Img">
-		<div class="img_font">이미지 위의 문구</div>
-	</div>
-	<footer> </footer>
+	<footer>
+		<div class="footer_fot">
+			<ul>
+				<li>고객 센터</li>
+				<li>이용 약관</li>
+				<li>개인 정보 처리 방침</li>
+				<li>쿠키 설정</li>
+				<li>회사 정보</li>
+			</ul>
+		</div>
+		<div class="reserved">이미지 제공 : Naver , KakaoPage</div>
+		<div class="reserved">© 2023. Park Jun Beom. All
+			rights reserved.</div>
+	</footer>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 <script src="resource/js/home.js"></script>

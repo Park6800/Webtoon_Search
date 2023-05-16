@@ -13,8 +13,12 @@ ul {
     list-style: none;
 }
 
+body {
+	background: #fdf5ec;
+}
+
 .main_body{
-	width:40%;
+	width:35%;
 	margin: 80px auto;
 	background-color:white;
 	border:1px solid black;

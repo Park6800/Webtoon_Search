@@ -14,7 +14,7 @@
     let _choice = document.getElementById(choice);
     let _sel = document.getElementsByClassName("select_");
     for(let i=0; i<_sel.length;i++){
-        _sel[i].style.background="rgba(255,255,255,0.6)";
+        _sel[i].style.background="#ffb52b";
        	_sel[i].style.padding = "5px"
     }
     _choice.style.background = "#FF8339";
@@ -28,4 +28,12 @@
 function Write_display() {
 	let review = document.getElementById("review_W");
 	review.style.display = "block";
+}
+
+function submit_Btn(event) {
+  var genre = event.target.form.querySelector('.get_genre');
+  if (genre.value === '') {
+    event.preventDefault();
+    alert('장르를 선택해주세요.');
+  }
 }

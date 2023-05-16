@@ -14,34 +14,18 @@ ul {
 
 li {
     display: inline-block;
-    margin-right: 50px;
 }
 
-table {
-    width: 100%;
-    border: 1px solid #444444;
-    border-collapse: collapse;
-    margin-top:50px;
+.top-nav-right > ul > li:not(:last-child) {
+	margin-right:50px;
 }
 
-th, td {
-    border: 1px solid #444444;
-    padding: 10px 0px;
-}
-
-tr {
-	height: 80px;
-}
-
-.color_gray {
-	width:250px;
-	background:#dfd8d8;
-}
-  
 nav {
     height: 150px;
     background: #ffb52b;
 }
+
+/* background: #988179;*/
 
 .top-nav {
     width: 60%;
@@ -70,10 +54,6 @@ nav {
     color: white;
 }
 
-.top-nav-left > a{
-	color: white;
-}
-
 .top-nav-right > ul > li{
     color: white;
 }
@@ -97,9 +77,10 @@ nav {
 
 .w150 {
     width: 150px;
+    font-weight:600;
+    font-size:18px;
     text-align: center;
     color: white;
-    
 }
 
 .bot:hover ~ .hide-nav{
@@ -112,7 +93,7 @@ nav {
 
 .hide-nav {
     position: relative;
-    height: 210px;
+    height: 270px;
     display: none;
     justify-content: space-around;
     z-index: 5;
@@ -135,46 +116,35 @@ nav {
     text-align: center;
     padding-top: 20px;
     color: white;
+    font-size: 15px;
+    font-weight: 550;
 }
 
-.fix_profile_container {
-	width:55%;
-	margin:30px auto;
-	border:1px solid black;
-	border-radius:20px;
+.notice_container {
+	width:45%;
+	height:500px;
+	margin:100px auto;
+	padding: 20px 15px;
 	background:antiquewhite;
 }
 
-.in_container {
-	margin: 30px 40px;
-	border:1px solid black;
-	border-radius:20px;
-	background:white;
+.notice_header {
+	display:flex;
+	justify-content: space-between;
+	background-color: white;
+	font-size:20px;
+	padding:7px 10px;
+	border-radius: 7px;
 }
 
-.profile {
-	margin: 30px 20px;
-	background:white;
-}
-
-.fix_btn {
-	display: flex;
-	justify-content: flex-end;
-}
-
-.fix_button {
-	padding: 10px 20px;
-	background: #999999;
+.notice_body {
+	height:340px;
 	margin-top:20px;
+	background-color: white;
+	padding:7px 10px;
+	border-radius: 7px;
 }
 
-.none {
-	display:none;
-	justify-content: center;
-}
-
-.change_info {
-	width:250px;
-	padding:7px 5px;
-	box-sizing: border-box;
+h4 {
+	margin:10px;
 }

@@ -70,7 +70,7 @@
 					<li onclick="click_genre('개그');" id="개그" class="select_">개그</li>
 				</ul>
 			</div>
-			<div class="color_w">내 정보 보기</div>
+			<div class="color_w"><a href="My_info.jsp">내 정보 보기</a></div>
 		</div>
 		<hr>
 		<div class="bot-nav" id="nav-b">
@@ -120,7 +120,7 @@
 					</li>
 				</ul>
 			</div>
-			<div class="color_w">예정</div>
+			<div class="color_w"><a href="MoreLike.jsp">내 선호작 보기</a></div>
 		</div>
 		</div>
 	</nav>

@@ -91,57 +91,57 @@
 					<li onclick="click_genre('개그');" id="개그" class="select_">개그</li>
 				</ul>
 			</div>
-			<div class="color_w">내 정보 보기</div>
+			<div class="color_w"><a href="My_info.jsp">내 정보 보기</a></div>
 		</div>
 		<hr>
 		<div class="bot-nav" id="nav-b">
 			<div class="submit_btn">
 				<ul>
 					<li>
-						<form method="post" action="webtoonServlet">
-							<input type="submit" value="월요일" name="Day" class="btn_day"><input
+						<form method="post" action="webtoonServlet" class="_post">
+							<input type="submit" value="월요일" name="Day" class="btn_day" onclick="submit_Btn(event)"><input
 								type="hidden" class="get_genre" name="Genre">
 						</form>
 					</li>
 					<li>
-						<form method="post" action="webtoonServlet">
-							<input type="submit" value="화요일" name="Day" class="btn_day"><input
+						<form method="post" action="webtoonServlet" class="_post">
+							<input type="submit" value="화요일" name="Day" class="btn_day" onclick="submit_Btn(event)"><input
 								type="hidden" class="get_genre" name="Genre">
 						</form>
 					</li>
 					<li>
-						<form method="post" action="webtoonServlet">
-							<input type="submit" value="수요일" name="Day" class="btn_day"><input
+						<form method="post" action="webtoonServlet" class="_post">
+							<input type="submit" value="수요일" name="Day" class="btn_day" onclick="submit_Btn(event)"><input
 								type="hidden" class="get_genre" name="Genre">
 						</form>
 					</li>
 					<li>
-						<form method="post" action="webtoonServlet">
-							<input type="submit" value="목요일" name="Day" class="btn_day"><input
+						<form method="post" action="webtoonServlet" class="_post">
+							<input type="submit" value="목요일" name="Day" class="btn_day" onclick="submit_Btn(event)"><input
 								type="hidden" class="get_genre" name="Genre">
 						</form>
 					</li>
 					<li>
-						<form method="post" action="webtoonServlet">
-							<input type="submit" value="금요일" name="Day" class="btn_day"><input
+						<form method="post" action="webtoonServlet" class="_post">
+							<input type="submit" value="금요일" name="Day" class="btn_day" onclick="submit_Btn(event)"><input
 								type="hidden" class="get_genre" name="Genre">
 						</form>
 					</li>
 					<li>
-						<form method="post" action="webtoonServlet">
-							<input type="submit" value="토요일" name="Day" class="btn_day"><input
+						<form method="post" action="webtoonServlet" class="_post">
+							<input type="submit" value="토요일" name="Day" class="btn_day" onclick="submit_Btn(event)"><input
 								type="hidden" class="get_genre" name="Genre">
 						</form>
 					</li>
 					<li>
-						<form method="post" action="webtoonServlet">
-							<input type="submit" value="일요일" name="Day" class="btn_day"><input
+						<form method="post" action="webtoonServlet" class="_post">
+							<input type="submit" value="일요일" name="Day" class="btn_day" onclick="submit_Btn(event)"><input
 								type="hidden" class="get_genre" name="Genre">
 						</form>
 					</li>
 				</ul>
 			</div>
-			<div class="color_w">예정</div>
+			<div class="color_w"><a href="MoreLike.jsp">내 선호작 보기</a></div>
 		</div>
 	</nav>
 	<%
@@ -151,17 +151,18 @@
 		<div class="con_top">
 			<h2><%=title_%></h2>
 			<div class="Like_btn">
-
+			<%
+				CountData con_ = new DB_Conn().conut_Data(ID_value, title_);
+				%>
+				<div class="count_num">
+					<p>좋아요 : </p> <%= con_.getCOUNT()%>
+				</div>
 				<button>
 					<a href="#review_W" onclick="Write_display()">리뷰 쓰기</a>
 				</button>
 
-				<%
-				CountData con_ = new DB_Conn().conut_Data(ID_value, title_);
-				%>
-				<div class="count_num">
-					<%=con_.getCOUNT()%>
-				</div>
+				
+			
 				<%
 				CountData con = new DB_Conn().liked_(ID_value, title_);
 				Object Like_ = session.getAttribute("Liked_");
@@ -293,5 +294,19 @@
 		</div>
 	</div>
 	<%} %>
+		<footer>
+		<div class="footer_fot">
+			<ul>
+				<li>고객 센터</li>
+				<li>이용 약관</li>
+				<li>개인 정보 처리 방침</li>
+				<li>쿠키 설정</li>
+				<li>회사 정보</li>
+			</ul>
+		</div>
+		<div class="reserved">이미지 제공 : Naver , KakaoPage</div>
+		<div class="reserved">© 2023. Park Jun Beom. All
+			rights reserved.</div>
+	</footer>
 </body>
 </html>

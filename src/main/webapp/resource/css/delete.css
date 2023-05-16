@@ -91,7 +91,7 @@ nav {
     display: none;
     justify-content: space-around;
     z-index: 5;
-    background: rgba(35, 36, 45, 0.9);
+    background:  rgba(255 ,165 ,0,0.9);
 }
 
 .hide_nav_width {

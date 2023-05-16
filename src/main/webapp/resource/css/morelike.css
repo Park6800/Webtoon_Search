@@ -125,8 +125,10 @@ nav {
 	border: 1px solid black;
 }
 
-.like_url {
-	display:flex;	
+.btn_submit {
+	float:left;
+	width:33%;
+	height:337px;
 }
 
 .like_url >img {

@@ -15,7 +15,10 @@ ul {
 
 li {
     display: inline-block;
-    margin-right: 50px;
+}
+
+.top-nav-right > ul > li:not(:last-child) {
+	margin-right:50px;
 }
 
 nav{
@@ -38,6 +41,10 @@ nav{
     align-items: center;
 }
 
+.top-nav-right {
+	float:right;
+}
+
 .serach {
 	display:flex;
 }
@@ -57,6 +64,11 @@ nav{
 
 .color_w, .nav_genre > ul >li {
 	color:white;
+	margin-right:50px;
+}
+
+.color_w > a {
+	color:white;
 }
 
 .middle-nav {
@@ -71,7 +83,14 @@ nav{
 .nav_genre > ul > li:nth-child(n+1){
     position: relative;
     margin-left: 10px;
-    
+    font-size:16px;
+   
+}
+
+.nav_genre > ul > li:hover {
+	background-color: #FF8339;
+	padding:5px;
+	border-radius: 5px;
 }
 
 .nav_genre > ul > li:not(:last-child)::after{
@@ -101,6 +120,7 @@ nav{
 .submit_btn > ul > li:nth-child(n+1){
     position: relative;
     margin-left: 10px;
+     margin-right:50px;
 }
 
 .submit_btn > ul > li:not(:last-child)::after{
@@ -114,11 +134,18 @@ nav{
 }
 
 .btn_day {
-    border: 1px solid black;
+	border:0;
     border-radius: 5px;
-    padding: 5px 10px;
-    background-color: #EECC95;
     cursor: pointer;
+    background: #ffb52b;
+    color:white;
+    font-size:16px;
+}
+
+.btn_day:hover {
+	background-color: #FF8339;
+	padding:5px;
+	border-radius: 5px;
 }
 
 .main_body {
