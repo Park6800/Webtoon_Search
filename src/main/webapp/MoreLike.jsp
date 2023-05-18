@@ -21,10 +21,14 @@ String ID_value = (String) ID_;
 Integer ADMIN_ = (Integer) session.getAttribute("admin");
 %>
 	<nav>
+	<div class="color_nav">
 		<div class="top-nav">
-			<div class="top-nav-left"><a href="Home.jsp"><img src="resource/img/Logo.png" style="width: 100px"></a></div>
+			<div class="top-nav-left">
+				<a href="Home.jsp" class="color_w"><img src="resource/img/Logo.png" style="width: 100px"></a>
+			</div>
 			<div class="serach">
 				<select onchange="search_()" id=change_select>
+					<option disabled="disabled" selected="selected">검색 조건</option>
 					<option value="Title">제목 검색</option>
 					<option value="Story">글 작가 검색</option>
 					<option value="Art">그림 작가 검색</option>
@@ -35,59 +39,91 @@ Integer ADMIN_ = (Integer) session.getAttribute("admin");
 				</form>
 			</div>
 			<div class="top-nav-right">
+				<%
+				if (ID_value == null) {
+				%>
 				<ul>
-					<% if(ID_value == null) {%>
-					<li>로그인</li>
-					<li><a href="Signup.jsp">회원가입</a></li>
-					<%} else { %>
-					<li><%=ID_value %></li>
-					<li><a href="Logout.jsp">로그아웃</a></li>
-					<%} %>
+					<li class="color_w">로그인</li>
+					<li class="color_w">회원가입</li>
 				</ul>
+				<%
+				} else {
+				%>
+				<ul>
+					<li class="color_w"><%=ID_value%></li>
+					<li><a href="Logout.jsp" class="color_w">로그아웃</a></li>
+				</ul>
+				<%
+				}
+				%>
 			</div>
 		</div>
 		<hr>
-		<div class="bot">
-			<div class="bot-nav">
-				<div class="w150">도서관</div>
-				<div class="w150">온라인</div>
-				<div class="w150">질문 | 답변</div>
-				<div class="w150">장르 1</div>
-				<div class="w150">장르 2</div>
+		<div class="middle-nav">
+			<div class="nav_genre">
+				<ul>
+					<li onclick="click_genre('스릴러');" id="스릴러" class="select_">스릴러</li>
+					<li onclick="click_genre('로맨스');" id="로맨스" class="select_">로맨스</li>
+					<li onclick="click_genre('로맨스판타지');" id="로맨스판타지" class="select_">로맨스
+						판타지</li>
+					<li onclick="click_genre('현대');" id="현대" class="select_">현대</li>
+					<li onclick="click_genre('판타지');" id="판타지" class="select_">판타지</li>
+					<li onclick="click_genre('무협');" id="무협" class="select_">무협</li>
+					<li onclick="click_genre('개그');" id="개그" class="select_">개그</li>
+				</ul>
 			</div>
+			<div class="color_w"><a href="My_info.jsp">내 정보 보기</a></div>
 		</div>
-		<div class="hide-nav">
-			<div class="hide_nav_width">
-				<div class="around">
-					<div class="pt20">찾아 오는 길</div>
-					<div class="pt20">이용 시간 안내</div>
-					<div class="pt20">기증 안내</div>
-					<div class="pt20">자원 봉사</div>
-				</div>
-				<div class="around">
-					<div class="pt20">온라인 도서관</div>
-					<div class="pt20">새로 들어온 책</div>
-					<div class="pt20">도서 택배 대출</div>
-				</div>
-				<div class="around">
-					<div class="pt20">질</div>
-					<div class="pt20">문</div>
-					<div class="pt20">답</div>
-					<div class="pt20">변</div>
-				</div>
-				<div class="around">
-					<div class="pt20">질</div>
-					<div class="pt20">문</div>
-					<div class="pt20">답</div>
-					<div class="pt20">변</div>
-				</div>
-				<div class="around">
-					<div class="pt20">질</div>
-					<div class="pt20">문</div>
-					<div class="pt20">답</div>
-					<div class="pt20">변</div>
-				</div>
+		<hr>
+		<div class="bot-nav" id="nav-b">
+			<div class="submit_btn">
+				<ul>
+					<li>
+						<form method="post" action="webtoonServlet" class="_post">
+							<input type="submit" value="월요일" name="Day" class="btn_day" onclick="submit_Btn(event)"><input
+								type="hidden" class="get_genre" name="Genre">
+						</form>
+					</li>
+					<li>
+						<form method="post" action="webtoonServlet" class="_post">
+							<input type="submit" value="화요일" name="Day" class="btn_day" onclick="submit_Btn(event)"><input
+								type="hidden" class="get_genre" name="Genre">
+						</form>
+					</li>
+					<li>
+						<form method="post" action="webtoonServlet" class="_post">
+							<input type="submit" value="수요일" name="Day" class="btn_day" onclick="submit_Btn(event)"><input
+								type="hidden" class="get_genre" name="Genre">
+						</form>
+					</li>
+					<li>
+						<form method="post" action="webtoonServlet" class="_post">
+							<input type="submit" value="목요일" name="Day" class="btn_day" onclick="submit_Btn(event)"><input
+								type="hidden" class="get_genre" name="Genre">
+						</form>
+					</li>
+					<li>
+						<form method="post" action="webtoonServlet" class="_post">
+							<input type="submit" value="금요일" name="Day" class="btn_day" onclick="submit_Btn(event)"><input
+								type=hidden class="get_genre" name="Genre">
+						</form>
+					</li>
+					<li>
+						<form method="post" action="webtoonServlet" class="_post">
+							<input type="submit" value="토요일" name="Day" class="btn_day" onclick="submit_Btn(event)"><input
+								type="hidden" class="get_genre" name="Genre">
+						</form>
+					</li>
+					<li>
+						<form method="post" action="webtoonServlet" class="_post">
+							<input type="submit" value="일요일" name="Day" class="btn_day" onclick="submit_Btn(event)"><input
+								type="hidden" class="get_genre" name="Genre">
+						</form>
+					</li>
+				</ul>
 			</div>
+			<div class="color_w"><a href="MoreLike.jsp">내 선호작 보기</a></div>
+		</div>
 		</div>
 	</nav>
 	<div class="like_list">
