@@ -6,6 +6,7 @@ public class ReviewData {
 	private String TITLE;
 	private String COMMENT_TITLE;
 	private String COMMENT;
+	private int GRADE;
 	private String DATA;
 	public String getUSER_ID() {
 		return USER_ID;
@@ -42,5 +43,11 @@ public class ReviewData {
 	}
 	public void setDATA(String dATA) {
 		DATA = dATA;
+	}
+	public int getGRADE() {
+		return GRADE;
+	}
+	public void setGRADE(int gRADE) {
+		GRADE = gRADE;
 	}
 }

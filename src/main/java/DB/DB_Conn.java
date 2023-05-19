@@ -665,6 +665,24 @@ public class DB_Conn {
 		}
 		return null;
 	}
+	// 코맨트를 남긴 갯수를 카운트해서 평균 구할때 사용
+	public ReviewData Grade_Data(String title_) {
+		ResultSet res = null;
+		String sql = "SELECT COUNT(*) FROM comment WHERE _TITLE = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, title_);
+			res = pstmt.executeQuery();
+			if (res.next()) {
+				ReviewData Data = new ReviewData();
+				Data.setGRADE(0);
+				return Data;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	// 좋아요 해제 기능
 	public void liked_hate(HttpServletRequest request, HttpServletResponse response, CountData _Data) {

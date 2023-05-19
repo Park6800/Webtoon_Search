@@ -157,6 +157,10 @@
 				<div class="count_num">
 					<p>좋아요 : </p> <%= con_.getCOUNT()%>
 				</div>
+				<%ReviewData conection = new DB_Conn().Grade_Data(title_); %>
+				<div class="grade">
+					<p>평점 : <%=conection.getGRADE() %> </p>
+				</div>
 				<button>
 					<a href="#review_W" onclick="Write_display()">리뷰 쓰기</a>
 				</button>
@@ -285,9 +289,11 @@
 			<h2>댓글 작성</h2>
 			<form method="post" action="reviewwrite_Servlet">
 				<input type="hidden" value="<%=ID_value%>" name="User_id"> <input
-					type="hidden" value="<%=title_%>" name="Title"> <input
-					type="text" placeholder="글 제목을 입력하세요" name="Commnet_title"
-					class="review_title"> <input type="text"
+					type="hidden" value="<%=title_%>" name="Title"> 
+					<div class="review_header">
+					<input type="text" placeholder="글 제목을 입력하세요" name="Commnet_title" class="review_title">
+					<input type="number">
+					</div> <input type="text"
 					placeholder="내용을 입력해주세요" name="Comment" class="review_content">
 				<button type="submit">게시하기</button>
 			</form>
