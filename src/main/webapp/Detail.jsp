@@ -292,7 +292,7 @@
 					type="hidden" value="<%=title_%>" name="Title"> 
 					<div class="review_header">
 					<input type="text" placeholder="글 제목을 입력하세요" name="Commnet_title" class="review_title">
-					<input type="number">
+					<input type="number" class="review_point" min="0" max="100">
 					</div> <input type="text"
 					placeholder="내용을 입력해주세요" name="Comment" class="review_content">
 				<button type="submit">게시하기</button>
