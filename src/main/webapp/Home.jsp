@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="resource/css/home.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-<title>전자 도서</title>
+<title>웹툰 서치</title>
 </head>
 
 <body>

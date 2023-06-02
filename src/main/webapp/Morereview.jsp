@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>웹툰 서치 - 내 리뷰 더 보기</title>
 <link rel="stylesheet" href="resource/css/morereview.css">
 </head>
 <body>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>웹툰 서치 - 로그인 페이지</title>
 <link rel="stylesheet" href="resource/css/login.css">
 </head>
 <body>

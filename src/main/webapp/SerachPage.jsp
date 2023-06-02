@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>웹툰 서치 - 검색 결과</title>
 <link rel="stylesheet" href="resource/css/searchpage.css">
 </head>
 <body>

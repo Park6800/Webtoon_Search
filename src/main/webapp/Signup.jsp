@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>웹툰 서치 - 회원 가입</title>
 <link rel="stylesheet" href="resource/css/signup.css">
 <script src="resource/js/signup.js"></script>
 </head>

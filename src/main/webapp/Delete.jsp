@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>웹툰 서치 - 회원 탈퇴</title>
 <link rel="stylesheet" href="resource/css/delete.css">
 </head>
 <body>

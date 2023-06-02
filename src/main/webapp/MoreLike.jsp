@@ -12,7 +12,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="resource/css/morelike.css">
-<title>Insert title here</title>
+<title>웹툰 서치 - 선호작 보기</title>
 </head>
 <body>
 <%
