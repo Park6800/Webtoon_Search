@@ -163,15 +163,11 @@
 				</div>
 				<button>
 					<a href="#review_W" onclick="Write_display()">리뷰 쓰기</a>
-				</button>
-
-				
-			
+				</button>			
 				<%
 				CountData con = new DB_Conn().liked_(ID_value, title_);
 				Object Like_ = session.getAttribute("Liked_");
 				String like = (String) Like_;
-
 				if (con == null) {
 				%>
 				<form method="post" action="likeServlet">
@@ -275,8 +271,7 @@
 								</div>
 							</div>
 							<%
-							}
-							}
+							} }
 							%>
 						</div>
 					</div>
@@ -288,11 +283,11 @@
 		<div class="review">
 			<h2>댓글 작성</h2>
 			<form method="post" action="reviewwrite_Servlet">
-				<input type="hidden" value="<%=ID_value%>" name="User_id"> <input
-					type="hidden" value="<%=title_%>" name="Title"> 
+				<input type="hidden" value="<%=ID_value%>" name="User_id"> 
+				<input type="hidden" value="<%=title_%>" name="Title"> 
 					<div class="review_header">
 					<input type="text" placeholder="글 제목을 입력하세요" name="Commnet_title" class="review_title">
-					<input type="number" class="review_point" min="0" max="100">
+					<input type="number" class="review_point" min="0" max="100" name="Grade">
 					</div> <input type="text"
 					placeholder="내용을 입력해주세요" name="Comment" class="review_content">
 				<button type="submit">게시하기</button>

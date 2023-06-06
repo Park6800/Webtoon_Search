@@ -668,17 +668,26 @@ public class DB_Conn {
 	// 코맨트를 남긴 갯수를 카운트해서 평균 구할때 사용
 	public ReviewData Grade_Data(String title_) {
 		ResultSet res = null;
-		String sql = "SELECT COUNT(*) FROM comment WHERE _TITLE = ?";
+		String sql = "SELECT COUNT(*), SUM(_Grade) FROM comment WHERE _TITLE = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, title_);
 			res = pstmt.executeQuery();
 			if (res.next()) {
 				ReviewData Data = new ReviewData();
-				Data.setGRADE(0);
+				int Count = res.getInt(1);
+				int Grade = res.getInt(2);
+				
+				  if (Count != 0) {
+		                int averageGrade = (int) Grade / Count; // 평균 계산
+
+		                // 가져온 값을 ReviewData 객체에 저장
+		                Data.setGRADE(averageGrade);
+
+		       
 				return Data;
 			}
-		} catch (Exception e) {
+		}	} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -786,12 +795,13 @@ public class DB_Conn {
 			
 			PreparedStatement pstmt = null;
 			try {
-				String sql = "insert into comment(_USER_ID, _TITLE, _MENT_TITLE, _MENT)" + "values(?,?,?,?)";
+				String sql = "insert into comment(_USER_ID, _TITLE, _MENT_TITLE, _MENT, _GRADE)" + "values(?,?,?,?,?)";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, _Data.getUSER_ID());
 				pstmt.setString(2, _Data.getTITLE());
 				pstmt.setString(3, _Data.getCOMMENT_TITLE());
 				pstmt.setString(4, _Data.getCOMMENT());
+				pstmt.setInt(5, _Data.getGRADE());
 				System.out.println(_Data.getUSER_ID());
 				pstmt.executeUpdate();
 				

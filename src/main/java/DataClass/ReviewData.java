@@ -1,6 +1,7 @@
 package DataClass;
 
 public class ReviewData {
+	private int COUNT;
 	private int SEQ;
 	private String USER_ID;
 	private String TITLE;
@@ -10,6 +11,12 @@ public class ReviewData {
 	private String DATA;
 	public String getUSER_ID() {
 		return USER_ID;
+	}
+	public final int getCOUNT() {
+		return COUNT;
+	}
+	public final void setCOUNT(int cOUNT) {
+		COUNT = cOUNT;
 	}
 	public void setUSER_ID(String uSER_ID) {
 		USER_ID = uSER_ID;

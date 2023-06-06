@@ -40,13 +40,15 @@ public class reviewwrite_Servlet extends HttpServlet {
 			String title = request.getParameter("Title");
 			String comment_title = request.getParameter("Commnet_title");
 			String comment = request.getParameter("Comment");
-
+			int grade = Integer.parseInt(request.getParameter("Grade"));
+			
 			ReviewData _Data = new ReviewData();
 
 			_Data.setUSER_ID(user_id);
 			_Data.setTITLE(title);
 			_Data.setCOMMENT_TITLE(comment_title);
 			_Data.setCOMMENT(comment);
+			_Data.setGRADE(grade);
 			
 			
 			_Db.Review_Write(request, response, _Data);
