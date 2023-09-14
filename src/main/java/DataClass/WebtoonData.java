@@ -1,15 +1,19 @@
 package DataClass;
 
+import javax.servlet.http.Part;
+
 public class WebtoonData {
-		private int SEQ;
-		private String TITLE;
-		private String DAY;
-		private String GENRE;
-		private String STORY_AUTHOR;
-		private String ART_AUTHOR;
-		private String COMPANY;
-		private String URL;
-		private String LIKE;
+		public int SEQ;
+		public String TITLE;
+		public String DAY;
+		public String GENRE;
+		public String STORY_AUTHOR;
+		public String ART_AUTHOR;
+		public String COMPANY;
+		public String URL;
+		public String LIKE;
+		public String filename;
+		public String fileRealname;
 		public String getTITLE() {
 			return TITLE;
 		}
@@ -64,6 +68,23 @@ public class WebtoonData {
 		public void setSEQ(int sEQ) {
 			SEQ = sEQ;
 		}
+		public final String getFilename() {
+			return filename;
+		}
+		public final void setFilename(String filename) {
+			this.filename = filename;
+		}
+		public final String getFileRealname() {
+			return fileRealname;
+		}
+		public final void setFileRealname(String fileRealname) {
+			this.fileRealname = fileRealname;
+		}
+		public void setURL(String fileName2) {
+			// TODO Auto-generated method stub
+			
+		}
+
 		
 		
 

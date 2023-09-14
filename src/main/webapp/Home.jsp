@@ -9,8 +9,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -389,7 +388,6 @@
 	<div class="container_pick">
 		<div>
 			<h2>랜덤 픽</h2>
-			<span>(새로 고침 때 마다 변경)</span>
 		</div>
 		<div class="live_recomend">
 			<%

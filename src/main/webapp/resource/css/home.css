@@ -202,6 +202,7 @@ nav {
 	height:210px;
 	margin:10px auto;
 	border-radius: 10px;
+	word-break: break-all
 }
 
 .login_in {
@@ -214,7 +215,7 @@ nav {
 
 .login_like, .login_like_none {
 	display:block;
-	width:250px;
+	width:95%;
 	height:185px;
 	margin:auto;
 	padding-top:10px;

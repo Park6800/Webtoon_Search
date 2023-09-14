@@ -1,7 +1,11 @@
 package DB;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URLEncoder;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,6 +18,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import DataClass.CountData;
 import DataClass.ReviewData;
@@ -54,7 +59,6 @@ public class DB_Conn {
 
 	public void Signup(HttpServletRequest request, HttpServletResponse response, UserData _Data) {
 		// TODO Auto-generated method stub
-		Statement stmt = null;
 		
 			PreparedStatement pstmt = null;
 			try {
@@ -67,15 +71,13 @@ public class DB_Conn {
 				pstmt.setString(5, _Data.GENDER);
 				pstmt.executeUpdate();
 				
-
-				
 				response.sendRedirect("Home.jsp");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (stmt != null) {
-					stmt.close();
+				if (pstmt != null) {
+					pstmt.close();
 				}
 			} catch (Exception e2) {
 				e2.printStackTrace();
@@ -1051,5 +1053,5 @@ public class DB_Conn {
 	}
 	return Random_webtoon_list;
 	}
-
+	
 }

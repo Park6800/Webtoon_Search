@@ -158,9 +158,15 @@
 					<p>좋아요 : </p> <%= con_.getCOUNT()%>
 				</div>
 				<%ReviewData conection = new DB_Conn().Grade_Data(title_); %>
+				<% if (conection != null){ %>
 				<div class="grade">
 					<p>평점 : <%=conection.getGRADE() %> </p>
 				</div>
+				<% } else { %>
+				<div class="grade">
+					<p>평점 : 0 </p>
+				</div>
+				<% }  %>
 				<button>
 					<a href="#review_W" onclick="Write_display()">리뷰 쓰기</a>
 				</button>			
@@ -290,7 +296,7 @@
 					<input type="number" class="review_point" min="0" max="100" name="Grade">
 					</div> <input type="text"
 					placeholder="내용을 입력해주세요" name="Comment" class="review_content">
-				<button type="submit">게시하기</button>
+				<button type="submit" onclick="comment_write(<%=ID_value%>, <%=title_%>)">게시하기</button>
 			</form>
 		</div>
 	</div>
